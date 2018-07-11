@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumPlugin", "SeleniumP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumPluginTest", "SeleniumPluginTest\SeleniumPluginTest.csproj", "{B45AFEC2-1DBA-4745-9FF4-EAA9800B5288}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumPluginWPF", "SeleniumPluginWPF\SeleniumPluginWPF.csproj", "{23D09318-4E5D-45F2-97C4-5662D8A19133}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B45AFEC2-1DBA-4745-9FF4-EAA9800B5288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B45AFEC2-1DBA-4745-9FF4-EAA9800B5288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B45AFEC2-1DBA-4745-9FF4-EAA9800B5288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23D09318-4E5D-45F2-97C4-5662D8A19133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23D09318-4E5D-45F2-97C4-5662D8A19133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23D09318-4E5D-45F2-97C4-5662D8A19133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23D09318-4E5D-45F2-97C4-5662D8A19133}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
