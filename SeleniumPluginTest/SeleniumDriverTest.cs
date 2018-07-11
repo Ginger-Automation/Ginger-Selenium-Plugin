@@ -114,7 +114,7 @@ namespace SeleniumPluginTest
 
             // Assert
             Assert.AreEqual(GA.Output["key2"], "hello 2"); 
-            Assert.IsTrue(ela < 1200, "Elapsed < 1200");  
+            Assert.IsTrue(ela < 1500, "Elapsed < 1500");  
 
         }
 

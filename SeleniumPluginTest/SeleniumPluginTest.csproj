@@ -20,8 +20,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GingerTestHelper\GingerTestHelper.csproj" />
     <ProjectReference Include="..\SeleniumPlugin\SeleniumPlugin.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GingerPlugInsNET">
+      <HintPath>..\SeleniumPlugin\DLLs\GingerPlugInsNET.dll</HintPath>
+    </Reference>
+    <Reference Include="GingerTestHelper">
+      <HintPath>DLLs\GingerTestHelper.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

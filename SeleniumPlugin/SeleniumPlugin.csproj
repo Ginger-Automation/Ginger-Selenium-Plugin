@@ -55,11 +55,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GingerCoreNET\GingerCoreNET.csproj" />
-    <ProjectReference Include="..\GingerPlugInsNET\GingerPlugInsNET.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Reference Include="GingerPlugInsNET">
+      <HintPath>DLLs\GingerPlugInsNET.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.mshtml">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\PublicAssemblies\Microsoft.mshtml.dll</HintPath>
     </Reference>

@@ -31,7 +31,7 @@ using System.Reflection;
 using System.Threading;
 using HtmlAgilityPack;
 using System.Drawing;
-using GingerCoreNET.ReporterLib;
+// using GingerCoreNET.ReporterLib;
 
 namespace Amdocs.Ginger.SeleniumPlugin          
 {
@@ -221,7 +221,7 @@ namespace Amdocs.Ginger.SeleniumPlugin
             }
             catch (Exception ex)
             {
-                Reporter.ToLog(eLogLevel.ERROR, $"Method - {MethodBase.GetCurrentMethod().Name}, Error - {ex.Message}");
+                //FIXME Reporter.ToLog(eLogLevel.ERROR, $"Method - {MethodBase.GetCurrentMethod().Name}, Error - {ex.Message}");
             }
 
         }
