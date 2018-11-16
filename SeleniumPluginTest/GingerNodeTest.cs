@@ -16,6 +16,8 @@ limitations under the License.
 */
 #endregion
 
+using Amdocs.Ginger.Plugin.Core;
+using Amdocs.Ginger.SeleniumPlugin;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SeleniumPluginTest
@@ -24,13 +26,17 @@ namespace SeleniumPluginTest
     public class GingerNodeTest
     {
 
-       // GingerNode mGingerNode;
+        // GingerNode mGingerNode;
 
         [TestInitialize]
         public void TestInitialize()
         {
             // Start Ginger Node with Selenium driver
-            //SeleniumDriver d = new SeleniumDriver();
+            SeleniumChromeDriver d = new SeleniumChromeDriver();
+            d.Start();
+            GingerAction GA = new GingerAction();
+            d.Navigate(GA,"http://www.google.com");
+            d.Stop();
 
             //// TODO: check how to externalize  // make it NodeInfo and drivers capabilities
             //DriverCapabilities DC = new DriverCapabilities();
@@ -48,10 +54,26 @@ namespace SeleniumPluginTest
         }
 
 
+        [TestMethod]      
+        public void GotoURL()
+        {
+            // Start Ginger Node with Selenium driver
+            SeleniumChromeDriver d = new SeleniumChromeDriver();
+            d.Start();
+            GingerAction GA = new GingerAction();
+            d.Navigate(GA, "http://www.google.com");
+            d.Stop();
 
-      // Move me to GingerNode Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //// TODO: check how to externalize  // make it NodeInfo and drivers capabilities
+            //DriverCapabilities DC = new DriverCapabilities();
+            //DC.OS = "Windows";
+            //DC.Platform = "Web";
 
-       
-       
+            //mGingerNode = new GingerNode(DC, d);
+            //mGingerNode.StartGingerNode(7700, "127.0.0.1", 7800);
+        }
+
+
+
     }
 }

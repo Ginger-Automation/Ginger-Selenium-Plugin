@@ -14,20 +14,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GingerTestHelper" Version="1.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
+    <PackageReference Include="Ginger.Plugin.Core" Version="3.0.0" />
+    <PackageReference Include="GingerTestHelper" Version="1.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
     <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SeleniumPlugin\SeleniumPlugin.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="GingerPlugInsNET">
-      <HintPath>..\SeleniumPlugin\DLLs\GingerPlugInsNET.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\SeleniumPlugin2\SeleniumPlugin2.csproj" />
   </ItemGroup>
 
   <ItemGroup>

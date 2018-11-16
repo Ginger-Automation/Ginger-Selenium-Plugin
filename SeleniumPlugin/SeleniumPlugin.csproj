@@ -49,9 +49,9 @@
 
   <ItemGroup>
     <PackageReference Include="AjaxMin" Version="5.14.5506.26202" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.8.4" />
-    <PackageReference Include="Selenium.Support" Version="3.13.1" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.13.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.10" />
+    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
   </ItemGroup>
 
   <ItemGroup>
