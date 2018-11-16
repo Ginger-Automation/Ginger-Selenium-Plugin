@@ -30,7 +30,7 @@ using System.Threading;
 
 namespace Amdocs.Ginger.SeleniumPlugin
 {
-    public abstract class SeleniumDriver  //,  ITakeScreenShot, IUIElementAction, IWebBrowser, IRecord
+    public abstract class SeleniumDriver : IServiceSession //,  ITakeScreenShot, IUIElementAction, IWebBrowser, IRecord
     {
         internal IWebDriver mDriver = null;
 
@@ -40,7 +40,9 @@ namespace Amdocs.Ginger.SeleniumPlugin
 
         public List<string> Platforms => throw new NotImplementedException();
 
-        public void Start()
+    
+
+        public void StartSession()
         {
             if (mDriver != null)
             {
@@ -61,7 +63,7 @@ namespace Amdocs.Ginger.SeleniumPlugin
 
         public abstract void LaunchDriver();
 
-        public void Stop()
+        public void StopSession()
         {
             if (mDriver != null)
             {
@@ -343,5 +345,7 @@ namespace Amdocs.Ginger.SeleniumPlugin
             }
             return list;
         }
+
+ 
     }
 }
