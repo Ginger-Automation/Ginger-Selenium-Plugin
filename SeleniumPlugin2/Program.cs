@@ -25,7 +25,7 @@ namespace SeleniumPlugin2
                 {
                     gingerNodeStarter.StartNode("Selenium Chrome 1", new SeleniumChromeDriver());                    
                 }
-                gingerNodeStarter.Wait();
+                gingerNodeStarter.Listen();
             }
              // , "192.168.1.117", 150001
                 // GingerNodeStarter.StartNode(new MyDriver(), "MyDriver Service 1", "10.122.112.124",15001);

@@ -3,12 +3,13 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Version>1.0.134</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AjaxMin" Version="5.14.5506.26202" />
-    <PackageReference Include="Ginger.Plugin.Core" Version="3.0.0" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.8.10" />
+    <PackageReference Include="Ginger.Plugin.Core" Version="3.0.5" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.11" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
   </ItemGroup>
@@ -20,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Ginger.PluginPackage.Actions.json">
+    <None Update="Ginger.PluginPackage.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Ginger.PluginPackage.json">
+    <None Update="Ginger.PluginPackage.Services.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="GingerCoreNET.dll">
