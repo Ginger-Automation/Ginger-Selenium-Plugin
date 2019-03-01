@@ -8,8 +8,12 @@ namespace SeleniumPlugin2
     {
         static void Main(string[] args)
         {
-            Console.Title = "Ginger Selenium Plugin";
-
+            //Console.WriteLine("Ginger Selenium Plugin");
+            //SeleniumChromeDriver seleniumChromeDriver = new SeleniumChromeDriver();
+            //seleniumChromeDriver.LaunchLinux();
+            //Console.WriteLine("Press any key to exit");
+            //Console.ReadKey();
+            //return;
             // Not working on Linux
             // Console.BufferHeight = 100;
 
