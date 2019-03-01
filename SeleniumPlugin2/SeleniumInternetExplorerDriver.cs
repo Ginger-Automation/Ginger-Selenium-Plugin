@@ -24,7 +24,7 @@ using OpenQA.Selenium.IE;
 namespace Amdocs.Ginger.SeleniumPlugin
 {
     [GingerService("SeleniumInternetExplorerDriver", "Selenium Internet Explorer Driver")]
-    public class SeleniumInternetExplorerDriver : SeleniumDriver
+    public class SeleniumInternetExplorerDriver : SeleniumDriverBase
     {
         // public override string Name { get { return "Selenium Internet Explorer Driver"; } }
 

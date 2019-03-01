@@ -1,8 +1,13 @@
 [
   {
     "ServiceId": "SeleniumChromeDriver",
+    "Description": null,
+    "IsSession": true,
     "Actions": [
       {
+        "ActionId": "SpeedTest",
+        "Description": "SpedTest Test",
+        "Interface": null,
         "InputValues": [
           {
             "Param": "message",
@@ -12,21 +17,23 @@
             "Param": "sleep",
             "ParamTypeName": "int"
           }
-        ],
-        "ActionId": "SpeedTest",
-        "Description": "SpedTest Test"
+        ]
       },
       {
+        "ActionId": "Navigate",
+        "Description": "Navigate to URL",
+        "Interface": null,
         "InputValues": [
           {
             "Param": "URL",
             "ParamTypeName": "string"
           }
-        ],
-        "ActionId": "Navigate",
-        "Description": "Navigate to URL"
+        ]
       },
       {
+        "ActionId": "SetText",
+        "Description": "Set Text",
+        "Interface": null,
         "InputValues": [
           {
             "Param": "id",
@@ -36,16 +43,19 @@
             "Param": "text",
             "ParamTypeName": "string"
           }
-        ],
-        "ActionId": "SetText",
-        "Description": "Set Text"
+        ]
       }
     ]
   },
   {
     "ServiceId": "SeleniumFireFoxDriver",
+    "Description": null,
+    "IsSession": true,
     "Actions": [
       {
+        "ActionId": "SpeedTest",
+        "Description": "SpedTest Test",
+        "Interface": null,
         "InputValues": [
           {
             "Param": "message",
@@ -55,21 +65,23 @@
             "Param": "sleep",
             "ParamTypeName": "int"
           }
-        ],
-        "ActionId": "SpeedTest",
-        "Description": "SpedTest Test"
+        ]
       },
       {
+        "ActionId": "Navigate",
+        "Description": "Navigate to URL",
+        "Interface": null,
         "InputValues": [
           {
             "Param": "URL",
             "ParamTypeName": "string"
           }
-        ],
-        "ActionId": "Navigate",
-        "Description": "Navigate to URL"
+        ]
       },
       {
+        "ActionId": "SetText",
+        "Description": "Set Text",
+        "Interface": null,
         "InputValues": [
           {
             "Param": "id",
@@ -79,9 +91,55 @@
             "Param": "text",
             "ParamTypeName": "string"
           }
-        ],
+        ]
+      }
+    ]
+  },
+  {
+    "ServiceId": "SeleniumInternetExplorerDriver",
+    "Description": null,
+    "IsSession": true,
+    "Actions": [
+      {
+        "ActionId": "SpeedTest",
+        "Description": "SpedTest Test",
+        "Interface": null,
+        "InputValues": [
+          {
+            "Param": "message",
+            "ParamTypeName": "string"
+          },
+          {
+            "Param": "sleep",
+            "ParamTypeName": "int"
+          }
+        ]
+      },
+      {
+        "ActionId": "Navigate",
+        "Description": "Navigate to URL",
+        "Interface": null,
+        "InputValues": [
+          {
+            "Param": "URL",
+            "ParamTypeName": "string"
+          }
+        ]
+      },
+      {
         "ActionId": "SetText",
-        "Description": "Set Text"
+        "Description": "Set Text",
+        "Interface": null,
+        "InputValues": [
+          {
+            "Param": "id",
+            "ParamTypeName": "string"
+          },
+          {
+            "Param": "text",
+            "ParamTypeName": "string"
+          }
+        ]
       }
     ]
   }

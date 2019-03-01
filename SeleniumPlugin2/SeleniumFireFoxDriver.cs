@@ -24,7 +24,7 @@ using OpenQA.Selenium.Firefox;
 namespace Amdocs.Ginger.SeleniumPlugin
 {
     [GingerService("SeleniumFireFoxDriver", "Selenium FireFox Driver")]
-    public class SeleniumFireFoxDriver : SeleniumDriver
+    public class SeleniumFireFoxDriver : SeleniumDriverBase
     {
         // public override string Name { get { return "Selenium FireFox Driver"; } }
 

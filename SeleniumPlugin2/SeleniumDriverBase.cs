@@ -30,7 +30,7 @@ using System.Threading;
 
 namespace Amdocs.Ginger.SeleniumPlugin
 {
-    public abstract class SeleniumDriver : IServiceSession //,  ITakeScreenShot, IUIElementAction, IWebBrowser, IRecord
+    public abstract class SeleniumDriverBase : IServiceSession //,  ITakeScreenShot, IUIElementAction, IWebBrowser, IRecord
     {
         internal IWebDriver mDriver = null;
 
@@ -309,7 +309,7 @@ namespace Amdocs.Ginger.SeleniumPlugin
         string GetJS(string fileName)
         {            
             Assembly assembly = Assembly.GetExecutingAssembly();
-            using (var stream = assembly.GetManifestResourceStream(typeof(SeleniumDriver), "JavaScripts." + fileName))
+            using (var stream = assembly.GetManifestResourceStream(typeof(SeleniumDriverBase), "JavaScripts." + fileName))
             {
                 StreamReader sr = new StreamReader(stream);
                 string js = sr.ReadToEnd();

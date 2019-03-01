@@ -24,7 +24,7 @@ using System.IO;
 namespace Amdocs.Ginger.SeleniumPlugin
 {
     [GingerService("SeleniumChromeDriver", "Selenium Chrome Driver")]
-    public class SeleniumChromeDriver : SeleniumDriver
+    public class SeleniumChromeDriver : SeleniumDriverBase
     {
         // public override string Name { get { return "Selenium Chrome Driver"; } }
 
@@ -40,6 +40,24 @@ namespace Amdocs.Ginger.SeleniumPlugin
                 Console.WriteLine("WebDriver not found at: " + mWebDriversFolder);
                 throw new Exception("WebDriver not found at: " + mWebDriversFolder);
             }
+        }
+
+        public void LaunchLinux()
+        {
+            //String driverPath = "/opt/selenium/";
+            // String driverExecutableFileName = "chromedriver";
+            String driverPath = "/opt/google/chrome/";
+            String driverExecutableFileName = "chrome";
+            ChromeOptions options = new ChromeOptions();
+            // options.AddArguments("headless");
+            options.AddArguments("no-sandbox");
+            options.BinaryLocation = "/opt/google/chrome/chrome";
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService(driverPath, driverExecutableFileName);
+            mDriver = new ChromeDriver(service, options, TimeSpan.FromSeconds(30));
+            mDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(40);
+            mDriver.Manage().Window.Maximize();
+
+            mDriver.Navigate().GoToUrl("http://www.facebook.com");
         }
     }
 }

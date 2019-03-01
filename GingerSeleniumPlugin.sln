@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28621.142
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumPlugin", "SeleniumPlugin\SeleniumPlugin.csproj", "{ACF3F8C5-931D-4962-9FAD-2AFA55D9AD0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OLDSeleniumPlugin", "SeleniumPlugin\OLDSeleniumPlugin.csproj", "{ACF3F8C5-931D-4962-9FAD-2AFA55D9AD0D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumPluginTest", "SeleniumPluginTest\SeleniumPluginTest.csproj", "{B45AFEC2-1DBA-4745-9FF4-EAA9800B5288}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumPluginWPF", "SeleniumPluginWPF\SeleniumPluginWPF.csproj", "{23D09318-4E5D-45F2-97C4-5662D8A19133}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumPlugin2", "SeleniumPlugin2\SeleniumPlugin2.csproj", "{463B70FB-E9FC-454F-A71B-C3DFE549A417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumPlugin2", "SeleniumPlugin2\SeleniumPlugin2.csproj", "{463B70FB-E9FC-454F-A71B-C3DFE549A417}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
