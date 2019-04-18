@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumPluginWPF", "Seleni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumPlugin2", "SeleniumPlugin2\SeleniumPlugin2.csproj", "{463B70FB-E9FC-454F-A71B-C3DFE549A417}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GingerSeleniumPlugin", "GingerSeleniumPlugin\GingerSeleniumPlugin.csproj", "{657EBC20-E67E-4C02-9733-407547C4BE87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67212D25-BF5F-4261-A714-F302779948B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{463B70FB-E9FC-454F-A71B-C3DFE549A417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{463B70FB-E9FC-454F-A71B-C3DFE549A417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{463B70FB-E9FC-454F-A71B-C3DFE549A417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{657EBC20-E67E-4C02-9733-407547C4BE87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{657EBC20-E67E-4C02-9733-407547C4BE87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{657EBC20-E67E-4C02-9733-407547C4BE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{657EBC20-E67E-4C02-9733-407547C4BE87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,13 +8,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ginger.Plugin.Core" Version="3.0.5" />
     <PackageReference Include="GingerTestHelper" Version="1.0.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
@@ -22,7 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SeleniumPlugin2\SeleniumPlugin2.csproj" />
+    <ProjectReference Include="..\GingerSeleniumPlugin\GingerSeleniumPlugin.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GingerPluginCore">
+      <HintPath>..\Dlls\GingerPluginCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
