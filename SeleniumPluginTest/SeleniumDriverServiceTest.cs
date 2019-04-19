@@ -23,7 +23,7 @@ namespace SeleniumPluginTest
         }
 
         [ClassCleanup]
-        public static void ClassCleanup(TestContext tc)
+        public static void ClassCleanup()
         {
             service = new SeleniumChromeService();
 
