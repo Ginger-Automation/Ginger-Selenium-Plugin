@@ -46,10 +46,10 @@ namespace GingerSeleniumPlugin
             //String driverExecutableFileName = "chrome";
             ChromeOptions options = new ChromeOptions();
 
-          
+        //    options.BinaryLocation = GetDriverFilePath();
 
-            ChromeDriverService service = ChromeDriverService.CreateDefaultService(GetDriverFilePath());
-            IWebDriver mDriver = new ChromeDriver(service, options, TimeSpan.FromSeconds(30));
+            //  ChromeDriverService service = ChromeDriverService.CreateDefaultService(GetDriverFilePath());
+           IWebDriver mDriver = new ChromeDriver(GetDriverFilePath(),options);
             mDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(40);
             mDriver.Manage().Window.Maximize();
 
