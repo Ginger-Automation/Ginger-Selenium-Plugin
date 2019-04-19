@@ -46,7 +46,7 @@ namespace GingerSeleniumPlugin
             //String driverExecutableFileName = "chrome";
             ChromeOptions options = new ChromeOptions();
 
-            options.AddArguments("no-sandbox");
+          
 
             ChromeDriverService service = ChromeDriverService.CreateDefaultService(GetDriverFilePath());
             IWebDriver mDriver = new ChromeDriver(service, options, TimeSpan.FromSeconds(30));
