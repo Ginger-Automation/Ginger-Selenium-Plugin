@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 {
-    public class SeleniumChromeService : SeleniumServiceBase, IServiceSession,IBrowserActions
+    public class SeleniumChromeService : SeleniumServiceBase
     {
         public override void StartSession()
         {
