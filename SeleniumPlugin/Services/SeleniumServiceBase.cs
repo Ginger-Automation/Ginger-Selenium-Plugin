@@ -27,11 +27,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         // TODO: mark not impl
         public IAlerts Alerts => throw new NotImplementedException();
 
-        public virtual void StartSession()
-        {
-            // Must impl in subclass
-            throw new NotImplementedException();
-        }
+        public abstract void StartSession();
+        
 
         public virtual void StopSession()
         {
