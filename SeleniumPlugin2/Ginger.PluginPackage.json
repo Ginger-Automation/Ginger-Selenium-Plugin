@@ -1,8 +1,0 @@
-{
-  "Id": "SeleniumDriver",
-  "Version": "v1.0",
-  "ProjectUrl": "git\\...",
-  "Description": "Selenium Drivers Chrome,FF,IE... ",
-  "Summary": "Automate a browser",
-  "StartupDLL": "SeleniumPlugin2.dll"
-}
