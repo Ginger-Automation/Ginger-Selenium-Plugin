@@ -7,7 +7,13 @@ using System.Text;
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
     public class WebTextBox : GingerWebElement, IGingerWebElement, ITextBox
-    { 
+    {
+
+        public WebTextBox() 
+        {
+            
+        }
+
         public WebTextBox(IWebElement element):base(element)
         {
             base.Element = element;
@@ -26,7 +32,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         public string GetText()
         {
-            throw new NotImplementedException();
+            string txt = WebElement.GetAttribute("value");
+            return txt;
         }
 
         public int GetTextLength()

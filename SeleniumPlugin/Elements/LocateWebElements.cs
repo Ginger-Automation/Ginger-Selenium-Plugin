@@ -4,6 +4,7 @@ using Ginger.Plugins.Web.SeleniumPlugin.Services;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
@@ -111,5 +112,21 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             return Elements;
         }
 
+        
+
+        public T LocateElementByID<T>(string id) where T : IGingerWebElement, new()
+        {
+            // find using selenium                                  
+            IWebElement element = DriverService.Driver.FindElement(By.Id(id));
+
+            // TODO: ??? !!!!
+            string tagName = element.TagName;
+            // Based on tag name check if correct elem
+
+            // Create Ginger wrapper object which is subclass of GingerWebElement
+            T obj = new T();
+            obj.Element = element;            
+            return obj;
+        }
     }
 }

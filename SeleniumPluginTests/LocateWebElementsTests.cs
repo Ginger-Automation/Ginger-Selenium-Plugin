@@ -31,6 +31,13 @@ namespace SeleniumPluginTests
 
         }
 
+        [ClassCleanup]
+        public static void CleanUp()
+        {
+            Service.StopSession();
+        }
+
+
         [TestMethod]
         public void LocateElementByCSS()
         {
@@ -39,14 +46,14 @@ namespace SeleniumPluginTests
             Assert.AreEqual("*** Button ***", Element.WebElement.Text);
         }
 
-        [TestMethod]
-        public void LocateElementByID()
+        //[TestMethod]
+        //public void LocateElementByID()
 
-        {
-            GingerWebElement Element = ElementLocator.LocateElementByID("button1") as GingerWebElement;
+        //{
+        //    GingerWebElement Element = ElementLocator.LocateElementByID("button1") as GingerWebElement;
 
-            Assert.AreEqual("button 1", Element.WebElement.GetAttribute("value"));
-        }
+        //    Assert.AreEqual("button 1", Element.WebElement.GetAttribute("value"));
+        //}
 
 
         [TestMethod]
@@ -101,20 +108,56 @@ namespace SeleniumPluginTests
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void SetTextBoxText()
         {
-           /* WebTextBox GWE = ElementLocator.LocateElementByID("GingerPhone");
-            WebTextBox Element = new WebTextBox(GWE.Element as IWebElement); 
-            Element.SetText("test");
-            */
+            // Arrange            
+            string txt = "123";
+
+            //Act
+            WebTextBox GWE = ElementLocator.LocateElementByID<WebTextBox>("GingerPhone");
+            GWE.SetText(txt);
+            string value = GWE.GetText();
+
+            //Assert
+            Assert.AreEqual(txt, value, "Set value and get value are equel");
         }
 
 
-        [ClassCleanup]
-        public static void CleanUp()
+        [TestMethod]
+        public void GetElem()
         {
-            Service.StopSession();
+            // Arrange            
+            
+
+            //Act
+            GingerWebElement GWE = ElementLocator.LocateElementByID<GingerWebElement>("GingerPhone");
+            int value = GWE.GetWidth();
+
+            //Assert
+            // Assert.AreEqual(txt, value, "Set value and get value are equel");
         }
+
+
+        [TestMethod]
+        public void SetTextBoxTextTwice()
+        {
+            // arrange
+            string txt1 = "123";
+            string txt2 = "456";
+
+            //Act
+            WebTextBox GWE = ElementLocator.LocateElementByID<WebTextBox>("GingerPhone");
+            GWE.SetText(txt1);
+            GWE.SetText(txt2);
+            string value = GWE.GetText();
+
+            //Assert
+            Assert.AreEqual(txt2, value, "Set value and get value are equel");
+        }
+
+
+
+        
 
     }
 

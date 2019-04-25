@@ -22,6 +22,10 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             }
         }
 
+        public GingerWebElement()
+        {
+            
+        }
 
         public GingerWebElement(IWebElement element)
         {
