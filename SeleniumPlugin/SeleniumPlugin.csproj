@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>Ginger.Plugins.Web.SeleniumPlugin</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Drivers\Chrome\Mac\" />
+    <Folder Include="Drivers\Chrome\Linux\" />
+    <Folder Include="Drivers\FireFox\" />
+    <Folder Include="Drivers\InternetExplorer\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GingerPluginCore\GingerPluginCore.csproj" />
+    <ProjectReference Include="..\GingerPluginPlatforms\GingerPluginPlatforms.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Drivers\Chrome\Windows\chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
