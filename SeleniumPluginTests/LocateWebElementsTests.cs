@@ -19,7 +19,7 @@ namespace SeleniumPluginTests
     {
 
         static SeleniumServiceBase Service = null;
-        static ILocateWebElement ElementLocator = null;
+        // static ILocateWebElement ElementLocator = null;
 
         [ClassInitialize]
         public static void Initialize(TestContext context)
@@ -27,7 +27,7 @@ namespace SeleniumPluginTests
             Service = new SeleniumChromeService();
             Service.StartSession();
             Service.Driver.Url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
-            ElementLocator = new LocateWebElements(Service);
+            // ElementLocator = new LocateWebElements(Service);
 
         }
 
@@ -41,7 +41,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementByCSS()
         {
-            GingerWebElement Element = ElementLocator.LocateElementByCSS("#test8 > div > label") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByCSS("#test8 > div > label") as GingerWebElement;
 
             Assert.AreEqual("*** Button ***", Element.WebElement.Text);
         }
@@ -59,7 +59,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementByLinkTest()
         {
-            GingerWebElement Element = ElementLocator.LocateElementByPartiallinkText("This is A Link to Google, Click me") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByPartiallinkText("This is A Link to Google, Click me") as GingerWebElement;
 
             Assert.AreEqual("http://www.google.com/", Element.WebElement.GetAttribute("href"));
         }
@@ -67,7 +67,7 @@ namespace SeleniumPluginTests
         public void LocateElementByPartiallinkText()
         {
 
-            GingerWebElement Element = ElementLocator.LocateElementByPartiallinkText("Ginger") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByPartiallinkText("Ginger") as GingerWebElement;
 
             Assert.AreEqual("Ginger Spice It Up!", Element.WebElement.Text);
         }
@@ -76,7 +76,7 @@ namespace SeleniumPluginTests
         public void LocateElementByTag()
         {
 
-            GingerWebElement Element = ElementLocator.LocateElementByTag("H2") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByTag("H2") as GingerWebElement;
 
             Assert.AreEqual("Make me Green !", Element.WebElement.Text);
         }
@@ -84,14 +84,14 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementByXPath()
         {
-            GingerWebElement Element = ElementLocator.LocateElementByXPath("/html/body/table/tbody/tr[2]/td[5]") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByXPath("/html/body/table/tbody/tr[2]/td[5]") as GingerWebElement;
 
             Assert.AreEqual("217-811-2932", Element.WebElement.Text);
         }
         [TestMethod]
         public void LocateElementsByClassName()
         {
-            int eLEMENTcOUNT = ElementLocator.LocateElementsByClassName("TestDescription").Count;
+            int eLEMENTcOUNT = Service.LocatLWebElement.LocateElementsByClassName("TestDescription").Count;
             Assert.AreEqual(23, eLEMENTcOUNT);
         }
         [TestMethod]
@@ -103,7 +103,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementsByTagName()
         {
-            int ElementsCount = ElementLocator.LocateElementsByTagName("a").Count;
+            int ElementsCount = Service.LocatLWebElement.LocateElementsByTagName("a").Count;
             Assert.AreEqual(4, ElementsCount);
         }
 
@@ -114,7 +114,7 @@ namespace SeleniumPluginTests
             string txt = "123";
 
             //Act
-            WebTextBox GWE = ElementLocator.LocateElementByID<WebTextBox>("GingerPhone");
+            WebTextBox GWE = Service.LocatLWebElement.LocateElementByID<WebTextBox>("GingerPhone");
             GWE.SetText(txt);
             string value = GWE.GetText();
 
@@ -130,7 +130,7 @@ namespace SeleniumPluginTests
             
 
             //Act
-            GingerWebElement GWE = ElementLocator.LocateElementByID<GingerWebElement>("GingerPhone");
+            GingerWebElement GWE = Service.LocatLWebElement.LocateElementByID<GingerWebElement>("GingerPhone");
             int value = GWE.GetWidth();
 
             //Assert
@@ -146,7 +146,7 @@ namespace SeleniumPluginTests
             string txt2 = "456";
 
             //Act
-            WebTextBox GWE = ElementLocator.LocateElementByID<WebTextBox>("GingerPhone");
+            WebTextBox GWE = Service.LocatLWebElement.LocateElementByID<WebTextBox>("GingerPhone");
             GWE.SetText(txt1);
             GWE.SetText(txt2);
             string value = GWE.GetText();

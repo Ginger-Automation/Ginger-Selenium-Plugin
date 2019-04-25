@@ -11,31 +11,31 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
     public class LocateWebElements : ILocateWebElement
     {
-
-        SeleniumServiceBase DriverService { get; set; }
-        public LocateWebElements(SeleniumServiceBase mService)
+        IWebDriver mDriver;
+        // SeleniumServiceBase DriverService { get; set; }
+        public LocateWebElements(IWebDriver driver)
         {
-            Service = mService;
+            mDriver = driver;
         }
 
-        public IServiceSession Service
-        {
-            get
-            {
-                return DriverService;
-            }
+        //public IServiceSession Service
+        //{
+        //    get
+        //    {
+        //        return DriverService;
+        //    }
 
-            set
-            {
+        //    set
+        //    {
 
-                DriverService = value as SeleniumServiceBase;
-            }
-        }
+        //        DriverService = value as SeleniumServiceBase;
+        //    }
+        //}
         
 
         public IGingerWebElement LocateElementByCSS(string Css)
         {
-          IWebElement element=  DriverService.Driver.FindElement(By.CssSelector(Css));
+          IWebElement element=  mDriver.FindElement(By.CssSelector(Css));
 
             return new GingerWebElement(element);
         }
@@ -43,35 +43,35 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         public IGingerWebElement LocateElementByID(string ID)
         {
-            IWebElement element = DriverService.Driver.FindElement(By.Id(ID));
+            IWebElement element = mDriver.FindElement(By.Id(ID));
 
             return new GingerWebElement(element);
         }
 
         public IGingerWebElement LocateElementByLinkTest(string Linktext)
         {
-            IWebElement element = DriverService.Driver.FindElement(By.LinkText(Linktext));
+            IWebElement element = mDriver.FindElement(By.LinkText(Linktext));
 
             return new GingerWebElement(element);
         }
 
         public IGingerWebElement LocateElementByPartiallinkText(string PartialLinkText)
         {
-            IWebElement element = DriverService.Driver.FindElement(By.PartialLinkText(PartialLinkText));
+            IWebElement element = mDriver.FindElement(By.PartialLinkText(PartialLinkText));
 
             return new GingerWebElement(element);
         }
 
         public IGingerWebElement LocateElementByTag(string Tag)
         {
-            IWebElement element = DriverService.Driver.FindElement(By.TagName(Tag));
+            IWebElement element = mDriver.FindElement(By.TagName(Tag));
 
             return new GingerWebElement(element);
         }
 
         public IGingerWebElement LocateElementByXPath(string Xpath)
         {
-            IWebElement element = DriverService.Driver.FindElement(By.XPath(Xpath));
+            IWebElement element = mDriver.FindElement(By.XPath(Xpath));
 
             return new GingerWebElement(element);
         }
@@ -80,7 +80,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
             List<IGingerWebElement> Elements = new List<IGingerWebElement>(); 
 
-           foreach (IWebElement element in  DriverService.Driver.FindElements(By.ClassName(ClassName)))
+           foreach (IWebElement element in  mDriver.FindElements(By.ClassName(ClassName)))
             {
                 Elements.Add(new GingerWebElement(element));
             }
@@ -92,7 +92,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
             List<IGingerWebElement> Elements = new List<IGingerWebElement>();
 
-            foreach (IWebElement element in DriverService.Driver.FindElements(By.CssSelector(Css)))
+            foreach (IWebElement element in mDriver.FindElements(By.CssSelector(Css)))
             {
                 Elements.Add(new GingerWebElement(element));
             }
@@ -104,7 +104,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
             List<IGingerWebElement> Elements = new List<IGingerWebElement>();
 
-            foreach (IWebElement element in DriverService.Driver.FindElements(By.TagName(tag)))
+            foreach (IWebElement element in mDriver.FindElements(By.TagName(tag)))
             {
                 Elements.Add(new GingerWebElement(element));
             }
@@ -117,7 +117,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         public T LocateElementByID<T>(string id) where T : IGingerWebElement, new()
         {
             // find using selenium                                  
-            IWebElement element = DriverService.Driver.FindElement(By.Id(id));
+            IWebElement element = mDriver.FindElement(By.Id(id));
 
             // TODO: ??? !!!!
             string tagName = element.TagName;

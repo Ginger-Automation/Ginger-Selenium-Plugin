@@ -1,6 +1,8 @@
 ﻿using Amdocs.Ginger.Plugin.Core;
 using Ginger.Plugin.Platform.Web;
 using Ginger.Plugin.Platform.Web.Elements;
+using Ginger.Plugins.Web.SeleniumPlugin.Browser;
+using Ginger.Plugins.Web.SeleniumPlugin.Elements;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -10,10 +12,19 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Services
-{
-    public class SeleniumServiceBase : IServiceSession,IBrowserActions
+{    
+    public class SeleniumServiceBase : IServiceSession, IWebPlatform 
     {
        public IWebDriver Driver;
+
+        // TODO: mark annotation if impl
+        public IBrowserActions BrowserActions { get { return new BrowserActions(Driver); } }  //tODO: cache
+
+        // TODO: mark annotation if impl
+        public ILocateWebElement LocatLWebElement { get { return new LocateWebElements(Driver); } }  //tODO: cache
+
+        // TODO: mark not impl
+        public IAlerts Alerts => throw new NotImplementedException();
 
         public virtual void StartSession()
         {
@@ -50,76 +61,6 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
 
 
-        public void CloseWindow()
-        {
-            Driver.Close();
-        }
-
-        public void ExecuteScript()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FullScreen()
-        {
-            Driver.Manage().Window.FullScreen();
-        }
-
-        public string GetCurrentUrl()
-        {
-            return Driver.Url;
-        }
-
-        public string GetTitle()
-        {
-            return Driver.Title;
-        }
-
-        public string GetWindowHandle()
-        {
-           return Driver.CurrentWindowHandle;
-        }
-
-        public IReadOnlyCollection<string> GetWindowHandles()
-        {
-            return Driver.WindowHandles;
-        }
-
-        public void Maximize()
-        {
-            Driver.Manage().Window.Maximize();
-        }
-
-        public void Minimize()
-        {
-            Driver.Manage().Window.Minimize();
-
-        }
-
-        public void NavigateBack()
-        {
-            Driver.Navigate().Back();
-        }
-
-        public void NavigateForward()
-        {
-            Driver.Navigate().Forward();
-        }
-
-        public void Refresh()
-        {
-            Driver.Navigate().Refresh();
-        }
-
-
-        public void SwitchToFrame(IGingerWebElement WebElement )
-        {
-            Driver.SwitchTo().Frame(WebElement as IWebElement);
-        }
-
-        public void SwitchToParentFrame()
-        {
-            Driver.SwitchTo().ParentFrame();
-        }
+       
     }
 }

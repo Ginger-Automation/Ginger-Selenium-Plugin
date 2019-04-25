@@ -8,7 +8,7 @@ namespace Ginger.Plugin.Platform.Web.Elements
     public interface ILocateWebElement
     {
 
-        IServiceSession  Service { get; set; }
+        // IServiceSession  Service { get; set; }
         IGingerWebElement LocateElementByCSS(string Css);            
         T LocateElementByID<T>(string id) where T : IGingerWebElement, new();
 

@@ -1,13 +1,13 @@
-﻿using Ginger.Plugin.Platform.Web.Elements;
+﻿using Amdocs.Ginger.Plugin.Core;
+using Ginger.Plugin.Platform.Web.Elements;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Ginger.Plugin.Platform.Web
-{
+{    
     public interface IBrowserActions
-    {
-
+    {        
         string GetCurrentUrl();
         void NavigateBack();
         void NavigateForward();

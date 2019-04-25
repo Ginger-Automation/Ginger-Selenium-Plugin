@@ -27,7 +27,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void CloseWindow()
         {
-            Service.CloseWindow();
+            Service.BrowserActions.CloseWindow();
 
             Assert.AreEqual(0, Service.Driver.WindowHandles.Count);
             Service.StartSession();
