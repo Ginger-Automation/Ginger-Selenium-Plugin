@@ -19,16 +19,14 @@ namespace SeleniumPluginTests
     {
 
         static SeleniumServiceBase Service = null;
-        // static ILocateWebElement ElementLocator = null;
 
         [ClassInitialize]
         public static void Initialize(TestContext context)
         {
             Service = new SeleniumChromeService();
             Service.StartSession();
-            Service.Driver.Url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
-            // ElementLocator = new LocateWebElements(Service);
-
+            string url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
+            Service.BrowserActions.Navigate(url);
         }
 
         [ClassCleanup]

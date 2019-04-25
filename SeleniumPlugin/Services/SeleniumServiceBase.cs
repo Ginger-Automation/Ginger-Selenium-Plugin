@@ -13,9 +13,10 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 {    
-    public class SeleniumServiceBase : IServiceSession, IWebPlatform 
+    public abstract class SeleniumServiceBase : IServiceSession, IWebPlatform 
     {
-       public IWebDriver Driver;
+        //TODO: try to make private, pass it if needed
+        public IWebDriver Driver;
 
         // TODO: mark annotation if impl
         public IBrowserActions BrowserActions { get { return new BrowserActions(Driver); } }  //tODO: cache
@@ -28,6 +29,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         public virtual void StartSession()
         {
+            // Must impl in subclass
             throw new NotImplementedException();
         }
 

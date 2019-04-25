@@ -7,7 +7,9 @@ using System.Text;
 namespace Ginger.Plugin.Platform.Web
 {    
     public interface IBrowserActions
-    {        
+    {
+        void Navigate(string url);
+
         string GetCurrentUrl();
         void NavigateBack();
         void NavigateForward();
@@ -27,6 +29,6 @@ namespace Ginger.Plugin.Platform.Web
         void FullScreen();
 
         void ExecuteScript();
-
+        
     }
 }
