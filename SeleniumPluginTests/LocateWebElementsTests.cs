@@ -39,7 +39,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementByCSS()
         {
-            GingerWebElement Element = Service.LocatLWebElement.LocateElementByCSS("#test8 > div > label") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByCss<GingerWebElement>("#test8 > div > label") as GingerWebElement;
 
             Assert.AreEqual("*** Button ***", Element.WebElement.Text);
         }
@@ -57,7 +57,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementByLinkTest()
         {
-            GingerWebElement Element = Service.LocatLWebElement.LocateElementByPartiallinkText("This is A Link to Google, Click me") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByPartiallinkText<GingerWebElement>("This is A Link to Google, Click me") as GingerWebElement;
 
             Assert.AreEqual("http://www.google.com/", Element.WebElement.GetAttribute("href"));
         }
@@ -65,7 +65,7 @@ namespace SeleniumPluginTests
         public void LocateElementByPartiallinkText()
         {
 
-            GingerWebElement Element = Service.LocatLWebElement.LocateElementByPartiallinkText("Ginger") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByPartiallinkText<GingerWebElement>("Ginger") as GingerWebElement;
 
             Assert.AreEqual("Ginger Spice It Up!", Element.WebElement.Text);
         }
@@ -74,7 +74,7 @@ namespace SeleniumPluginTests
         public void LocateElementByTag()
         {
 
-            GingerWebElement Element = Service.LocatLWebElement.LocateElementByTag("H2") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByTag<GingerWebElement>("H2") as GingerWebElement;
 
             Assert.AreEqual("Make me Green !", Element.WebElement.Text);
         }
@@ -82,7 +82,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementByXPath()
         {
-            GingerWebElement Element = Service.LocatLWebElement.LocateElementByXPath("/html/body/table/tbody/tr[2]/td[5]") as GingerWebElement;
+            GingerWebElement Element = Service.LocatLWebElement.LocateElementByXPath<GingerWebElement>("/html/body/table/tbody/tr[2]/td[5]") as GingerWebElement;
 
             Assert.AreEqual("217-811-2932", Element.WebElement.Text);
         }
@@ -112,7 +112,7 @@ namespace SeleniumPluginTests
             string txt = "123";
 
             //Act
-            WebTextBox GWE = Service.LocatLWebElement.LocateElementByID<WebTextBox>("GingerPhone");
+            TextBox GWE = Service.LocatLWebElement.LocateElementByID<TextBox>("GingerPhone");
             GWE.SetText(txt);
             string value = GWE.GetText();
 
@@ -144,7 +144,7 @@ namespace SeleniumPluginTests
             string txt2 = "456";
 
             //Act
-            WebTextBox GWE = Service.LocatLWebElement.LocateElementByID<WebTextBox>("GingerPhone");
+            TextBox GWE = Service.LocatLWebElement.LocateElementByID<TextBox>("GingerPhone");
             GWE.SetText(txt1);
             GWE.SetText(txt2);
             string value = GWE.GetText();

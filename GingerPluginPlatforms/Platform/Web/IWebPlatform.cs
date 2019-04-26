@@ -1,4 +1,5 @@
 ﻿using Amdocs.Ginger.Plugin.Core;
+using Amdocs.Ginger.Plugin.Core.ActionsLib;
 using Ginger.Plugin.Platform.Web.Elements;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Ginger.Plugin.Platform.Web
 {
     // mark this interface to be in the json and will be visible to activities targetting Web platform
     [GingerInterface("IWebPlatform", "Web Platform driver")]
-    public interface IWebPlatform
+    public interface IWebPlatform: IPlatformService
     {
        
         IBrowserActions BrowserActions { get;  }
@@ -16,6 +17,10 @@ namespace Ginger.Plugin.Platform.Web
         ILocateWebElement LocatLWebElement { get;  }
 
         IAlerts Alerts { get; }
+
+
+
+
 
         // TODO: add all Web interfaces
         // ICookiesHandling

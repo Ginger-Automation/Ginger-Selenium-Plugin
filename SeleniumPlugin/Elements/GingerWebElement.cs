@@ -107,7 +107,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         }
 
 
-        public WebTextBox webTextBox()
+        public TextBox webTextBox()
         {
             return null;
         }

@@ -9,18 +9,21 @@ namespace Ginger.Plugin.Platform.Web.Elements
     {
 
         // IServiceSession  Service { get; set; }
-        IGingerWebElement LocateElementByCSS(string Css);            
+        T LocateElementByCss<T>(string LocateValue) where T : IGingerWebElement, new();
+
+        
         T LocateElementByID<T>(string id) where T : IGingerWebElement, new();
 
-        IGingerWebElement LocateElementByLinkTest(string Linktext);
-        IGingerWebElement LocateElementByPartiallinkText(string PartialLinkText);
-        IGingerWebElement LocateElementByTag(string Tag);
-        IGingerWebElement LocateElementByXPath(string Xpath);
+        T LocateElementByLinkTest<T>(string LocateValue) where T : IGingerWebElement, new();
+
+        T LocateElementByPartiallinkText<T>(string LocateValue) where T : IGingerWebElement, new();
+        T LocateElementByTag<T>(string LocateValue) where T : IGingerWebElement, new();
+        T LocateElementByXPath<T>(string LocateValue) where T : IGingerWebElement, new();
 
         List<IGingerWebElement> LocateElementsbyCSS(string Css);
 
         List<IGingerWebElement> LocateElementsByClassName(string ClassName);
         List<IGingerWebElement> LocateElementsByTagName(string tag);
-
+       
     }
 }

@@ -19,6 +19,7 @@ limitations under the License.
 using Amdocs.Ginger.CoreNET.Drivers.CommunicationProtocol;
 using Amdocs.Ginger.CoreNET.RunLib;
 using Amdocs.Ginger.Plugin.Core;
+using Amdocs.Ginger.Plugin.Core.ActionsLib;
 using Amdocs.Ginger.Plugin.Core.Drivers;
 using GingerCoreNET.Drivers.CommunicationProtocol;
 using System;
@@ -168,10 +169,27 @@ namespace GingerCoreNET.DriversLib
 
         private NewPayLoad RunPlatformAction(NewPayLoad pl)
         {
+
+
+            if (mService is IPlatformService platformService)
+            {
+                string actionType = pl.GetValueString();
+
+                if (actionType == "UIElementAction")
+                {
+
+             
+                    platformService.PlatformActionHandler.HandleUIELementAction(platformService,pl);
+                }
+
+
+            }
+
+
             // TODO: get the Interface, field, method from the pl.... !!!!!!!!!!!
 
-            // mService.GetType().GetInterface.  
-            object o = mService.GetType().GetField("BrowserActions").GetValue(mService); //  .GetInterface("IWebPlatform").
+                // mService.GetType().GetInterface.  
+                object o = mService.GetType().GetField("BrowserActions").GetValue(mService); //  .GetInterface("IWebPlatform").
             o.GetType().GetMethod("Navigate").Invoke(mService, new object[] { "http//www.google.com" });
 
             // We send back only item which can change - ExInfo and Output values

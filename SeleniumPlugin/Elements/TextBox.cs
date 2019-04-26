@@ -6,28 +6,30 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    public class WebTextBox : GingerWebElement, IGingerWebElement, ITextBox
+    public class TextBox : GingerWebElement, IGingerWebElement, ITextBox
     {
 
-        public WebTextBox() 
+        public TextBox()
         {
-            
+
         }
 
-        public WebTextBox(IWebElement element):base(element)
+        public string Guid { get; set; }
+
+        public TextBox(IWebElement element) : base(element)
         {
             base.Element = element;
         }
 
-      
+
         public void ClearValue()
         {
-            throw new NotImplementedException();
+            WebElement.Clear();
         }
 
         public string GetFont()
         {
-            throw new NotImplementedException();
+            return WebElement.GetAttribute("font");
         }
 
         public string GetText()
@@ -38,22 +40,29 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         public int GetTextLength()
         {
-            throw new NotImplementedException();
+            return WebElement.GetAttribute("value").Length;
         }
 
         public string GetValue()
         {
-            throw new NotImplementedException();
+            string Value = WebElement.GetAttribute("value");
+            if (string.IsNullOrEmpty(Value))
+            {
+                Value = WebElement.Text;
+            }
+            return Value;
         }
 
         public bool IsValuePopulated()
         {
-            throw new NotImplementedException();
+
+            return WebElement.GetAttribute("value").Trim() != "";
+
         }
 
         public void SendKeys(string keys)
         {
-            throw new NotImplementedException();
+            this.WebElement.SendKeys(keys);
         }
 
         public void SetMultiValue(string[] values)
@@ -63,7 +72,14 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         public void SetText(string Text)
         {
-            WebElement.SendKeys(Text);
+            try
+            {
+                WebElement.Clear();
+            }
+            finally
+            {
+                WebElement.SendKeys(Text);
+            }
         }
 
         public void SetValue()

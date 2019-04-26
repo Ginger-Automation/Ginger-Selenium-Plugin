@@ -1,4 +1,5 @@
 ﻿using Amdocs.Ginger.Plugin.Core;
+using Amdocs.Ginger.Plugin.Core.ActionsLib;
 using Ginger.Plugin.Platform.Web;
 using Ginger.Plugin.Platform.Web.Elements;
 using Ginger.Plugins.Web.SeleniumPlugin.Browser;
@@ -26,6 +27,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         // TODO: mark not impl
         public IAlerts Alerts => throw new NotImplementedException();
+
+        public IPlatformActionHandler PlatformActionHandler { get; set; } = new WebPlatformActionHandler();
 
         public abstract void StartSession();
         
