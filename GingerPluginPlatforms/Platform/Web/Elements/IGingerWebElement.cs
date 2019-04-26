@@ -6,12 +6,8 @@ namespace Ginger.Plugin.Platform.Web.Elements
 {
    public interface IGingerWebElement
     {
-        
-           
         object Element { get; set; }
-
         void DragAndDrop();
-
         string GetAttribute();
         int GetHeight();
         int GetItemCount();

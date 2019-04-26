@@ -13,20 +13,19 @@ namespace Ginger.Plugin.Platform.Web
         {
             string actionType = ActionPayload.GetValueString();
 
+            // TODO: split to class and functions
+
             if (actionType == "IWebPlatform")
             {
+                // TODO: get the Interface, field, method from the pl.... !!!!!!!!!!!
                 string s1 = ActionPayload.GetValueString();
                 string s2 = ActionPayload.GetValueString();
-                string s3 = ActionPayload.GetValueString();
-                // string s4 = ActionPayload.GetValueString();
-                // TODO: get the Interface, field, method from the pl.... !!!!!!!!!!!
+                string s3 = ActionPayload.GetValueString();                
+                
                 IWebPlatform PlatformService = (IWebPlatform)service;
                 Console.WriteLine("Naviagte to: " + s3);
                 PlatformService.BrowserActions.Navigate(s3);
-                // mService.GetType().GetInterface.  
-                // object o = service.GetType().GetProperty("BrowserActions").GetValue(service); //  .GetInterface("IWebPlatform").
-                // o.GetType().GetMethod("Navigate").Invoke(o, new object[] { "http://www.facebook.com" });
-
+                
                 // We send back only item which can change - ExInfo and Output values
                 NewPayLoad PLRC = new NewPayLoad("ActionResult");   //TODO: use const
                 PLRC.AddValue("ExInfo !!!");  // !!!!!!!!!!!!!!!!!!
