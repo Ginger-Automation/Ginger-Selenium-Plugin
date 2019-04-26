@@ -9,7 +9,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
     {
         public void Click()
         {
-            
+            WebElement.Click();
         }
 
         public string GetValue()

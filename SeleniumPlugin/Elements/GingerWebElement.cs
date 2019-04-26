@@ -10,6 +10,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
     {
         // keep it protected not public
         protected IWebElement WebElement;
+
+        // TODO: remove the public accessor
         public object Element
         {
             get
@@ -36,9 +38,9 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             throw new NotImplementedException();
         }
 
-        public string GetAttribute()
+        public string GetAttribute(string attributeName)
         {
-            throw new NotImplementedException();
+            return WebElement.GetAttribute(attributeName);
         }
 
         public int GetHeight()

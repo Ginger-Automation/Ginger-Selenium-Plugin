@@ -6,15 +6,13 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    public class TextBox : GingerWebElement, IGingerWebElement, ITextBox
+    public class TextBox : GingerWebElement, IGingerWebElement, ITextBox   // TODO: remove interface IGingerWebElement after method moved to GingerWebElement
     {
-
         public TextBox()
         {
 
         }
-
-        public string Guid { get; set; }
+        
 
         public TextBox(IWebElement element) : base(element)
         {

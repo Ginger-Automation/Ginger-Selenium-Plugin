@@ -12,28 +12,28 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
     public class LocateWebElements : ILocateWebElement
     {
         IWebDriver mDriver;
-        // SeleniumServiceBase DriverService { get; set; }
+        
         public LocateWebElements(IWebDriver driver)
         {
             mDriver = driver;
         }
 
-        //public IServiceSession Service
-        //{
-        //    get
-        //    {
-        //        return DriverService;
-        //    }
+        // by ID
+        IGingerWebElement ILocateWebElement.LocateElementByID(ElementType elementType, string id)
+        {
+            IWebElement element = mDriver.FindElement(By.Id(id));
+            return wrapper(elementType, element);
+        }
 
-        //    set
-        //    {
+        // By Xpath
+        IGingerWebElement ILocateWebElement.LocateElementByXPath(ElementType elementType, string xpath)
+        {
+            IWebElement element = mDriver.FindElement(By.XPath(xpath));
+            return wrapper(elementType, element);
+        }
 
-        //        DriverService = value as SeleniumServiceBase;
-        //    }
-        //}
-        
 
-     
+        // TODO: fix all locators below like above
 
         public List<IGingerWebElement> LocateElementsByClassName(string ClassName)
         {
@@ -73,25 +73,6 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             return Elements;
         }
 
-
-
-        //public T LocateElementByID<T>(string id) where T : IGingerWebElement, new()
-        //{
-        //    // find using selenium                                  
-        //    IWebElement element = mDriver.FindElement(By.Id(id));
-
-        //    // TODO: ??? !!!!
-        //    string tagName = element.TagName;
-        //    // Based on tag name check if correct elem
-
-        //    // Create Ginger wrapper object which is subclass of GingerWebElement
-
-    
-            
-        //    T obj = new T();
-        //    obj.Element = element;            
-        //    return obj;
-        //}
 
         public T LocateElementByCss<T>(string LocateValue) where T : IGingerWebElement, new()
         {
@@ -152,58 +133,24 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         }
 
         
-        // by ID
-        IGingerWebElement ILocateWebElement.LocateElementByID(ElementType elementType, string id)
-        {
-            IWebElement element = mDriver.FindElement(By.Id(id));            
-            return wrapper(elementType, element);         
-        }
-
-        // By Xpath
-        IGingerWebElement ILocateWebElement.LocateElementByXPath(ElementType elementType, string xpath)
-        {
-            IWebElement element = mDriver.FindElement(By.XPath(xpath));
-            return wrapper(elementType, element);
-        }
+      
 
         private IGingerWebElement wrapper(ElementType elementType, IWebElement element)
         {
             switch(elementType)
             {
+                case ElementType.WebElement:  // return the generic base element
+                    return new GingerWebElement() { Element = element };
                 case ElementType.TextBox:
+                    // TODO: think if we want to check TagName to verify element type
                     return new TextBox() { Element = element };
-                case ElementType.WebElement:
-                    return new GingerWebElement() { Element = element }; 
                 case ElementType.Button:
                     return new Button() { Element = element };
+                    // TODO: all the rest
                 default:
                     return null;  // Throw
             }
-
-            //if (element == null)
-            //{
-            //    return null;  // not found
-            //}
-
-            //if (type == typeof(IGingerWebElement))
-            //{
-            //    // return generic element wrapper
-            //    // return new Webe () { Element = element };
-            //}
-            //else if (type == typeof(ITextBox))
-            //{
-            //    // if (element.TagName == "zzzz") // TODO: verify
-            //    return new TextBox() { Element = element };
-            //}
-            //else if (type == typeof(IButton))
-            //{
-            //    // if (element.TagName == "zzzz") // TODO: verify
-            //    return new Button() { Element = element };
-            //}
-
-            //// .... TODO: the rest
-
-            //return null;  //throw
+           
         }
     }
 }
