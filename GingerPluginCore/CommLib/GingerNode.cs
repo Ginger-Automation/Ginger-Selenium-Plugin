@@ -19,6 +19,7 @@ limitations under the License.
 using Amdocs.Ginger.CoreNET.Drivers.CommunicationProtocol;
 using Amdocs.Ginger.CoreNET.RunLib;
 using Amdocs.Ginger.Plugin.Core;
+using Amdocs.Ginger.Plugin.Core.Drivers;
 using GingerCoreNET.Drivers.CommunicationProtocol;
 using System;
 using System.Collections.Generic;
@@ -142,6 +143,9 @@ namespace GingerCoreNET.DriversLib
                 case "RunAction":
                     gingerSocketInfo.Response = RunAction(pl);
                     break;
+                case "RunPlatformAction":
+                    gingerSocketInfo.Response = RunPlatformAction(pl);
+                    break;
                 case "StartDriver":
                     gingerSocketInfo.Response = StartDriver();
                     break;
@@ -160,6 +164,23 @@ namespace GingerCoreNET.DriversLib
                 default:
                     throw new Exception("Unknown Messgae: " + pl.Name);
             }
+        }
+
+        private NewPayLoad RunPlatformAction(NewPayLoad pl)
+        {
+            // TODO: get the Interface, field, method from the pl.... !!!!!!!!!!!
+
+            // mService.GetType().GetInterface.  
+            object o = mService.GetType().GetField("BrowserActions").GetValue(mService); //  .GetInterface("IWebPlatform").
+            o.GetType().GetMethod("Navigate").Invoke(mService, new object[] { "http//www.google.com" });
+
+            // We send back only item which can change - ExInfo and Output values
+            NewPayLoad PLRC = new NewPayLoad("ActionResult");   //TODO: use const
+            PLRC.AddValue("ExInfo !!!");  // !!!!!!!!!!!!!!!!!!
+            PLRC.AddValue("Errors !!!"); // !!!!!!!!!!!!!!!!!!
+            // PLRC.AddListPayLoad(GetOutpuValuesPayLoad(nodeGingerAction.Output.OutputValues)); !!!!!!!!!!!!!!!!!!!!!! output value
+            PLRC.ClosePackage();
+            return PLRC;
         }
 
         private NewPayLoad Reserve(NewPayLoad pl)

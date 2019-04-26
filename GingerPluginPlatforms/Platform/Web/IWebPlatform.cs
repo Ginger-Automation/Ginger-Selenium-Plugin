@@ -16,5 +16,8 @@ namespace Ginger.Plugin.Platform.Web
         ILocateWebElement LocatLWebElement { get;  }
 
         IAlerts Alerts { get; }
+
+        // TODO: add all Web interfaces
+        // ICookiesHandling
     }
 }

@@ -1,11 +1,8 @@
-﻿using Amdocs.Ginger.Plugin.Core;
-using Ginger.Plugin.Platform.Web.Elements;
-using System;
+﻿using Ginger.Plugin.Platform.Web.Elements;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Ginger.Plugin.Platform.Web
-{    
+{
     public interface IBrowserActions
     {
         void Navigate(string url);
@@ -21,7 +18,7 @@ namespace Ginger.Plugin.Platform.Web
 
         void CloseWindow();
         IReadOnlyCollection<string> GetWindowHandles();
-        void SwitchToFrame(IGingerWebElement WebElement) ;
+        void SwitchToFrame(IGingerWebElement WebElement);
         void SwitchToParentFrame();
 
         void Maximize();
@@ -29,6 +26,6 @@ namespace Ginger.Plugin.Platform.Web
         void FullScreen();
 
         void ExecuteScript();
-        
+
     }
 }
