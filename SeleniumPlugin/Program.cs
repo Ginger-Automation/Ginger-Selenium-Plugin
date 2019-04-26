@@ -8,6 +8,7 @@ namespace SeleniumPlugin
     {
         static void Main(string[] args)
         {
+            Console.Title = "Selenium Plugin";
             Console.WriteLine("Starting Selenium Plugin");
 
             using (GingerNodeStarter gingerNodeStarter = new GingerNodeStarter())

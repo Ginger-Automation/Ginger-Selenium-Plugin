@@ -167,38 +167,17 @@ namespace GingerCoreNET.DriversLib
             }
         }
 
-        private NewPayLoad RunPlatformAction(NewPayLoad pl)
+        private NewPayLoad RunPlatformAction(NewPayLoad payload)
         {
-
-
+            // GingerNode needs to remain generic so we have one entry point and delagate the work to the platform handler
             if (mService is IPlatformService platformService)
-            {
-                string actionType = pl.GetValueString();
-
-                if (actionType == "UIElementAction")
-                {
-
-             
-                    platformService.PlatformActionHandler.HandleUIELementAction(platformService,pl);
-                }
-
-
+            {                
+                    NewPayLoad newPayLoad = platformService.PlatformActionHandler.HandleRunAction(platformService,payload);
+                    return newPayLoad;                
             }
 
-
-            // TODO: get the Interface, field, method from the pl.... !!!!!!!!!!!
-
-                // mService.GetType().GetInterface.  
-                object o = mService.GetType().GetProperty("BrowserActions").GetValue(mService); //  .GetInterface("IWebPlatform").
-            o.GetType().GetMethod("Navigate").Invoke(o, new object[] { "http://www.google.com" });
-
-            // We send back only item which can change - ExInfo and Output values
-            NewPayLoad PLRC = new NewPayLoad("ActionResult");   //TODO: use const
-            PLRC.AddValue("ExInfo !!!");  // !!!!!!!!!!!!!!!!!!
-            PLRC.AddValue("Errors !!!"); // !!!!!!!!!!!!!!!!!!
-            // PLRC.AddListPayLoad(GetOutpuValuesPayLoad(nodeGingerAction.Output.OutputValues)); !!!!!!!!!!!!!!!!!!!!!! output value
-            PLRC.ClosePackage();
-            return PLRC;
+            NewPayLoad err2 = NewPayLoad.Error("RunPlatformAction: service is not supporting IPlatformService cannot delegate to run action "); 
+            return err2;
         }
 
         private NewPayLoad Reserve(NewPayLoad pl)

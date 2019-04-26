@@ -8,6 +8,6 @@ namespace Amdocs.Ginger.Plugin.Core.ActionsLib
     public interface IPlatformActionHandler
     {
 
-        NewPayLoad HandleUIELementAction(IPlatformService service,NewPayLoad ActionPayload);
+        NewPayLoad HandleRunAction(IPlatformService service,NewPayLoad ActionPayload);
     }
 }
