@@ -189,8 +189,8 @@ namespace GingerCoreNET.DriversLib
             // TODO: get the Interface, field, method from the pl.... !!!!!!!!!!!
 
                 // mService.GetType().GetInterface.  
-                object o = mService.GetType().GetField("BrowserActions").GetValue(mService); //  .GetInterface("IWebPlatform").
-            o.GetType().GetMethod("Navigate").Invoke(mService, new object[] { "http//www.google.com" });
+                object o = mService.GetType().GetProperty("BrowserActions").GetValue(mService); //  .GetInterface("IWebPlatform").
+            o.GetType().GetMethod("Navigate").Invoke(o, new object[] { "http://www.google.com" });
 
             // We send back only item which can change - ExInfo and Output values
             NewPayLoad PLRC = new NewPayLoad("ActionResult");   //TODO: use const

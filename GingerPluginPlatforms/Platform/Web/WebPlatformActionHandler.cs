@@ -23,7 +23,9 @@ namespace Ginger.Plugin.Platform.Web
             string ElementType = ActionPayload.GetValueString();
             string ElementAction = ActionPayload.GetValueString();
 
-           
+            
+            ITextBox textbox = (ITextBox)PlatformService.LocatLWebElement.LocateElementByID(Elements.ElementType.TextBox, value);
+            textbox.SetText("aaa");            
 
             return null;
         }

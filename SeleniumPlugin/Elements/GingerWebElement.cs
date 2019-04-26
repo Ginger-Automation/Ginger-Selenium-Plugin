@@ -8,8 +8,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
     public class GingerWebElement : IGingerWebElement
     {
-
-        public IWebElement WebElement;
+        // keep it protected not public
+        protected IWebElement WebElement;
         public object Element
         {
             get
@@ -63,7 +63,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         public int GetWidth()
         {
-            throw new NotImplementedException();
+            return int.Parse(WebElement.GetAttribute("width"));
         }
 
         public void Hover()
