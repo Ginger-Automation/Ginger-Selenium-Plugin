@@ -13,12 +13,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
     {
         public override void StartSession()
         {
-
             ChromeOptions Options = new ChromeOptions();
-
-
-            Driver = new ChromeDriver(SeleniumServiceBase.GetDriverPath("Chrome"),Options);
-            Driver.Url = "http://ginger.amdocs.com";
+            Driver = new ChromeDriver(SeleniumServiceBase.GetDriverPath("Chrome"),Options);            
         }
 
     }
