@@ -16,7 +16,7 @@ namespace Ginger.Plugin.Platform.Web
         {
             string actionType = ActionPayload.GetValueString();
 
-            // TODO: split to class and functions
+            // TODO: split to class and functions, or we use smart reflection to redirect the action
 
             if (actionType == "IWebPlatform")
             {                
@@ -71,7 +71,18 @@ namespace Ginger.Plugin.Platform.Web
                         string exInfo = "Set text box value to: " + newValue;                        
                         NewPayLoad PLRC = CreateActionResult(exInfo, "error", null);  // null means no output values
                         return PLRC;
-                    }                                        
+                    }
+
+                    if (ElementType == "TextBox" && ElementAction == nameof(ITextBox.GetText))
+                    {                        
+                        ITextBox textbox = (ITextBox)PlatformService.LocatLWebElement.LocateElementByID(Elements.ElementType.TextBox, value);
+                        string txt = textbox.GetText();
+                        string exInfo = "Text box contains - " + txt;
+                        List<NodeActionOutputValue> AOVs = new List<NodeActionOutputValue>();
+                        AOVs.Add(new NodeActionOutputValue() { Param = "Value", Value = txt });  
+                        NewPayLoad PLRC = CreateActionResult( exInfo: exInfo, error: null, outputValues: AOVs);  
+                        return PLRC;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -89,9 +100,9 @@ namespace Ginger.Plugin.Platform.Web
             
         }
 
-        private NewPayLoad CreateActionResult(string exInfo, string error, List<NodeActionOutputValue> aOVs)
+        private NewPayLoad CreateActionResult(string exInfo, string error, List<NodeActionOutputValue> outputValues)
         {
-            return GingerNode.CreateActionResult(exInfo, error, aOVs);
+            return GingerNode.CreateActionResult(exInfo, error, outputValues);
             
         }
     }
