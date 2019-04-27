@@ -114,6 +114,20 @@ namespace GingerCoreNET.DriversLib
             }
         }
 
+        public static NewPayLoad CreateActionResult(string exInfo, string error, List<NodeActionOutputValue> aOVs)
+        {
+            // We send back only item which can change - ExInfo and Output values
+            NewPayLoad PLRC = new NewPayLoad("ActionResult");   //TODO: use const
+            PLRC.AddValue(exInfo);  // ExInfo
+            PLRC.AddValue(error); // Error
+
+            // add output values            
+            PLRC.AddListPayLoad(GingerNode.GetOutpuValuesPayLoad(aOVs));
+
+            PLRC.ClosePackage();
+            return PLRC;
+        }
+
         // Being used in plugin - DO NOT Remove will show 0 ref
         public void NotifyNodeClosing()
         {
@@ -270,20 +284,13 @@ namespace GingerCoreNET.DriversLib
             // mService.RunAction(AH.GingerAction);
             
             ExecuteMethod(AH, actionInputParams, nodeGingerAction);
+
+            NewPayLoad PLRC = CreateActionResult(nodeGingerAction.ExInfo, nodeGingerAction.Errors, nodeGingerAction.Output.OutputValues);
             
-            // We send back only item which can change - ExInfo and Output values
-            NewPayLoad PLRC = new NewPayLoad("ActionResult");   //TODO: use const
-            PLRC.AddValue(nodeGingerAction.ExInfo);
-            PLRC.AddValue(nodeGingerAction.Errors);            
-            PLRC.AddListPayLoad(GetOutpuValuesPayLoad(nodeGingerAction.Output.OutputValues));
-            PLRC.ClosePackage();
             return PLRC;            
         }
 
-        private List<NewPayLoad> GetOutpuValuesPayLoad(object values)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public static void ExecuteMethod(ActionHandler AH, ActionInputParams p, NodeGingerAction GA)  
         {            
@@ -431,30 +438,33 @@ namespace GingerCoreNET.DriversLib
             
         }
 
-        internal List<NewPayLoad> GetOutpuValuesPayLoad(List<NodeActionOutputValue> AOVs)
+        public static List<NewPayLoad> GetOutpuValuesPayLoad(List<NodeActionOutputValue> AOVs)
         {
             List<NewPayLoad> OutputValuesPayLoad = new List<NewPayLoad>();
-            foreach (NodeActionOutputValue AOV in AOVs)
+            if (AOVs != null) // we return empty list in case of null - no output values
             {
-                NewPayLoad PLO = new NewPayLoad(SocketMessages.ActionOutputValue);  
-                PLO.AddValue(AOV.Param);
-                PLO.AddValue(AOV.Path);
-                PLO.AddEnumValue(AOV.GetParamType());
-                switch (AOV.GetParamType())
+                foreach (NodeActionOutputValue AOV in AOVs)
                 {
-                    case NodeActionOutputValue.OutputValueType.String:
-                        PLO.AddValue(AOV.ValueString);
-                        break;
-                    case NodeActionOutputValue.OutputValueType.ByteArray:
-                        PLO.AddBytes(AOV.ValueByteArray);
-                        break;
+                    NewPayLoad PLO = new NewPayLoad(SocketMessages.ActionOutputValue);
+                    PLO.AddValue(AOV.Param);
+                    PLO.AddValue(AOV.Path);
+                    PLO.AddEnumValue(AOV.GetParamType());
+                    switch (AOV.GetParamType())
+                    {
+                        case NodeActionOutputValue.OutputValueType.String:
+                            PLO.AddValue(AOV.ValueString);
+                            break;
+                        case NodeActionOutputValue.OutputValueType.ByteArray:
+                            PLO.AddBytes(AOV.ValueByteArray);
+                            break;
                         // TODO: add other types
-                    default:
-                        throw new Exception("Unknown output Value Type - " + AOV.GetParamType());
-                }
-                PLO.ClosePackage();
+                        default:
+                            throw new Exception("Unknown output Value Type - " + AOV.GetParamType());
+                    }
+                    PLO.ClosePackage();
 
-                OutputValuesPayLoad.Add(PLO);
+                    OutputValuesPayLoad.Add(PLO);
+                }
             }
             return OutputValuesPayLoad;
         }
