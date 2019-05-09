@@ -19,14 +19,14 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         }
 
         // by ID
-        IGingerWebElement ILocateWebElement.LocateElementByID(ElementType elementType, string id)
+        IGingerWebElement ILocateWebElement.LocateElementByID(eElementType elementType, string id)
         {
             IWebElement element = mDriver.FindElement(By.Id(id));
             return wrapper(elementType, element);
         }
 
         // By Xpath
-        IGingerWebElement ILocateWebElement.LocateElementByXPath(ElementType elementType, string xpath)
+        IGingerWebElement ILocateWebElement.LocateElementByXPath(eElementType elementType, string xpath)
         {
             IWebElement element = mDriver.FindElement(By.XPath(xpath));
             return wrapper(elementType, element);
@@ -74,7 +74,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         }
 
 
-        public IGingerWebElement LocateElementByCss(ElementType elementType, string LocateValue) 
+        public IGingerWebElement LocateElementByCss(eElementType elementType, string LocateValue) 
         {
             // find using selenium                                  
             IWebElement element = mDriver.FindElement(By.CssSelector(LocateValue));
@@ -86,7 +86,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             return wrapper(elementType, element);
         }
 
-        public IGingerWebElement LocateElementByLinkTest(ElementType elementType, string LocateValue) 
+        public IGingerWebElement LocateElementByLinkTest(eElementType elementType, string LocateValue) 
         {
             IWebElement element = mDriver.FindElement(By.LinkText(LocateValue));
 
@@ -97,7 +97,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         }
 
-        public IGingerWebElement LocateElementByPartiallinkText(ElementType elementType, string LocateValue) 
+        public IGingerWebElement LocateElementByPartiallinkText(eElementType elementType, string LocateValue) 
         {
             IWebElement element = mDriver.FindElement(By.PartialLinkText(LocateValue));
 
@@ -108,7 +108,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             return wrapper(elementType, element);
         }
 
-        public IGingerWebElement LocateElementByTag(ElementType elementType, string LocateValue) 
+        public IGingerWebElement LocateElementByTag(eElementType elementType, string LocateValue) 
         {
 
             IWebElement element = mDriver.FindElement(By.TagName(LocateValue));
@@ -124,50 +124,53 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         
       
 
-        private IGingerWebElement wrapper(ElementType elementType, IWebElement element)
+        private IGingerWebElement wrapper(eElementType elementType, IWebElement element)
         {
             IGingerWebElement Element= null;
             switch(elementType)
             {
-                case ElementType.Button:  // return the generic base element
+                case eElementType.Button:  // return the generic base element
                     Element= new Button();
                     break;
-                case ElementType.Canvas:
+                case eElementType.Canvas:
                     // TODO: think if we want to check TagName to verify element type
                     Element= new Canvas();
                     break;
-                case ElementType.CheckBox:
+                case eElementType.CheckBox:
                     Element= new Button();
                     break;
-                case ElementType.ComboBox:
+                case eElementType.ComboBox:
                     Element = new ComboBox();
                     break;
-                case ElementType.Div:
+                case eElementType.Div:
                     Element = new GingerWebElement();
                     break;
-                case ElementType.Image:
+                case eElementType.Image:
                     Element = new GingerWebElement();
                     break;
-                case ElementType.Label:
+                case eElementType.Label:
                     Element = new Label();
                     break;
-                case ElementType.List:
+                case eElementType.List:
                     Element = new List();
                     break;
-                case ElementType.RadioButton:
+                case eElementType.RadioButton:
                     Element = new RadioButton();
                     break;
-                case ElementType.Span:
+                case eElementType.Span:
                     Element = new Span();
                     break;
-                case ElementType.Table:
+                case eElementType.Table:
                     Element = new Table();
                     break;
-                case ElementType.TextBox:
+                case eElementType.TextBox:
                     Element = new TextBox();
                     break;
-                case ElementType.WebElement:
+                case eElementType.WebElement:
                     Element = new GingerWebElement();
+                    break;
+                case eElementType.HyperLink:
+                    Element = new HyperLink();
                     break;
             }
 

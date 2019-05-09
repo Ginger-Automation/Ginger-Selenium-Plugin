@@ -5,7 +5,7 @@ namespace Ginger.Plugin.Platform.Web
 {
     public interface IBrowserActions
     {
-        void Navigate(string url);
+        void Navigate(string url,string OpenIn);
 
         string GetCurrentUrl();
         void NavigateBack();

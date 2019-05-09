@@ -61,9 +61,16 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
 
         }
 
-        public void Navigate(string url)
+        public void Navigate(string url,string OpenIn)
         {
-            mDriver.Url = url;
+            if (OpenIn == "Current")
+            {
+
+                mDriver.Url = url;
+            }
+
+
+
         }
 
         public void NavigateBack()

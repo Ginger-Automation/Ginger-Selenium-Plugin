@@ -1,4 +1,5 @@
 ﻿using Amdocs.Ginger.CoreNET.RunLib;
+using Amdocs.Ginger.Plugin.Core.ActionsLib;
 using Ginger.Plugin.Platform.Web.Elements;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace Ginger.Plugin.Platform.Web.Execution
             Visible,
 
             Click,
-
+            JavaScriptClick,
             GetCustomAttribute,//keeping for backward support
-
+            ClickAndValidate,
             AsyncClick,
             // not here at all ?
             WinClick,
@@ -113,7 +114,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
         string ElementLocateBy = string.Empty;
         string LocateByValue = string.Empty;
         eElementAction ElementAction;
-        ElementType ElementType;
+        eElementType ElementType;
         string Value;
         readonly IWebPlatform PlatformService;
         Dictionary<string, string> InputParams;
@@ -149,35 +150,11 @@ namespace Ginger.Plugin.Platform.Web.Execution
       internal  void ExecuteAction()
         {
             string Locatevalue=  InputParams["ElementLocateValue"];
-            ElementType = (ElementType)Enum.Parse(typeof(ElementType), mElementType);
+            ElementType = (eElementType)Enum.Parse(typeof(eElementType), mElementType);
             IGingerWebElement Element = null;
 
             LocateByValue = Locatevalue;
-            switch (ElementLocateBy)
-            {
-                case "ByID":
-
-                    Element = PlatformService.LocatLWebElement.LocateElementByID(Elements.ElementType.TextBox, LocateByValue);
-                    break;
-                case "ByCSSSelector":
-                case "ByCSS":
-
-                    Element = PlatformService.LocatLWebElement.LocateElementByCss(Elements.ElementType.TextBox, LocateByValue);
-
-                    break;
-                case "ByLinkText":
-                    Element = PlatformService.LocatLWebElement.LocateElementByLinkTest(Elements.ElementType.TextBox, LocateByValue);
-
-                    break;
-
-                case "ByXPath":
-                    Element = PlatformService.LocatLWebElement.LocateElementByXPath(Elements.ElementType.TextBox, LocateByValue);
-
-                    break;
-
-
-
-            }
+            Element = LocateElement(ElementType,ElementLocateBy, Locatevalue);
             bool ActionPerformed = PerformCommonActions(Element);
 
 
@@ -186,48 +163,150 @@ namespace Ginger.Plugin.Platform.Web.Execution
 
                    switch (ElementType)
                 {
-                    case ElementType.Button:
+                    case eElementType.Button:
                         HandleButtonActions(Element);
                         break;
-                    case ElementType.Canvas:
+                    case eElementType.Canvas:
 
                         HandleCanvasAction(Element);
                         break;
-                    case ElementType.CheckBox:
+                    case eElementType.CheckBox:
                         HandleCheckBoxActions(Element);
                         break;
-                    case ElementType.ComboBox:
+                    case eElementType.ComboBox:
                         HandleComboBoxActions(Element);
                         break;
-                    case ElementType.Div:
+                    case eElementType.Div:
                         HandleDivActions(Element);
                         break;
-                    case ElementType.Image:
+                    case eElementType.Image:
                         HandleImageActions(Element);
                         break;
-                    case ElementType.Label:
+                    case eElementType.Label:
                         HandleLabelActions(Element);
                         break;
-                    case ElementType.List:
+                    case eElementType.List:
                         HandleListActions(Element);
                         break;
-                    case ElementType.RadioButton:
+                    case eElementType.RadioButton:
                         HandleRadioButtonActions(Element);
                         break;
-                    case ElementType.Span:
+                    case eElementType.Span:
                         HandleSpanActions(Element);
                         break;
-                    case ElementType.Table:
+                    case eElementType.Table:
                         HandleTableActions(Element);
                         break;
-                    case ElementType.TextBox:
+                    case eElementType.TextBox:
                         HandleTextBoxActions(Element);
                         break;
-               
+                    case eElementType.HyperLink:
+                        HandleHyperLinkActions(Element,ElementAction);
+                        break;
+
+
                 }
             }
             }
 
+        private IGingerWebElement LocateElement(eElementType ElementType,string ElementLocateBy,string LocateByValue)
+        {
+            IGingerWebElement Element=null;
+            switch (ElementLocateBy)
+            {
+                case "ByID":
+
+                    Element = PlatformService.LocatLWebElement.LocateElementByID(ElementType, LocateByValue);
+                    break;
+                case "ByCSSSelector":
+                case "ByCSS":
+
+                    Element = PlatformService.LocatLWebElement.LocateElementByCss(ElementType, LocateByValue);
+
+                    break;
+                case "ByLinkText":
+                    Element = PlatformService.LocatLWebElement.LocateElementByLinkTest(ElementType, LocateByValue);
+
+                    break;
+
+                case "ByXPath":
+                    Element = PlatformService.LocatLWebElement.LocateElementByXPath(ElementType, LocateByValue);
+
+                    break;
+
+
+
+            }
+
+            return Element;
+        }
+
+        private void HandleHyperLinkActions(IGingerWebElement element, eElementAction mElementAction)
+        {
+            if(element is IHyperLink Hyperlink)
+            {
+                
+                switch (mElementAction)
+                {
+                    
+
+                    case eElementAction.GetValue:
+                        AOVs.Add(new NodeActionOutputValue() { Param = "Value", Value = Hyperlink.GetValue() });
+
+                        break;
+                case eElementAction.Click:
+
+                        Hyperlink.Click();
+                        break;
+                       case eElementAction.JavaScriptClick:
+
+                        Hyperlink.JavascriptClick();
+                        break;
+                    case eElementAction.MultiClicks:
+
+                        Hyperlink.MultiClick();
+                        break;
+
+                    case eElementAction.ClickAndValidate:
+                        {
+                            string ValidationType = InputParams["ValidationType"];
+                            string mClickType = InputParams["ClickType"];
+                            eElementAction ClickType = (eElementAction)Enum.Parse(typeof(eElementAction), mClickType);
+
+                            HandleHyperLinkActions(element, ClickType);
+                            IGingerWebElement ValidationElement = GetValidationElement();
+
+
+#warning Handle Validation
+                            if("IsVisible".Equals(ValidationType))
+                            {
+
+                            }
+                            else if("IsEnabled".Equals(ValidationType))
+                            {
+
+                            }
+                        }
+
+                        break;
+
+
+
+
+
+                }
+            }
+        }
+        IGingerWebElement GetValidationElement()
+        {
+            string ValidationElementLocateBy = InputParams["ValidationElementLocateBy"];
+            string ValidationElementLocatorValue = InputParams["ValidationElementLocatorValue"];
+ 
+            string mValidationElement = InputParams["ValidationElement"];
+            eElementType validationElementType = (eElementType)Enum.Parse(typeof(eElementType), mElementType);
+            IGingerWebElement ValidationElement = LocateElement(validationElementType, ValidationElementLocateBy, ValidationElementLocatorValue);
+            return ValidationElement;
+        }
         private void HandleTableActions(IGingerWebElement element)
         {
             throw new NotImplementedException();

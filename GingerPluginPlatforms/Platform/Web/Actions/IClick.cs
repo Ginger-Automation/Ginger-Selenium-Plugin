@@ -6,7 +6,7 @@ namespace Ginger.Plugin.Platform.Web.Actions
 {
 #warning Pending Defination
     public interface IClick
-    {/*
+    {
 
         void Click();
         void ClickandValidate();
@@ -15,6 +15,6 @@ namespace Ginger.Plugin.Platform.Web.Actions
         void JavascriptClick();
 
         void MultiClick();
-      */
+
     }
 }

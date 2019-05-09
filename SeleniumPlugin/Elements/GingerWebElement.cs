@@ -119,21 +119,28 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
 
 
-        static bool  ClickandValidate(IWebElement clickElement)
+       internal static bool Click(IWebElement clickElement)
+        {
+
+
+            clickElement.Click();
+            return true;
+        }
+        internal static bool  ClickandValidate(IWebElement clickElement)
         {
             return false;
 
 
         }
 
-        static void  DoubleClick(IWebElement clickElement,IWebDriver Driver)
+        internal static void  DoubleClick(IWebElement clickElement,IWebDriver Driver)
         {
             OpenQA.Selenium.Interactions.Actions action = new OpenQA.Selenium.Interactions.Actions(Driver);
             action.Click(clickElement).Click(clickElement).Build().Perform();
 
         }
 
-        static void JavascriptClick(IWebElement clickElement, IWebDriver Driver)
+        internal static void JavascriptClick(IWebElement clickElement, IWebDriver Driver)
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("return arguments[0].click()", clickElement);
 
@@ -151,7 +158,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             List<string> Options = new List<string>();
             // there is better way to get the options
             ReadOnlyCollection<IWebElement> elems = e.FindElements(By.TagName("option"));
-            string s = "";
+ 
             foreach (IWebElement e1 in elems)
             {
                 Options.Add(e1.Text);
@@ -183,7 +190,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
                     se = new SelectElement(WebElement);
                     se.SelectByText(Value);
                 }
-                catch (Exception ex)
+                catch  (Exception)
                 {
 
                     se.SelectByValue(Value);

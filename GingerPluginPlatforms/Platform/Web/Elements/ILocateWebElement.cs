@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugin.Platform.Web.Elements
 {
-    public enum ElementType
+    public enum eElementType
     {
         WebElement,
         Button,
@@ -19,23 +19,24 @@ namespace Ginger.Plugin.Platform.Web.Elements
         RadioButton,
         Span,
         Table,
-        TextBox
+        TextBox,
+        HyperLink
     }
 
     public interface ILocateWebElement
     {        
-        IGingerWebElement LocateElementByID(ElementType elementType, string id);
+        IGingerWebElement LocateElementByID(eElementType elementType, string id);
 
-        IGingerWebElement LocateElementByXPath(ElementType elementType, string xpath);
+        IGingerWebElement LocateElementByXPath(eElementType elementType, string xpath);
      
 
         // TODO: make all below same like above
-       IGingerWebElement LocateElementByCss(ElementType elementType, string LocateValue);
+       IGingerWebElement LocateElementByCss(eElementType elementType, string LocateValue);
 
-       IGingerWebElement LocateElementByLinkTest(ElementType elementType,string LocateValue);
+       IGingerWebElement LocateElementByLinkTest(eElementType elementType,string LocateValue);
 
-       IGingerWebElement LocateElementByPartiallinkText(ElementType elementType,string LocateValue);
-       IGingerWebElement LocateElementByTag(ElementType elementType,string LocateValue);
+       IGingerWebElement LocateElementByPartiallinkText(eElementType elementType,string LocateValue);
+       IGingerWebElement LocateElementByTag(eElementType elementType,string LocateValue);
      /*   
         List<IGingerWebElement> LocateElementsbyCSS(string Css);
 

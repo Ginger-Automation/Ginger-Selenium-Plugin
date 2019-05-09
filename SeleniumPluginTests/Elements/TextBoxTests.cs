@@ -21,13 +21,13 @@ namespace SeleniumPluginTests.Elements
             Service = new SeleniumChromeService();
             Service.StartSession();
             string url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
-            Service.BrowserActions.Navigate(url);
+            Service.BrowserActions.Navigate(url,"Current");
         }
 
         [TestMethod]
         public void ClearValue()
         {
-            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(ElementType.TextBox, "GingerPhone");
+            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
             TB.SendKeys("ABCDE");
 
             TB.ClearValue();
@@ -38,12 +38,12 @@ namespace SeleniumPluginTests.Elements
         [TestMethod]
         public void GetFont()
         {
-            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(ElementType.TextBox, "GingerPhone");
+            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
         }
         [TestMethod]
         public void GetText()
         {
-            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(ElementType.TextBox, "GingerPhone");
+            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
             TB.SetText("ABCDE");
 
 
@@ -54,7 +54,7 @@ namespace SeleniumPluginTests.Elements
         [TestMethod]
         public void GetTextLength()
         {
-            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(ElementType.TextBox, "GingerPhone");
+            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
             TB.SetText("ABCDE");
 
 
@@ -65,7 +65,7 @@ namespace SeleniumPluginTests.Elements
         [TestMethod]
         public void GetValue()
         {
-            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(ElementType.TextBox, "GingerPhone");
+            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
             TB.SetText("ABCDE");
 
 
@@ -77,7 +77,7 @@ namespace SeleniumPluginTests.Elements
         public void IsValuePopulated()
         {
 
-            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(ElementType.TextBox, "GingerPhone");
+            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
 
             TB.SetText("ABCDE");
             Assert.AreEqual(true, TB.IsValuePopulated());
@@ -92,7 +92,7 @@ namespace SeleniumPluginTests.Elements
         public void SendKeys()
         {
 
-            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(ElementType.TextBox, "GingerPhone");
+            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
             TB.SetText("ABCDE");
 
             TB.SendKeys("FGH");
@@ -108,7 +108,7 @@ namespace SeleniumPluginTests.Elements
         [TestMethod]
         public void SetText()
         {
-            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(ElementType.TextBox, "GingerPhone");
+            TextBox TB = (TextBox)Service.LocatLWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
             TB.SendKeys("FGH");
 
             TB.SetText("ABCDE");
