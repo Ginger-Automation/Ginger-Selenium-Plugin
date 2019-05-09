@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace Ginger.Plugin.Platform.Web
+namespace Ginger.Plugin.Platform.Web.Execution
 {
     public class WebPlatformActionHandler : IPlatformActionHandler
     {
@@ -58,10 +58,35 @@ namespace Ginger.Plugin.Platform.Web
                         PlatformService = Mservice;
                     }
 
+
+                    Dictionary<string, string> InputParams = new Dictionary<string, string>();
+                    List<NewPayLoad> FieldsandParams =    ActionPayload.GetListPayLoad();
+
+
+                    foreach (NewPayLoad Np in FieldsandParams)
+                    {
+                        string Name = Np.GetValueString();
+
+                        string Value = Np.GetValueString();
+                        if (!InputParams.ContainsKey(Name))
+                        {
+                            InputParams.Add(Name, Value);
+                        }
+                    }
+                    UIELementActionHandler Handler = new UIELementActionHandler(PlatformService,InputParams);
+
+                    Handler.ExecuteAction();
+
+                    NewPayLoad PLRC = CreateActionResult(exInfo: "", error: null, Handler.AOVs);
+                    return PLRC;
+                    /*
                     string LocateBy = ActionPayload.GetValueString();
                     string value = ActionPayload.GetValueString();
                     string ElementType = ActionPayload.GetValueString();
                     string ElementAction = ActionPayload.GetValueString();
+
+
+              
 
                     if (ElementType == "TextBox" && ElementAction == nameof(ITextBox.SetText))
                     {
@@ -83,6 +108,7 @@ namespace Ginger.Plugin.Platform.Web
                         NewPayLoad PLRC = CreateActionResult( exInfo: exInfo, error: null, outputValues: AOVs);  
                         return PLRC;
                     }
+                        */
                 }
                 catch (Exception ex)
                 {
@@ -99,6 +125,9 @@ namespace Ginger.Plugin.Platform.Web
 
             
         }
+
+
+
 
         private NewPayLoad CreateActionResult(string exInfo, string error, List<NodeActionOutputValue> outputValues)
         {

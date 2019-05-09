@@ -37,6 +37,7 @@ namespace SeleniumPlugin
                 }
                 gingerNodeStarter.Listen();
             }
+
         }
     }
 }

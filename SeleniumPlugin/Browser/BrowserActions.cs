@@ -22,7 +22,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
 
         public void ExecuteScript()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         public void FullScreen()

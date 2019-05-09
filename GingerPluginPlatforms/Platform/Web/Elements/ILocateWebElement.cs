@@ -7,13 +7,19 @@ namespace Ginger.Plugin.Platform.Web.Elements
 {
     public enum ElementType
     {
-        WebElement,  // unknown or generic 
-        TextBox,
+        WebElement,
         Button,
+        Canvas,
+        CheckBox,
+        ComboBox,
         Div,
-        H1,
-        Link
-            // ....
+        Image,
+        Label,
+        List,
+        RadioButton,
+        Span,
+        Table,
+        TextBox
     }
 
     public interface ILocateWebElement
@@ -24,17 +30,17 @@ namespace Ginger.Plugin.Platform.Web.Elements
      
 
         // TODO: make all below same like above
-        T LocateElementByCss<T>(string LocateValue) where T : IGingerWebElement, new();
+       IGingerWebElement LocateElementByCss(ElementType elementType, string LocateValue);
 
-        T LocateElementByLinkTest<T>(string LocateValue) where T : IGingerWebElement, new();
+       IGingerWebElement LocateElementByLinkTest(ElementType elementType,string LocateValue);
 
-        T LocateElementByPartiallinkText<T>(string LocateValue) where T : IGingerWebElement, new();
-        T LocateElementByTag<T>(string LocateValue) where T : IGingerWebElement, new();
-        
+       IGingerWebElement LocateElementByPartiallinkText(ElementType elementType,string LocateValue);
+       IGingerWebElement LocateElementByTag(ElementType elementType,string LocateValue);
+     /*   
         List<IGingerWebElement> LocateElementsbyCSS(string Css);
 
         List<IGingerWebElement> LocateElementsByClassName(string ClassName);
         List<IGingerWebElement> LocateElementsByTagName(string tag);
-       
+       */
     }
 }

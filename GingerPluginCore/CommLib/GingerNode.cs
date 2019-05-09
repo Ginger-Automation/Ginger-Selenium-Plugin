@@ -24,6 +24,8 @@ using Amdocs.Ginger.Plugin.Core.Drivers;
 using GingerCoreNET.Drivers.CommunicationProtocol;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -146,7 +148,7 @@ namespace GingerCoreNET.DriversLib
         }
 
         private void HubClientMessageHandler(GingerSocketInfo gingerSocketInfo)
-        {
+            {
             Console.WriteLine("Processing Message");
 
             NewPayLoad pl = gingerSocketInfo.DataAsPayload;
@@ -176,10 +178,14 @@ namespace GingerCoreNET.DriversLib
                 case "AttachDisplay":
                     gingerSocketInfo.Response = AttachDisplay(pl);
                     break;
+                case "ScreenshotAction":
+                    gingerSocketInfo.Response = TakeScreenot(pl);
+                    break;
                 default:
                     throw new Exception("Unknown Messgae: " + pl.Name);
             }
         }
+
 
         private NewPayLoad RunPlatformAction(NewPayLoad payload)
         {
@@ -193,7 +199,75 @@ namespace GingerCoreNET.DriversLib
             NewPayLoad err2 = NewPayLoad.Error("RunPlatformAction: service is not supporting IPlatformService cannot delegate to run action "); 
             return err2;
         }
+        private NewPayLoad TakeScreenot(NewPayLoad ActionPayload)
+        {
+            if (mService is IScreenShotSetvice ScreenshotService)
+            {
+                
+                Dictionary<string, string> InputParams = new Dictionary<string, string>();
+                List<NewPayLoad> FieldsandParams = ActionPayload.GetListPayLoad();
 
+
+                foreach (NewPayLoad Np in FieldsandParams)
+                {
+                    string Name = Np.GetValueString();
+
+                    string Value = Np.GetValueString();
+                    if (!InputParams.ContainsKey(Name))
+                    {
+                        InputParams.Add(Name, Value);
+                    }
+                }
+                NewPayLoad ResponsePL = new NewPayLoad("ScreenShots");
+                string WindowsToCapture = InputParams["WindowsToCapture"];
+
+                List<NewPayLoad> ScreenShots = new List<NewPayLoad>();
+
+                switch (WindowsToCapture)
+                {
+                    case "OnlyActiveWindow":
+                        ScreenShots.Add(BitmapToPayload(ScreenshotService.GetActiveScreenImage()));
+                       
+                        break;
+                    case "AllAvailableWindows":
+
+
+                        foreach(Bitmap bmp in ScreenshotService.GetAllScreensImages())
+                        {
+                            ScreenShots.Add(BitmapToPayload(bmp));
+                        }
+                        break;
+
+                    default: 
+                        return NewPayLoad.Error("Service is not supporting IScreenShotSetvice cannot delegate to take screenshot"); 
+
+
+                }
+
+
+
+
+
+                Bitmap img = ScreenshotService.GetActiveScreenImage();
+
+
+                ResponsePL.AddListPayLoad(ScreenShots);
+                ResponsePL.ClosePackage();
+                return ResponsePL;
+            }
+
+            NewPayLoad err2 = NewPayLoad.Error("Service is not supporting IScreenShotSetvice cannot delegate to take screenshot");
+            return err2;
+        }
+        static NewPayLoad BitmapToPayload(Bitmap bitmap)
+        {
+            MemoryStream ms = new MemoryStream();
+
+
+            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            string Base64Image = Convert.ToBase64String(ms.GetBuffer());
+            return new NewPayLoad("ScreenShot", Base64Image);
+        }
         private NewPayLoad Reserve(NewPayLoad pl)
         {
             Guid sessionID = pl.GetGuid();

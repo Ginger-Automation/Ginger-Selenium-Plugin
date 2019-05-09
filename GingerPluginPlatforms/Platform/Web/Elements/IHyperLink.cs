@@ -5,9 +5,13 @@ using System.Text;
 
 namespace Ginger.Plugin.Platform.Web.Elements
 {
-    public interface IButton:IGingerWebElement,IGetValue
+    public interface IHyperLink: IGingerWebElement,IClick
     {
 
-#warning add IClick
+        string GetValue();
+
+
+#warning Pending Definations
+        //        string MultiClicks();
     }
 }

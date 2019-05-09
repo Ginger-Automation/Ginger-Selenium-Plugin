@@ -20,6 +20,6 @@ namespace Ginger.Plugin.Platform.Web.Elements
         void SendKeys(string keys);
         void SetText(string Text);
 
-        void SetValue();
+        void SetValue(string Text);
     }
 }

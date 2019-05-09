@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    public class TextBox : GingerWebElement, IGingerWebElement, ITextBox   // TODO: remove interface IGingerWebElement after method moved to GingerWebElement
+    public class TextBox : GingerWebElement, ITextBox   // TODO: remove interface IGingerWebElement after method moved to GingerWebElement
     {
         public TextBox()
         {
@@ -63,10 +63,10 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             this.WebElement.SendKeys(keys);
         }
 
+#warning Pending Implementation
         public void SetMultiValue(string[] values)
         {
-            throw new NotImplementedException();
-        }
+           throw new NotImplementedException();        }
 
         public void SetText(string Text)
         {
@@ -80,9 +80,16 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             }
         }
 
-        public void SetValue()
+        public void SetValue(string Text)
         {
-            throw new NotImplementedException();
+            try
+            {
+                WebElement.Clear();
+            }
+            finally
+            {
+                WebElement.SendKeys(Text);
+            }
         }
     }
 }

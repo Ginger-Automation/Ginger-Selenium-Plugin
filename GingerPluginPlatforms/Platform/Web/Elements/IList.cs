@@ -5,9 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugin.Platform.Web.Elements
 {
-    public interface IButton:IGingerWebElement,IGetValue
+    public interface IWebList:IGingerWebElement, ISelect
     {
-
-#warning add IClick
     }
 }

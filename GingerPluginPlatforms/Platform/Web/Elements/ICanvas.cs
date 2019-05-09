@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Ginger.Plugin.Platform.Web.Elements
 {
-    public interface IButton:IGingerWebElement,IGetValue
+    public interface ICanvas: IGingerWebElement
     {
 
-#warning add IClick
+     
+        void DrawObject();
     }
 }

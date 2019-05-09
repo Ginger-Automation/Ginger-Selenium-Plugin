@@ -103,7 +103,7 @@ namespace SeleniumPluginTests.Elements
         [TestMethod]
         public void SetMultiValue()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void SetText()
@@ -121,7 +121,7 @@ namespace SeleniumPluginTests.Elements
         [TestMethod]
         public void SetValue()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
     }
 }

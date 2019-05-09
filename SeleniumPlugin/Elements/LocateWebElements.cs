@@ -74,7 +74,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         }
 
 
-        public T LocateElementByCss<T>(string LocateValue) where T : IGingerWebElement, new()
+        public IGingerWebElement LocateElementByCss(ElementType elementType, string LocateValue) 
         {
             // find using selenium                                  
             IWebElement element = mDriver.FindElement(By.CssSelector(LocateValue));
@@ -83,27 +83,21 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             string tagName = element.TagName;
             // Based on tag name check if correct elem
 
-            // Create Ginger wrapper object which is subclass of GingerWebElement
-            T obj = new T();
-            obj.Element = element;
-            return obj;
+            return wrapper(elementType, element);
         }
 
-        public T LocateElementByLinkTest<T>(string LocateValue) where T : IGingerWebElement, new()
+        public IGingerWebElement LocateElementByLinkTest(ElementType elementType, string LocateValue) 
         {
             IWebElement element = mDriver.FindElement(By.LinkText(LocateValue));
 
             // TODO: ??? !!!!
             string tagName = element.TagName;
             // Based on tag name check if correct elem
+            return wrapper(elementType, element);
 
-            // Create Ginger wrapper object which is subclass of GingerWebElement
-            T obj = new T();
-            obj.Element = element;
-            return obj;
         }
 
-        public T LocateElementByPartiallinkText<T>(string LocateValue) where T : IGingerWebElement, new()
+        public IGingerWebElement LocateElementByPartiallinkText(ElementType elementType, string LocateValue) 
         {
             IWebElement element = mDriver.FindElement(By.PartialLinkText(LocateValue));
 
@@ -111,13 +105,10 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             string tagName = element.TagName;
             // Based on tag name check if correct elem
 
-            // Create Ginger wrapper object which is subclass of GingerWebElement
-            T obj = new T();
-            obj.Element = element;
-            return obj;
+            return wrapper(elementType, element);
         }
 
-        public T LocateElementByTag<T>(string LocateValue) where T : IGingerWebElement, new()
+        public IGingerWebElement LocateElementByTag(ElementType elementType, string LocateValue) 
         {
 
             IWebElement element = mDriver.FindElement(By.TagName(LocateValue));
@@ -127,9 +118,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             // Based on tag name check if correct elem
 
             // Create Ginger wrapper object which is subclass of GingerWebElement
-            T obj = new T();
-            obj.Element = element;
-            return obj;
+            return wrapper(elementType, element);
         }
 
         
@@ -137,20 +126,60 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         private IGingerWebElement wrapper(ElementType elementType, IWebElement element)
         {
+            IGingerWebElement Element= null;
             switch(elementType)
             {
-                case ElementType.WebElement:  // return the generic base element
-                    return new GingerWebElement() { Element = element };
-                case ElementType.TextBox:
+                case ElementType.Button:  // return the generic base element
+                    Element= new Button();
+                    break;
+                case ElementType.Canvas:
                     // TODO: think if we want to check TagName to verify element type
-                    return new TextBox() { Element = element };
-                case ElementType.Button:
-                    return new Button() { Element = element };
-                    // TODO: all the rest
-                default:
-                    return null;  // Throw
+                    Element= new Canvas();
+                    break;
+                case ElementType.CheckBox:
+                    Element= new Button();
+                    break;
+                case ElementType.ComboBox:
+                    Element = new ComboBox();
+                    break;
+                case ElementType.Div:
+                    Element = new GingerWebElement();
+                    break;
+                case ElementType.Image:
+                    Element = new GingerWebElement();
+                    break;
+                case ElementType.Label:
+                    Element = new Label();
+                    break;
+                case ElementType.List:
+                    Element = new List();
+                    break;
+                case ElementType.RadioButton:
+                    Element = new RadioButton();
+                    break;
+                case ElementType.Span:
+                    Element = new Span();
+                    break;
+                case ElementType.Table:
+                    Element = new Table();
+                    break;
+                case ElementType.TextBox:
+                    Element = new TextBox();
+                    break;
+                case ElementType.WebElement:
+                    Element = new GingerWebElement();
+                    break;
             }
-           
+
+            Element.Element = element;
+
+            if (Element is GingerWebElement GE)
+            {
+                GE.Driver = mDriver;
+
+            }
+
+            return Element;
         }
     }
 }

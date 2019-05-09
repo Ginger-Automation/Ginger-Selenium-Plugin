@@ -37,14 +37,14 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void ExecuteScript()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
    
         [TestMethod]
         public void FullScreen()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
@@ -57,61 +57,61 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void GetTitle()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
         public void GetWindowHandle()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
         public IReadOnlyCollection<string> GetWindowHandles()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
         public void Maximize()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
         public void Minimize()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
         public void NavigateBack()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
         public void NavigateForward()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
         public void Refresh()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
 
         [TestMethod]
         public void SwitchToFrame(IGingerWebElement WebElement)
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void SwitchToParentFrame()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
     }
 }

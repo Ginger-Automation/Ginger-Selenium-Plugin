@@ -14,78 +14,79 @@ namespace SeleniumPluginTests
         public void DragAndDrop()
         {
             throw new NotImplementedException();
+
         }
         [TestMethod]
         public void GetAttribute()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void GetHeight()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void GetItemCount()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void GetSize()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void GetStyle()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void GetWidth()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void Hover()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         [TestMethod]
 
         public bool IsEnabled()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public bool IsVisible()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void RightClick()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void RunJavascript()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void ScrollToElement()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void SetDiabled()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
         [TestMethod]
         public void SetFocues()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
     }
 }
