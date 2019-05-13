@@ -9,55 +9,75 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
 {
     public class BrowserActions : IBrowserActions
     {
-        IWebDriver mDriver;
-        public BrowserActions(IWebDriver driver)
+        IWebDriver Driver;
+        public BrowserActions(IWebDriver Driver)
         {
-            mDriver = driver;
+            Driver = Driver;
+        }
+
+        public void AcceptMessageBox()
+        {
+            Driver.SwitchTo().Alert().Accept();
+        }
+
+        public void CloseCurrentTab()
+        {
+            Driver.Close();
         }
 
         public void CloseWindow()
         {
-            mDriver.Close();
+            Driver.Close();
         }
 
-        public void ExecuteScript()
+        public void DeleteAllCookies()
         {
-           throw new NotImplementedException();
+            Driver.Manage().Cookies.DeleteAllCookies();
+        }
+
+        public void DismissMessageBox()
+        {
+            Driver.SwitchTo().Alert().Dismiss();
+        }
+
+        public object ExecuteScript(string script)
+        {
+          return  ((IJavaScriptExecutor)Driver).ExecuteScript(script);
         }
 
         public void FullScreen()
         {
-            mDriver.Manage().Window.FullScreen();
+            Driver.Manage().Window.FullScreen();
         }
 
         public string GetCurrentUrl()
         {
-            return mDriver.Url;
+            return Driver.Url;
         }
 
         public string GetTitle()
         {
-            return mDriver.Title;
+            return Driver.Title;
         }
 
         public string GetWindowHandle()
         {
-            return mDriver.CurrentWindowHandle;
+            return Driver.CurrentWindowHandle;
         }
 
         public IReadOnlyCollection<string> GetWindowHandles()
         {
-            return mDriver.WindowHandles;
+            return Driver.WindowHandles;
         }
 
         public void Maximize()
         {
-            mDriver.Manage().Window.Maximize();
+            Driver.Manage().Window.Maximize();
         }
 
         public void Minimize()
         {
-            mDriver.Manage().Window.Minimize();
+            Driver.Manage().Window.Minimize();
 
         }
 
@@ -66,7 +86,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
             if (OpenIn == "Current")
             {
 
-                mDriver.Url = url;
+                Driver.Url = url;
             }
 
 
@@ -75,28 +95,32 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
 
         public void NavigateBack()
         {
-            mDriver.Navigate().Back();
+            Driver.Navigate().Back();
         }
 
         public void NavigateForward()
         {
-            mDriver.Navigate().Forward();
+            Driver.Navigate().Forward();
         }
 
         public void Refresh()
         {
-            mDriver.Navigate().Refresh();
+            Driver.Navigate().Refresh();
         }
 
+        public void SetAlertBoxText(string value)
+        {
+            Driver.SwitchTo().Alert().SendKeys(value);
+        }
 
         public void SwitchToFrame(IGingerWebElement WebElement)
         {
-            mDriver.SwitchTo().Frame(WebElement as IWebElement);
+            Driver.SwitchTo().Frame(WebElement as IWebElement);
         }
 
         public void SwitchToParentFrame()
         {
-            mDriver.SwitchTo().ParentFrame();
+            Driver.SwitchTo().ParentFrame();
         }
     }
 }

@@ -25,7 +25,11 @@ namespace Ginger.Plugin.Platform.Web
         void Minimize();
         void FullScreen();
 
-        void ExecuteScript();
-
+        object ExecuteScript(string script);
+        void CloseCurrentTab();
+        void AcceptMessageBox();
+        void SetAlertBoxText(string value);
+        void DismissMessageBox();
+        void DeleteAllCookies();
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Ginger.Plugin.Platform.Web.Execution
 {
-    class BrowserActionhandler
+    class BrowserActionhandler:IActionHandler
     {
         public enum eControlAction
         {
@@ -62,54 +62,115 @@ namespace Ginger.Plugin.Platform.Web.Execution
             RunJavaScript
         }
         eControlAction ElementAction;
-      internal  string ExInfo;
-        internal List<NodeActionOutputValue> AOVs = new List<NodeActionOutputValue>();
 
+        internal List<NodeActionOutputValue> AOVs = new List<NodeActionOutputValue>();
+        string Value;
 
         private Dictionary<string, string> InputParams;
         IBrowserActions BrowserService = null;
+
+        public string ExecutionInfo { get; set; }
+        public string Error { get ; set; }
+
         public BrowserActionhandler(IBrowserActions mbrowserActions, Dictionary<string, string> minputParams)
         {
 
             InputParams = minputParams;
-             BrowserService = mbrowserActions;
-
+            BrowserService = mbrowserActions;
+            InputParams.TryGetValue("Value", out Value);
             ElementAction = (eControlAction)Enum.Parse(typeof(eControlAction), InputParams["ControlAction"]);
 
 
         }
 
 
-      internal  void ExecuteAction()
+        internal void ExecuteAction()
         {
 
-            switch(ElementAction)
+            try
             {
 
-                case eControlAction.GotoURL:
-                    Console.WriteLine();
-                    string Url = InputParams["Value"];
-                    string GotoURLType;
+                switch (ElementAction)
+                {
 
-                    InputParams.TryGetValue("GotoURLType", out GotoURLType);
-                    if(string.IsNullOrEmpty(GotoURLType))
-                    {
-                        GotoURLType = "Current";
+                    case eControlAction.GotoURL:
+                        Console.WriteLine();
 
-                    }
-                    BrowserService.Navigate(Url, GotoURLType);
+                        string GotoURLType;
+
+                        InputParams.TryGetValue("GotoURLType", out GotoURLType);
+
+                        if (string.IsNullOrEmpty(GotoURLType))
+                        {
+                            GotoURLType = "Current";
+
+                        }
+                        BrowserService.Navigate(Value, GotoURLType);
 
 
-                    break;
+                        break;
 
-                case eControlAction.GetPageURL:
+                    case eControlAction.GetPageURL:
 
-          
-                    AOVs.Add(new NodeActionOutputValue() { Param = "PageUrl", Value = BrowserService.GetCurrentUrl() });
 
-                    break;
+                        AOVs.Add(new NodeActionOutputValue() { Param = "PageUrl", Value = BrowserService.GetCurrentUrl() });
+
+                        break;
+                    case eControlAction.Maximize:
+                        BrowserService.Maximize();
+                        break;
+                    case eControlAction.Close:
+                        BrowserService.CloseCurrentTab();
+                        break;
+                    case eControlAction.CloseAll:
+                        BrowserService.CloseWindow();
+                        break;
+                    case eControlAction.Refresh:
+                        BrowserService.Refresh();
+                        break;
+                    case eControlAction.NavigateBack:
+                        BrowserService.NavigateBack();
+                        break;
+                    case eControlAction.DismissMessageBox:
+                        BrowserService.DismissMessageBox();
+                        break;
+                    case eControlAction.DeleteAllCookies:
+                        BrowserService.DeleteAllCookies();
+                        break;
+
+                    case eControlAction.AcceptMessageBox:
+
+                        BrowserService.AcceptMessageBox();
+                        break;
+                    case eControlAction.GetWindowTitle:
+
+                        BrowserService.GetTitle();
+                        break;
+                    case eControlAction.GetMessageBoxText:
+
+                        BrowserService.GetTitle();
+                        break;
+                    case eControlAction.SetAlertBoxText:
+
+                        BrowserService.SetAlertBoxText(Value);
+                        break;
+                    case eControlAction.RunJavaScript:
+
+                        object Output = BrowserService.ExecuteScript(Value);
+                        if (Output != null)
+                        {
+                            AOVs.Add(new NodeActionOutputValue() { Param = "Actual", Value = Output.ToString() });
+                        }
+                        break;
+                }
             }
 
+
+            catch(Exception ex)
+            {
+                Error = ex.Message;
+                ExecutionInfo = ex.StackTrace;
+            }
         }
 
     }

@@ -38,41 +38,14 @@ namespace Ginger.Plugin.Platform.Web.Execution
             }
             if (actionType == "BrowserAction")
             {
-                //string actionInterface = ActionPayload.GetValueString();  // Interface
-                //string actionfield = ActionPayload.GetValueString();      // Field
-
-                //if (actionInterface == "BrowserActions" && actionfield == nameof(IBrowserActions.Navigate))
-                //{
-                //    string url = ActionPayload.GetValueString();
-                //    string error = null;
-                //    IWebPlatform PlatformService = (IWebPlatform)service;
-                //    Console.WriteLine("Naviagte to: " + url);
-                //    Stopwatch stopwatch = Stopwatch.StartNew();
-                //    try
-                //    {
-                //        PlatformService.BrowserActions.Navigate(url);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        error = ex.Message;
-                //    }
-                //    stopwatch.Stop();
-                //    string exInfo = "Elapsed = " + stopwatch.Elapsed;
-                //    // Example of how to add output values, in this case we show the url naviagted to
-                //    List<NodeActionOutputValue> AOVs = new List<NodeActionOutputValue>();
-                //    AOVs.Add(new NodeActionOutputValue() { Param = "URL", Value = url });
-                //    NewPayLoad PLRC = CreateActionResult(exInfo, error, AOVs);
-                //    return PLRC;
-                //}
-
-               
 
 
 
                 BrowserActionhandler Handler = new BrowserActionhandler(PlatformService.BrowserActions, InputParams);
                 Handler.ExecuteAction();
-                
-                NewPayLoad PLRC = CreateActionResult(Handler.ExInfo, error: null, Handler.AOVs);
+
+
+                NewPayLoad PLRC = CreateActionResult(exInfo: Handler.ExecutionInfo, error: Handler.Error, Handler.AOVs);
                 return PLRC;
             }
 
@@ -88,7 +61,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
 
                     Handler.ExecuteAction();
 
-                    NewPayLoad PLRC = CreateActionResult(exInfo: "", error: null, Handler.AOVs);
+                    NewPayLoad PLRC = CreateActionResult(exInfo: Handler.ExecutionInfo, error:Handler.Error, Handler.AOVs);
                     return PLRC;
      
                 }
