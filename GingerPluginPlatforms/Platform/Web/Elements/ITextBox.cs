@@ -14,7 +14,7 @@ namespace Ginger.Plugin.Platform.Web.Elements
         int GetTextLength();
 
         bool IsValuePopulated();
-
+   
         void SetMultiValue(string[] values);
 
         void SendKeys(string keys);

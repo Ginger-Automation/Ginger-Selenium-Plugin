@@ -27,6 +27,11 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             }
         }
 
+        protected static void MultiClick(IWebElement webElement, IWebDriver driver)
+        {
+            throw new NotImplementedException();
+        }
+
         public GingerWebElement()
         {
             
@@ -36,10 +41,26 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
             WebElement = element;
         }
-#warning Drag n Drop Pending implementation
-        public void DragAndDrop()
+
+        public void DragAndDrop(string DragDropType, IGingerWebElement targetElement)
         {
-           throw new NotImplementedException();
+
+
+            switch (DragDropType)
+            {
+                case "DragDropSelenium":
+                    OpenQA.Selenium.Interactions.Actions action = new OpenQA.Selenium.Interactions.Actions(Driver);
+                    OpenQA.Selenium.Interactions.IAction dragdrop = action.ClickAndHold(this.WebElement).MoveToElement(targetElement.Element as IWebElement).Release(targetElement.Element as IWebElement).Build();
+                    dragdrop.Perform();
+                    break;
+                case "DragDropJS":
+                    string script = Resources.Html5DragAndDrop;
+                    IJavaScriptExecutor executor = (IJavaScriptExecutor)Driver;
+                    executor.ExecuteScript(script, this.WebElement, targetElement);
+                    break;
+               
+
+            }
         }
 
         public string GetAttribute(string attributeName)
@@ -126,12 +147,12 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             clickElement.Click();
             return true;
         }
-        internal static bool  ClickandValidate(IWebElement clickElement)
+        internal static void MouseClick(IWebElement clickElement, IWebDriver Driver)
         {
-            return false;
-
-
+            OpenQA.Selenium.Interactions.Actions action = new OpenQA.Selenium.Interactions.Actions(Driver);
+            action.MoveToElement(clickElement).Click().Build().Perform();
         }
+ 
 
         internal static void  DoubleClick(IWebElement clickElement,IWebDriver Driver)
         {
@@ -209,6 +230,11 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
             SelectElement se = new SelectElement(we);
             se.SelectByText(Text);
+        }
+        public static void SelectElementByValue(IWebElement we, string Text)
+        {
+            SelectElement se = new SelectElement(we);
+            se.SelectByValue(Text);
         }
 
 

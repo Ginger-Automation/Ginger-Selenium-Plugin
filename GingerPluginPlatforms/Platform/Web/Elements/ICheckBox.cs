@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugin.Platform.Web.Elements
 {
-    public interface ICheckBox: IGingerWebElement, IClick
+    public interface ICheckBox: IGingerWebElement, IClick,IGetValue
     {
     }
 }

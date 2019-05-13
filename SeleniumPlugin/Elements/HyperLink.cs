@@ -7,22 +7,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
     class HyperLink : GingerWebElement, IHyperLink
     {
-        public void Click()
-        {
-            GingerWebElement.Click(this.WebElement);
-        }
-
-        public void ClickandValidate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DoubleClick()
-        {
-            GingerWebElement.DoubleClick(this.WebElement, this.Driver);
-          
-        }
-
+        
         public string GetValue()
         {
             return WebElement.GetAttribute("href");
@@ -30,14 +15,29 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
            
         }
 
+
         public void JavascriptClick()
         {
-            GingerWebElement.JavascriptClick(this.WebElement, this.Driver);
+            GingerWebElement.JavascriptClick(this.WebElement, Driver);
+        }
+        public void Click()
+        {
+            WebElement.Click();
         }
 
+
+
+        public void DoubleClick()
+        {
+            GingerWebElement.DoubleClick(this.WebElement, Driver);
+        }
         public void MultiClick()
         {
-            throw new NotImplementedException();
+            GingerWebElement.MultiClick(this.WebElement, Driver);
+        }
+        public void MouseClick()
+        {
+            GingerWebElement.MouseClick(this.WebElement, Driver);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Ginger.Plugin.Platform.Web.Elements
 
 
         object Element { get; set; }
-        void DragAndDrop();
+        void DragAndDrop(string DragDropType,IGingerWebElement Element);
         string GetAttribute(string attributeName);
         int GetHeight();
         int GetItemCount();

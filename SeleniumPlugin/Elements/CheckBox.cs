@@ -7,32 +7,39 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
     class CheckBox:GingerWebElement, ICheckBox
     {
-        public void Click()
-        {
-            GingerWebElement.Click(this.WebElement);
-        }
-
-        public void ClickandValidate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DoubleClick()
-        {
-            GingerWebElement.DoubleClick(this.WebElement, this.Driver);
-
-        }
-
-
 
         public void JavascriptClick()
         {
-            GingerWebElement.JavascriptClick(this.WebElement, this.Driver);
+            GingerWebElement.JavascriptClick(this.WebElement, Driver);
+        }
+        public void Click()
+        {
+            WebElement.Click();
+        }
+        public string GetValue()
+        {
+            string Value = WebElement.Text;
+            if (string.IsNullOrEmpty(Value))
+            {
+                Value = WebElement.GetAttribute("value");
+            }
+
+
+            return Value;
         }
 
+
+        public void DoubleClick()
+        {
+            GingerWebElement.DoubleClick(this.WebElement, Driver);
+        }
         public void MultiClick()
         {
-            throw new NotImplementedException();
+            GingerWebElement.MultiClick(this.WebElement, Driver);
+        }
+        public void MouseClick()
+        {
+            GingerWebElement.MouseClick(this.WebElement, Driver);
         }
     }
 }

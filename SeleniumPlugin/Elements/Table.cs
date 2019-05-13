@@ -7,6 +7,11 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
     class Table : GingerWebElement, ITable
     {
+        public void Click()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetValue()
         {
             string Value = WebElement.Text;

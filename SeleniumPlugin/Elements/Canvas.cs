@@ -7,8 +7,13 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
     class Canvas : GingerWebElement, ICanvas
     {
-#warning pending Implementation
-  
+        public void ClickXY(int x, int y)
+        {
+            OpenQA.Selenium.Interactions.Actions actionClick = new OpenQA.Selenium.Interactions.Actions(Driver);
+            actionClick.MoveToElement(this.WebElement, x, y).Click().Build().Perform();
+        }
+
+
 
         public void DrawObject()
         {

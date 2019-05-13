@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugin.Platform.Web.Elements
 {
-    public interface IWebList:IGingerWebElement, ISelect
+    public interface IWebList:IGingerWebElement, ISelect,IGetValue
     {
     }
 }

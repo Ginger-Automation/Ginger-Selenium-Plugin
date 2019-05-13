@@ -20,6 +20,14 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         }
 
+        public void SetValue(string Value)
+        {
+            SelectElement combobox = new SelectElement(this.WebElement);
+          
+            combobox.SelectByText(Value);
+            
+        }
+
         public bool IsValuePopulated()
         {
             return GingerWebElement.CheckValuePopulated(WebElement);
@@ -31,7 +39,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
 
 
-            GingerWebElement.CheckValuePopulated(WebElement);
+            GingerWebElement.SelectElementByValue(WebElement, Value);
         }
 
         public void SelectByIndex(int index)

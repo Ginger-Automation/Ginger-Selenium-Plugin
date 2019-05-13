@@ -21,6 +21,18 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         }
 
+        public string GetValue()
+        {
+            string Value = WebElement.Text;
+            if (string.IsNullOrEmpty(Value))
+            {
+                Value = WebElement.GetAttribute("value");
+            }
+
+
+            return Value;
+        }
+
         public bool IsValuePopulated()
         {
             return GingerWebElement.CheckValuePopulated(WebElement);
@@ -32,7 +44,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
 
 
-            GingerWebElement.CheckValuePopulated(WebElement);
+            GingerWebElement.SelectElementByValue(WebElement, Value);
         }
 
         public void SelectByIndex(int index)

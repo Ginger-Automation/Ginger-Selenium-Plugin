@@ -9,12 +9,14 @@ namespace Ginger.Plugin.Platform.Web.Actions
     {
 
         void Click();
-        void ClickandValidate();
+        
         void DoubleClick();
 
         void JavascriptClick();
 
         void MultiClick();
+
+        void MouseClick();
 
     }
 }

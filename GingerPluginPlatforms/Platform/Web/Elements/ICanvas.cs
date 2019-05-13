@@ -10,5 +10,8 @@ namespace Ginger.Plugin.Platform.Web.Elements
 
      
         void DrawObject();
+
+        void ClickXY(int x, int y);
+
     }
 }
