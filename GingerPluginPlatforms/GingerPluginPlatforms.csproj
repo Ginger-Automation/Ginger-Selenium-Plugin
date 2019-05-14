@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GingerPluginCore\GingerPluginCore.csproj" />
+    <ProjectReference Include="..\..\Ginger\Ginger\GingerPluginCore\GingerPluginCore.csproj" />
   </ItemGroup>
 
 </Project>
