@@ -14,7 +14,7 @@ namespace Ginger.Plugin.Platform.Web
        
         IBrowserActions BrowserActions { get;  }
 
-        ILocateWebElement LocatLWebElement { get;  }
+        ILocateWebElement LocateWebElement { get;  }
 
         IAlerts Alerts { get; }
 

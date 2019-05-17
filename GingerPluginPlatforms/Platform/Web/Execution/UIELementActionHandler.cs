@@ -230,21 +230,21 @@ namespace Ginger.Plugin.Platform.Web.Execution
             {
                 case "ByID":
 
-                    Element = PlatformService.LocatLWebElement.LocateElementByID(ElementType, LocateByValue);
+                    Element = PlatformService.LocateWebElement.LocateElementByID(ElementType, LocateByValue);
                     break;
                 case "ByCSSSelector":
                 case "ByCSS":
 
-                    Element = PlatformService.LocatLWebElement.LocateElementByCss(ElementType, LocateByValue);
+                    Element = PlatformService.LocateWebElement.LocateElementByCss(ElementType, LocateByValue);
 
                     break;
                 case "ByLinkText":
-                    Element = PlatformService.LocatLWebElement.LocateElementByLinkTest(ElementType, LocateByValue);
+                    Element = PlatformService.LocateWebElement.LocateElementByLinkTest(ElementType, LocateByValue);
 
                     break;
 
                 case "ByXPath":
-                    Element = PlatformService.LocatLWebElement.LocateElementByXPath(ElementType, LocateByValue);
+                    Element = PlatformService.LocateWebElement.LocateElementByXPath(ElementType, LocateByValue);
 
                     break;
 
@@ -545,7 +545,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
                 string ValueToSelect;
                 InputParams.TryGetValue("ValueToSelect", out ValueToSelect);
 
-                if (element is IClick ClickElement)
+                if (ElementAction.ToString().ToUpper().Contains("CLICK" ) && element is IClick ClickElement)
                 {
                     ClickActions(ClickElement, ElementAction);
                 }

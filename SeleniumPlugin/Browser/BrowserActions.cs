@@ -10,9 +10,9 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
     public class BrowserActions : IBrowserActions
     {
         IWebDriver Driver;
-        public BrowserActions(IWebDriver Driver)
+        public BrowserActions(IWebDriver mDriver)
         {
-            Driver = Driver;
+           this.Driver = mDriver;
         }
 
         public void AcceptMessageBox()

@@ -24,7 +24,7 @@ namespace SeleniumPluginTests
         public static void Initialize(TestContext context)
         {
             Service = new SeleniumChromeService();
-            Service.StartSession();
+            Service.StartDriver();
             string url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
             Service.BrowserActions.Navigate(url,"Current");
         }
@@ -82,7 +82,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementByXPath()
         {
-            GingerWebElement Element = Service.LocatLWebElement.LocateElementByXPath(eElementType.WebElement, "/html/body/table/tbody/tr[2]/td[5]") as GingerWebElement;
+            GingerWebElement Element = Service.LocateWebElement.LocateElementByXPath(eElementType.WebElement, "/html/body/table/tbody/tr[2]/td[5]") as GingerWebElement;
 
             // Assert.AreEqual("217-811-2932", Element.GetAttribute(); // .WebElement.Text);
         }
@@ -112,7 +112,7 @@ namespace SeleniumPluginTests
             string txt = "123";
 
             //Act
-            ITextBox GWE = (ITextBox)Service.LocatLWebElement.LocateElementByID( eElementType.TextBox, "GingerPhone");
+            ITextBox GWE = (ITextBox)Service.LocateWebElement.LocateElementByID( eElementType.TextBox, "GingerPhone");
             GWE.SetText(txt);
             string value = GWE.GetText();
 
@@ -128,7 +128,7 @@ namespace SeleniumPluginTests
             
 
             //Act
-            IGingerWebElement GWE = Service.LocatLWebElement.LocateElementByID( eElementType.WebElement, "GingerPhone");
+            IGingerWebElement GWE = Service.LocateWebElement.LocateElementByID( eElementType.WebElement, "GingerPhone");
             int value = GWE.GetWidth();
 
             //Assert
@@ -144,7 +144,7 @@ namespace SeleniumPluginTests
             string txt2 = "456";
 
             //Act
-            ITextBox GWE = (ITextBox)Service.LocatLWebElement.LocateElementByID( eElementType.TextBox, "GingerPhone");
+            ITextBox GWE = (ITextBox)Service.LocateWebElement.LocateElementByID( eElementType.TextBox, "GingerPhone");
             GWE.SetText(txt1);
             GWE.SetText(txt2);
             string value = GWE.GetText();

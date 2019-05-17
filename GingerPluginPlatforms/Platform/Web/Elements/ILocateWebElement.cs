@@ -7,6 +7,7 @@ namespace Ginger.Plugin.Platform.Web.Elements
 {
     public enum eElementType
     {
+        Unknown,
         WebElement,
         Button,
         Canvas,

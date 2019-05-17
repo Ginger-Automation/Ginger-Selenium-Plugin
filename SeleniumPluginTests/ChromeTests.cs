@@ -21,7 +21,7 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void StartSessionTest()
         {
-            Service.StartSession();
+            Service.StartDriver();
         }
         
         [TestMethod]
@@ -30,7 +30,7 @@ namespace SeleniumPluginTests
             Service.BrowserActions.CloseWindow();
 
             Assert.AreEqual(0, Service.Driver.WindowHandles.Count);
-            Service.StartSession();
+            Service.StartDriver();
         }
 
       

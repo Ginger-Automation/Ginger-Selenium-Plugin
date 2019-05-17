@@ -9,7 +9,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
     [GingerService("SeleniumFireFoxService", "Selenium Fire Fox Service")]
     public class SeleniumFireFoxService : SeleniumServiceBase
     {
-        public override void StartSession()
+        public override void StartDriver()
         {
             Driver = new FirefoxDriver();    
         }

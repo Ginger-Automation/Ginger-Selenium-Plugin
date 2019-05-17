@@ -167,6 +167,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
                     Element = new TextBox();
                     break;
                 case eElementType.WebElement:
+                case eElementType.Unknown:
                     Element = new GingerWebElement();
                     break;
                 case eElementType.HyperLink:

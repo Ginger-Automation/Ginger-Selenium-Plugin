@@ -16,25 +16,59 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Services
-{    
-    public abstract class SeleniumServiceBase : IServiceSession, IWebPlatform , IScreenShotSetvice
+{
+    public abstract class SeleniumServiceBase : IServiceSession, IWebPlatform, IScreenShotSetvice
     {
+
+
+        #region Plugin Configuration
+        [GingerServiceConfiguration("Proxy Type", "Proxy type", typeof(string), "ProxyAutoConfigure", new object[] { "Direct", "Manual", "ProxyAutoConfigure", "AutoDetect", "System" })]
+        public string Proxy { get; set; }
+
+
+        [GingerServiceConfiguration("Proxy Auto Config Url", "Proxy Auto Config Url", typeof(string), "url")]
+        public string ProxyAutoConfigUrl { get; set; }
+
+        [GingerServiceConfiguration("ImplicitWait", "Amount of time the driver should wait when searching for an element if it is not immediately present", typeof(int), 30)]
+        public int ImplicitWait { get; set; }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+        #region Common Properties
         //TODO: try to make private, pass it if needed
         public IWebDriver Driver;
 
+        private IBrowserActions mBrowserActions { get; set; }
         // TODO: mark annotation if impl
-        public IBrowserActions BrowserActions { get { return new BrowserActions(Driver); } }  //tODO: cache
-
+        public IBrowserActions BrowserActions { get { return mBrowserActions; } }
+        private ILocateWebElement mLocatLWebElement { get; set; }
         // TODO: mark annotation if impl
-        public ILocateWebElement LocatLWebElement { get { return new LocateWebElements(Driver); } }  //tODO: cache
+        public ILocateWebElement LocateWebElement { get { return mLocatLWebElement; } }  //tODO: cache
 
         // TODO: mark not impl
         public IAlerts Alerts =>throw new NotImplementedException();
 
         public IPlatformActionHandler PlatformActionHandler { get; set; } = new WebPlatformActionHandler();
+        #endregion
+      
+        public abstract void StartDriver();
 
-        public abstract void StartSession();
-        
+        public void StartSession()
+        {
+            this.StartDriver();
+            mBrowserActions = new BrowserActions(this.Driver);
+            mLocatLWebElement = new LocateWebElements(this.Driver);
+        }
+
 
         public virtual void StopSession()
         {
@@ -110,5 +144,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
             return bmpReturn;
         }
+
+   
     }
 }
