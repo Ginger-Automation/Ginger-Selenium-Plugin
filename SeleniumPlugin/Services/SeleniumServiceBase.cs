@@ -1,5 +1,6 @@
 ﻿using Amdocs.Ginger.Plugin.Core;
 using Amdocs.Ginger.Plugin.Core.ActionsLib;
+using Amdocs.Ginger.Plugin.Core.Attributes;
 using Ginger.Plugin.Platform.Web;
 using Ginger.Plugin.Platform.Web.Elements;
 using Ginger.Plugin.Platform.Web.Execution;
@@ -17,19 +18,24 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 {
-    public abstract class SeleniumServiceBase : IServiceSession, IWebPlatform, IScreenShotSetvice
+    public abstract class SeleniumServiceBase : IServiceSession, IWebPlatform, IScreenShotService
     {
 
+        //  "ProxyAutoConfigure", new object[] { "Direct", "Manual", "ProxyAutoConfigure", "AutoDetect", "System" })]
 
         #region Plugin Configuration
-        [GingerServiceConfiguration("Proxy Type", "Proxy type", typeof(string), "ProxyAutoConfigure", new object[] { "Direct", "Manual", "ProxyAutoConfigure", "AutoDetect", "System" })]
+
+        [ValidValue(new string[] { "Direct", "Manual", "ProxyAutoConfigure", "AutoDetect", "System" })]
+        [ServiceConfiguration("Proxy Type", "Proxy type")]
         public string Proxy { get; set; }
 
 
-        [GingerServiceConfiguration("Proxy Auto Config Url", "Proxy Auto Config Url", typeof(string), "url")]
+        [ServiceConfiguration("Proxy Auto Config Url", "Proxy Auto Config Url")]
         public string ProxyAutoConfigUrl { get; set; }
 
-        [GingerServiceConfiguration("ImplicitWait", "Amount of time the driver should wait when searching for an element if it is not immediately present", typeof(int), 30)]
+        [MinValue(10)]
+        [MaxValue(3600)]
+        [ServiceConfiguration("ImplicitWait", "Amount of time the driver should wait when searching for an element if it is not immediately present")]
         public int ImplicitWait { get; set; }
         #endregion
 
@@ -60,7 +66,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         public IPlatformActionHandler PlatformActionHandler { get; set; } = new WebPlatformActionHandler();
         #endregion
       
-        public abstract void StartDriver();
+        internal abstract void StartDriver();
 
         public void StartSession()
         {

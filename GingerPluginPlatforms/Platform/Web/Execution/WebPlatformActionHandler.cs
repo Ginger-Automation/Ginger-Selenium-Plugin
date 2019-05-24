@@ -41,7 +41,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
 
 
 
-                BrowserActionhandler Handler = new BrowserActionhandler(PlatformService.BrowserActions, InputParams);
+                BrowserActionhandler Handler = new BrowserActionhandler(PlatformService, InputParams);
                 Handler.ExecuteAction();
 
 
@@ -89,5 +89,6 @@ namespace Ginger.Plugin.Platform.Web.Execution
             return GingerNode.CreateActionResult(exInfo, error, outputValues);
             
         }
+
     }
 }

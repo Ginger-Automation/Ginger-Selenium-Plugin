@@ -19,7 +19,7 @@ namespace SeleniumPluginTests.Elements
         public static void Initialize(TestContext context)
         {
             Service = new SeleniumChromeService();
-            Service.StartDriver();
+            Service.StartSession();
             string url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
             Service.BrowserActions.Navigate(url,"Current");
         }

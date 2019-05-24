@@ -1,4 +1,5 @@
 ﻿using Ginger.Plugin.Platform.Web.Elements;
+using Ginger.Plugins.Web.SeleniumPlugin.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,23 @@ namespace SeleniumPluginTests
     [TestClass]
     public class WebElementTests 
     {
+
+        static SeleniumServiceBase Service = null;
+        [ClassInitialize]
+        public static void Initialize(TestContext context)
+        {
+            Service = new SeleniumChromeService();
+
+            Service.StartSession();
+        }
+
+        [ClassCleanup]
+
+        public static void CleanUp()
+        {
+            Service.StopSession();
+
+        }
 
         [TestMethod]
         public void DragAndDrop()

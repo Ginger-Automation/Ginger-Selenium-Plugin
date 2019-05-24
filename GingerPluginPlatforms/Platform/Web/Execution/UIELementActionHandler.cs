@@ -157,7 +157,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
             try
             {
                 string Locatevalue = InputParams["ElementLocateValue"];
-                ElementType = (eElementType)Enum.Parse(typeof(eElementType), mElementType);
+               
                 IGingerWebElement Element = null;
 
                 LocateByValue = Locatevalue;

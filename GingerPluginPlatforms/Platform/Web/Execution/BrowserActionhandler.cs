@@ -1,4 +1,5 @@
 ﻿using Amdocs.Ginger.CoreNET.RunLib;
+using Ginger.Plugin.Platform.Web.Elements;
 using GingerCoreNET.Drivers.CommunicationProtocol;
 using System;
 using System.Collections.Generic;
@@ -71,12 +72,12 @@ namespace Ginger.Plugin.Platform.Web.Execution
 
         public string ExecutionInfo { get; set; }
         public string Error { get ; set; }
-
-        public BrowserActionhandler(IBrowserActions mbrowserActions, Dictionary<string, string> minputParams)
+        readonly IWebPlatform PlatformService;
+        public BrowserActionhandler(IWebPlatform mPlatformService, Dictionary<string, string> minputParams)
         {
-
+            PlatformService = mPlatformService;
             InputParams = minputParams;
-            BrowserService = mbrowserActions;
+            BrowserService = PlatformService.BrowserActions;
             InputParams.TryGetValue("Value", out Value);
             ElementAction = (eControlAction)Enum.Parse(typeof(eControlAction), InputParams["ControlAction"]);
 
@@ -105,6 +106,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
                             GotoURLType = "Current";
 
                         }
+     
                         BrowserService.Navigate(Value, GotoURLType);
 
 
@@ -154,6 +156,21 @@ namespace Ginger.Plugin.Platform.Web.Execution
 
                         BrowserService.SetAlertBoxText(Value);
                         break;
+                    case eControlAction.SwitchFrame:
+                        string ElementLocateBy;
+                        string Locatevalue;
+                        string mElementType;
+                        InputParams.TryGetValue("ElementLocateBy", out ElementLocateBy);
+                        InputParams.TryGetValue("Locatevalue", out Locatevalue);
+                        InputParams.TryGetValue("ElementType", out mElementType);
+                        if(string.IsNullOrEmpty(Locatevalue))
+                        {
+                            InputParams.TryGetValue("Value", out Locatevalue);
+                        }
+                        eElementType  ElementType = (eElementType)Enum.Parse(typeof(eElementType), mElementType);
+                        IGingerWebElement   Element = LocateElement(ElementType, ElementLocateBy, Locatevalue);
+                        BrowserService.SwitchToFrame(Element);
+                        break;
                     case eControlAction.RunJavaScript:
 
                         object Output = BrowserService.ExecuteScript(Value);
@@ -171,6 +188,37 @@ namespace Ginger.Plugin.Platform.Web.Execution
                 Error = ex.Message;
                 ExecutionInfo = ex.StackTrace;
             }
+        }
+        private IGingerWebElement LocateElement(eElementType ElementType, string ElementLocateBy, string LocateByValue)
+        {
+            IGingerWebElement Element = null;
+            switch (ElementLocateBy)
+            {
+                case "ByID":
+
+                    Element = PlatformService.LocateWebElement.LocateElementByID(ElementType, LocateByValue);
+                    break;
+                case "ByCSSSelector":
+                case "ByCSS":
+
+                    Element = PlatformService.LocateWebElement.LocateElementByCss(ElementType, LocateByValue);
+
+                    break;
+                case "ByLinkText":
+                    Element = PlatformService.LocateWebElement.LocateElementByLinkTest(ElementType, LocateByValue);
+
+                    break;
+
+                case "ByXPath":
+                    Element = PlatformService.LocateWebElement.LocateElementByXPath(ElementType, LocateByValue);
+
+                    break;
+
+
+
+            }
+
+            return Element;
         }
 
     }

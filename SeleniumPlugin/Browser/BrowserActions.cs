@@ -83,14 +83,15 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
 
         public void Navigate(string url,string OpenIn)
         {
-            if (OpenIn == "Current")
+
+            if (OpenIn == "NewTab")
             {
 
-                Driver.Url = url;
+                IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)Driver;
+                javaScriptExecutor.ExecuteScript("window.open();");
+                Driver.SwitchTo().Window(Driver.WindowHandles[Driver.WindowHandles.Count - 1]);
             }
-
-
-
+            Driver.Url = url;
         }
 
         public void NavigateBack()

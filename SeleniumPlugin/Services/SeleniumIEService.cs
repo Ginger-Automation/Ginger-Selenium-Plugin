@@ -9,7 +9,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
     [GingerService("SeleniumIEService", "Selenium IE Service")]
     public class SeleniumIEService : SeleniumServiceBase
     {
-        public override void StartDriver()
+        internal override void StartDriver()
         {
             Driver = new InternetExplorerDriver();
         }
