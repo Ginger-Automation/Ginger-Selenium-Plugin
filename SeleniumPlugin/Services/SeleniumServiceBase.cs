@@ -30,13 +30,29 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         public string Proxy { get; set; }
 
 
+        [MinLength(10)]
+        [ServiceConfiguration("Proxy Url", "Proxy URL")]
+        public string ProxyUrl { get; set; }
+
+
         [ServiceConfiguration("Proxy Auto Config Url", "Proxy Auto Config Url")]
         public string ProxyAutoConfigUrl { get; set; }
 
+        [Default(30)]
         [MinValue(10)]
         [MaxValue(3600)]
         [ServiceConfiguration("ImplicitWait", "Amount of time the driver should wait when searching for an element if it is not immediately present")]
         public int ImplicitWait { get; set; }
+
+
+
+        [Default(60)]
+        [MinValue(10)]
+        [MaxValue(3600)]
+        [ServiceConfiguration("Pageload Timeout", "PageLoad Timeout for Web Action Completion")]
+
+        public int PageLoadTimeOut { get; set; }
+
         #endregion
 
 
