@@ -128,8 +128,6 @@ namespace SeleniumPluginTests
         {
             //Arrange
 
-            string txt = "123";
-            //Act
             IGingerWebElement GWE = Service.LocateWebElement.LocateElementByID(eElementType.WebElement, "GingerPhone");
     
 

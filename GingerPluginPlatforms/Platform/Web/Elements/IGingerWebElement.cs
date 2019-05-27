@@ -25,7 +25,9 @@ namespace Ginger.Plugin.Platform.Web.Elements
         void DragAndDrop(string DragDropType,IGingerWebElement Element);
         string GetAttribute(string attributeName);
         int GetHeight();
-        int GetItemCount();
+        
+        //TODO:Enable Item count 
+        //int GetItemCount();
         Size GetSize();
         string GetStyle();
         int GetWidth();
@@ -35,7 +37,6 @@ namespace Ginger.Plugin.Platform.Web.Elements
         void RightClick();
         string RunJavascript(string Script);
         void ScrollToElement();
-        void SetDiabled();
         void SetFocus();
      
 

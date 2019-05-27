@@ -4,7 +4,6 @@ using System.Text;
 
 namespace Ginger.Plugin.Platform.Web.Actions
 {
-#warning Pending Defination
     public interface IClick
     {
 

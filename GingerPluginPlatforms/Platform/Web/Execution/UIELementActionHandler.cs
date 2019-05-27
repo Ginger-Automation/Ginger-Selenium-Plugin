@@ -149,7 +149,6 @@ namespace Ginger.Plugin.Platform.Web.Execution
 
 
 
-#warning Pending all locator implementation
 
         internal void ExecuteAction()
         {
@@ -459,7 +458,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
             throw new NotImplementedException();
         }
 
-#warning Combobox Pending select implementation
+
         private void ComboBoxActions(IGingerWebElement element)
         {
 
@@ -661,9 +660,9 @@ namespace Ginger.Plugin.Platform.Web.Execution
                     break;
 
                 case eElementAction.GetItemCount:
-                   
-                    AOVs.Add(new NodeActionOutputValue() { Param = "Value", Value = Element.GetItemCount()           });
-                    break;
+         
+                    throw new  NotImplementedException("Get Item count is not implementd");
+             
                 case eElementAction.GetSize:
                    Size s= Element.GetSize();
                     AOVs.Add(new NodeActionOutputValue() { Param = "Height", Value = s.Height});

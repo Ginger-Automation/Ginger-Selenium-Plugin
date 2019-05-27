@@ -15,7 +15,8 @@ namespace Ginger.Plugin.Platform.Web.Elements
 
         bool IsValuePopulated();
    
-        void SetMultiValue(string[] values);
+        //TODO: Enable multisetvalue
+      //  void SetMultiValue(string[] values);
 
         void SendKeys(string keys);
         void SetText(string Text);

@@ -11,7 +11,7 @@ namespace Ginger.Plugin.Platform.Web.Elements
         string GetValue();
 
 
-#warning Pending Definations
+//TODO:  Pending Definations for multiclick
         //        string MultiClicks();
     }
 }

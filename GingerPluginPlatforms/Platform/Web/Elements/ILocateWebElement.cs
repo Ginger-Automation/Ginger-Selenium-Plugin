@@ -38,11 +38,13 @@ namespace Ginger.Plugin.Platform.Web.Elements
 
        IGingerWebElement LocateElementByPartiallinkText(eElementType elementType,string LocateValue);
        IGingerWebElement LocateElementByTag(eElementType elementType,string LocateValue);
-     /*   
+
+
+        /*
         List<IGingerWebElement> LocateElementsbyCSS(string Css);
 
         List<IGingerWebElement> LocateElementsByClassName(string ClassName);
         List<IGingerWebElement> LocateElementsByTagName(string tag);
-       */
+        */
     }
 }

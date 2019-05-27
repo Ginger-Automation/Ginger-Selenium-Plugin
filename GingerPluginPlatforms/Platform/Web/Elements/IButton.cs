@@ -8,7 +8,7 @@ namespace Ginger.Plugin.Platform.Web.Elements
     public interface IButton:IGingerWebElement,IGetValue,IClick
     {
 
-#warning add IClick
+
 
         void Submit();
        
