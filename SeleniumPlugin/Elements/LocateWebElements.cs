@@ -198,7 +198,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
 
             eElementType elementType = eElementType.Unknown;
-            string elementTagName = string.Empty;
+            string elementTagName = element.TagName;
             string elementTypeAtt = string.Empty;
 
             if (element == null)

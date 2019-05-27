@@ -144,6 +144,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
             InputParams.TryGetValue("Value", out Value);
 
             ElementAction = (eElementAction)Enum.Parse(typeof(eElementAction), mElementAction);
+            ElementType = (eElementType)Enum.Parse(typeof(eElementType), mElementType);
         }
 
 
@@ -160,7 +161,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
                 IGingerWebElement Element = null;
 
                 LocateByValue = Locatevalue;
-                Element = LocateElement(ElementType, ElementLocateBy, Locatevalue);
+                Element = LocateElement(ref ElementType, ElementLocateBy, Locatevalue);
                 bool ActionPerformed = PerformCommonActions(Element);
 
 
@@ -222,7 +223,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
             }
         }
 
-        private IGingerWebElement LocateElement(eElementType ElementType,string ElementLocateBy,string LocateByValue)
+        private IGingerWebElement LocateElement(ref eElementType ElementType,string ElementLocateBy,string LocateByValue)
         {
             IGingerWebElement Element=null;
             switch (ElementLocateBy)
@@ -250,6 +251,60 @@ namespace Ginger.Plugin.Platform.Web.Execution
 
 
             }
+            if (ElementType == eElementType.WebElement || ElementType == eElementType.Unknown)
+            {
+                if (Element is IButton)
+                {
+                    ElementType = eElementType.Button;
+                }
+                else if (Element is ICanvas)
+                {
+                    ElementType = eElementType.Canvas;
+                }
+                else if (Element is ICheckBox)
+                {
+                    ElementType = eElementType.CheckBox;
+                }
+                else if (Element is IComboBox)
+                {
+                    ElementType = eElementType.ComboBox;
+                }
+                else if (Element is IDiv)
+                {
+                    ElementType = eElementType.Div;
+                }
+                else if (Element is IHyperLink)
+                {
+                    ElementType = eElementType.HyperLink;
+                }
+                else if (Element is IImage)
+                {
+                    ElementType = eElementType.Image;
+                }
+                else if (Element is ILabel)
+                {
+                    ElementType = eElementType.Label;
+                }
+                else if (Element is IWebList)
+                {
+                    ElementType = eElementType.List;
+                }
+                else if (Element is IRadioButton)
+                {
+                    ElementType = eElementType.RadioButton;
+                }
+                else if (Element is ISpan)
+                {
+                    ElementType = eElementType.Span;
+                }
+                else if (Element is ITable)
+                {
+                    ElementType = eElementType.Table;
+                }
+
+
+            }
+    
 
             return Element;
         }
@@ -288,7 +343,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
  
             string mValidationElement = InputParams["ValidationElement"];
             eElementType validationElementType = (eElementType)Enum.Parse(typeof(eElementType), mElementType);
-            IGingerWebElement ValidationElement = LocateElement(validationElementType, ValidationElementLocateBy, ValidationElementLocatorValue);
+            IGingerWebElement ValidationElement = LocateElement(ref validationElementType, ValidationElementLocateBy, ValidationElementLocatorValue);
             return ValidationElement;
         }
         private void TableActions(IGingerWebElement element)
