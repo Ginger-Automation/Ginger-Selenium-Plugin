@@ -31,12 +31,9 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
 
         [MinLength(10)]
-        [ServiceConfiguration("Proxy Url", "Proxy URL")]
+        [ServiceConfiguration("Proxy Url", "Proxy URL or prixy autoconfig url")]
         public string ProxyUrl { get; set; }
 
-
-        [ServiceConfiguration("Proxy Auto Config Url", "Proxy Auto Config Url")]
-        public string ProxyAutoConfigUrl { get; set; }
 
         [Default(30)]
         [MinValue(10)]
@@ -53,6 +50,14 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         public int PageLoadTimeOut { get; set; }
 
+
+        [Default(false)]
+        [ServiceConfiguration("Browser Private Mode","Use Browser In Private/Incognito Mode (Please use 64bit Browse with Internet Explorer ")]
+        public bool BrowserPrivateMode { get; set; }
+
+        [Default(60)]
+        [ServiceConfiguration("Http Server TimeOut", "HttpServer Timeout for Web Action Completion. Default/Recommended is minimum 60 secs")]
+        public int HttpServerTimeOut { get; set; }
         #endregion
 
 
@@ -82,13 +87,55 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         public IPlatformActionHandler PlatformActionHandler { get; set; } = new WebPlatformActionHandler();
         #endregion
       
-        internal abstract void StartDriver();
+        internal abstract void StartDriver(Proxy mProxy);
 
         public void StartSession()
         {
-            this.StartDriver();
+            Proxy pxoxy = GetProxy();
+            this.StartDriver(pxoxy);
             mBrowserActions = new BrowserActions(this.Driver);
             mLocatLWebElement = new LocateWebElements(this.Driver);
+
+            Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds((int)ImplicitWait));
+
+
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds((int)PageLoadTimeOut);
+
+
+            Proxy GetProxy()
+            {
+                Proxy P = new Proxy();
+                ProxyKind proxykind;
+                if (Enum.TryParse(Proxy, out proxykind))
+                {
+                    P.Kind = proxykind;
+                }
+                else
+                {
+                    P.Kind = ProxyKind.AutoDetect;
+
+                }
+
+                switch (P.Kind)
+                {
+                    case ProxyKind.Manual:
+                        P.HttpProxy = ProxyUrl;
+                        P.FtpProxy = ProxyUrl;
+                        P.SocksProxy = ProxyUrl;
+                        P.SslProxy = ProxyUrl;
+                        break;
+                    case ProxyKind.ProxyAutoConfigure:
+                        P.ProxyAutoConfigUrl = ProxyUrl;
+                        break;
+                    case ProxyKind.AutoDetect:
+                        P.IsAutoDetect = true;
+                        break;
+
+
+                }
+
+                return P;
+            }
         }
 
 
