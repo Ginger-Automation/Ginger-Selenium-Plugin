@@ -39,7 +39,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         [MinValue(10)]
         [MaxValue(3600)]
         [ServiceConfiguration("ImplicitWait", "Amount of time the driver should wait when searching for an element if it is not immediately present")]
-        public int ImplicitWait { get; set; }
+        public int ImplicitWait { get; set; } = 30;
 
 
 
@@ -48,7 +48,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         [MaxValue(3600)]
         [ServiceConfiguration("Pageload Timeout", "PageLoad Timeout for Web Action Completion")]
 
-        public int PageLoadTimeOut { get; set; }
+        public int PageLoadTimeOut { get; set; } = 60;
 
 
         [Default(false)]
@@ -57,7 +57,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         [Default(60)]
         [ServiceConfiguration("Http Server TimeOut", "HttpServer Timeout for Web Action Completion. Default/Recommended is minimum 60 secs")]
-        public int HttpServerTimeOut { get; set; }
+        public int HttpServerTimeOut { get; set; } = 60;
         #endregion
 
 

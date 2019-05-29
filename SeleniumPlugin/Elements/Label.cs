@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    class Label : GingerWebElement, ILabel
+    public class Label : GingerWebElement, ILabel
     {
         public string GetFont()
         {

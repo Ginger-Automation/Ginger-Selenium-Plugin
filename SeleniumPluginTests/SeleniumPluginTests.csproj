@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>Ginger.Plugins.Web.SeleniumPlugin.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

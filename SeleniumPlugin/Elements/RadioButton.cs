@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    class RadioButton : GingerWebElement, IRadioButton
+    public class RadioButton : GingerWebElement, IRadioButton
     {
 
         public void JavascriptClick()

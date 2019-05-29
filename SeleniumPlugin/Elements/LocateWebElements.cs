@@ -137,7 +137,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
                     Element= new Canvas();
                     break;
                 case eElementType.CheckBox:
-                    Element= new Button();
+                    Element= new CheckBox();
                     break;
                 case eElementType.ComboBox:
                     Element = new ComboBox();

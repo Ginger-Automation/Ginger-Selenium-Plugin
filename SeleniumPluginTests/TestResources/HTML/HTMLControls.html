@@ -39,8 +39,9 @@
     
     <div id="test1">
         <label class="TestDescription">1. Button with id and data-ginger - Click me</label>
-        <input type="button" id="button1" name="btnnnnn1" value="button 1" data-ginger="button1withID" onclick="$('#btn1label').text('button1 Clicked'); $('#test1').addClass('TestPass') " />                
+        <input type="button" id="button1" name="btnnnnn1" value="button 1" data-ginger="button1withID" ondblclick="$('#btn1labeldoubleclick').text('button1 Clicked'); $('#test1').addClass('TestPass') " onclick="$('#btn1label').text('button1 double Clicked'); $('#test1').addClass('TestPass') " />
         <label id="btn1label"></label>
+        <label id="btn1labeldoubleclick"></label>
     </div>
 
     <div id="test2">
@@ -89,7 +90,7 @@
         <select id="sel1" name ="sel1" onchange="if ($('#sel1').val() == 'Got It!') $('#test9').addClass('TestPass');">
             <option></option>
             <option>Ahhhh...</option>
-            <option>Got It!</option>
+            <option value="Got It!">Got It!</option>
             <option>Too far</option>
             <option>OMG</option>
         </select>
@@ -222,6 +223,18 @@
     <div id="test23">
         <span id="sp1" style="color:#8866ff;"> This is another text inside span</span>
     </div>
+    <div>
+        <form action="#" id="submitformtest" onsubmit="$('#formsubmitted').text('Submitted'); $('#formsubmitted').addClass('TestPass') ">
 
+            First name: <input type="text" name="fname"><br>
+            Last name: <input type="text" name="lname"><br>
+
+            <button type="submit" form="submitformtest" value="Submit" id="SubmitButtonForm">Submit</button>
+            <input id="chk11" type="checkbox" onchange="$('#checkboxclicked').text('value changed'); $('#checkboxclicked').addClass('TestPass') " value="chk1 - value">
+
+        </form>
+        <label id="checkboxclicked"></label>
+        <label id="formsubmitted"></label>
+    </div>
 </body>
 </html>

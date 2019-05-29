@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    class Canvas : GingerWebElement, ICanvas
+    public class Canvas : GingerWebElement, ICanvas
     {
         public void ClickXY(int x, int y)
         {

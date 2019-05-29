@@ -5,7 +5,7 @@ using System.Text;
 using OpenQA.Selenium.Support.UI;
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    class ComboBox : GingerWebElement, IComboBox
+    public class ComboBox : GingerWebElement, IComboBox
     {
         public void ClearValue()
         {
@@ -19,7 +19,27 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
 
         }
+        public string GetValue()
+        {
 
+            OpenQA.Selenium.Support.UI.SelectElement seIsPrepopulated = new OpenQA.Selenium.Support.UI.SelectElement(WebElement);
+            string Value;
+            if (seIsPrepopulated.SelectedOption.ToString().Trim() != "")
+            {
+                Value = seIsPrepopulated.SelectedOption.GetAttribute("value"); ;
+            }
+            else
+            {
+                Value = WebElement.Text;
+            }
+            if (string.IsNullOrEmpty(Value))
+            {
+                Value = WebElement.GetAttribute("value");
+            }
+
+
+            return Value;
+        }
         public void SetValue(string Value)
         {
             SelectElement combobox = new SelectElement(this.WebElement);

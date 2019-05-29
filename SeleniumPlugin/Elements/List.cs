@@ -23,7 +23,17 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
         public string GetValue()
         {
-            string Value = WebElement.Text;
+
+            OpenQA.Selenium.Support.UI.SelectElement seIsPrepopulated = new OpenQA.Selenium.Support.UI.SelectElement(WebElement);
+            string Value;
+            if (seIsPrepopulated.SelectedOption.ToString().Trim() != "")
+            {
+                Value = seIsPrepopulated.SelectedOption.GetAttribute("value"); ;
+            }
+            else
+            {
+                Value = WebElement.Text;
+            }
             if (string.IsNullOrEmpty(Value))
             {
                 Value = WebElement.GetAttribute("value");
