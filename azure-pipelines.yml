@@ -7,12 +7,11 @@ trigger:
 - master
 
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: 'windows-2019'
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: sudo chmod 777 -R -f 
 - script: dotnet test GingerSeleniumPlugin.sln
   displayName: 'dotnet build $(buildConfiguration)'
