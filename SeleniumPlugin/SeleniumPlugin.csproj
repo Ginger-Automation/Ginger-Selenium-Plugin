@@ -11,7 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Drivers\FireFox\" />
     <Folder Include="Drivers\InternetExplorer\" />
   </ItemGroup>
 
@@ -47,6 +46,9 @@
     </None>
     <None Update="Drivers\Chrome\Windows\chromedriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Drivers\FireFox\Linux\geckodriver">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Ginger.PluginPackage.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
