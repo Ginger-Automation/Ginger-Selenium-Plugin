@@ -301,6 +301,10 @@ namespace Ginger.Plugin.Platform.Web.Execution
                 {
                     ElementType = eElementType.Table;
                 }
+                else if (Element is ITextBox)
+                {
+                    ElementType = eElementType.TextBox;
+                }
 
 
             }
@@ -382,7 +386,7 @@ namespace Ginger.Plugin.Platform.Web.Execution
                     TextBox.SetValue(Value);
                     break;
                 case eElementAction.GetValue:
-                    AOVs.Add(new NodeActionOutputValue() { Param = "Value", Value = TextBox.GetValue() });
+                    AOVs.Add(new NodeActionOutputValue() { Param = "Actual", Value = TextBox.GetValue() });
 
                     break;
 

@@ -199,7 +199,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
             eElementType elementType = eElementType.Unknown;
             string elementTagName = element.TagName;
-            string elementTypeAtt = string.Empty;
+            string elementTypeAtt = element.GetAttribute("type");
 
             if (element == null)
             {
@@ -209,7 +209,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
           
            
 
-            if ((elementTagName.ToUpper() == "INPUT" && (elementTypeAtt.ToUpper() == "UNDEFINED" || elementTypeAtt.ToUpper() == "TEXT" || elementTypeAtt.ToUpper() == "PASSWORD" || elementTypeAtt.ToUpper() == "EMAIL"
+            if ((elementTagName.ToUpper() == "INPUT" && (elementTypeAtt.ToUpper() == "UNDEFINED"|| elementTypeAtt.ToUpper() == "TEXT" || elementTypeAtt.ToUpper() == "PASSWORD" || elementTypeAtt.ToUpper() == "EMAIL"
                                                         || elementTypeAtt.ToUpper() == "TEL" || elementTypeAtt.ToUpper() == "SEARCH" || elementTypeAtt.ToUpper() == "NUMBER" || elementTypeAtt.ToUpper() == "URL"
                                                         || elementTypeAtt.ToUpper() == "DATE")) || elementTagName.ToUpper() == "TEXTAREA" || elementTagName.ToUpper() == "TEXT")
             {

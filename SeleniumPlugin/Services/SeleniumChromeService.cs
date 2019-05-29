@@ -33,9 +33,9 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         internal override void StartDriver(Proxy mProxy)
         {
             ChromeOptions Options = new ChromeOptions();
-            Options.Proxy = mProxy;
+           Options.Proxy = mProxy;
 
-            if (!string.IsNullOrEmpty(ExtensionPath))
+            if (!(string.IsNullOrEmpty(ExtensionPath) || string.IsNullOrWhiteSpace(ExtensionPath)))
             {
                 Options.AddExtension(Path.GetFullPath(ExtensionPath));
             }
@@ -44,13 +44,13 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
                 Options.AddArgument("--headless");
             }
 
-            if (!string.IsNullOrEmpty(UserProfileFolderPath) && System.IO.Directory.Exists(UserProfileFolderPath))
+            if ((!(string.IsNullOrEmpty(UserProfileFolderPath) || string.IsNullOrWhiteSpace(UserProfileFolderPath) )&& System.IO.Directory.Exists(UserProfileFolderPath)))
 
             {
                 Options.AddArguments("user-data-dir=" + UserProfileFolderPath);
             }
 
-            if (!string.IsNullOrEmpty(DownloadFolderPath))
+            if (!(string.IsNullOrEmpty(DownloadFolderPath) || string.IsNullOrWhiteSpace(DownloadFolderPath)))
             {
                 if (!System.IO.Directory.Exists(DownloadFolderPath))
                 {
@@ -63,7 +63,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
                 Options.AddArgument("--incognito");
             }
 
-            Driver = new ChromeDriver(SeleniumServiceBase.GetDriverPath("Chrome"),Options, TimeSpan.FromSeconds(Convert.ToInt32(HttpServerTimeOut)));            
+            Driver = new ChromeDriver(SeleniumServiceBase.GetDriverPath("Chrome"),Options);            
         }
 
     }

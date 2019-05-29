@@ -21,7 +21,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         internal override void StartDriver(Proxy mProxy)
         {
-            
+       
             FirefoxOptions FirefoxOption = new FirefoxOptions();
             FirefoxOption.Proxy = mProxy;
             if (HeadlessBrowserMode )
@@ -36,7 +36,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
                 FirefoxOption.Profile = ffProfile2;
             }
 
-            Driver = new FirefoxDriver(SeleniumServiceBase.GetDriverPath("FireFox"),FirefoxOption, TimeSpan.FromSeconds(Convert.ToInt32(HttpServerTimeOut));    
+            Driver = new FirefoxDriver(SeleniumServiceBase.GetDriverPath("FireFox"),FirefoxOption, TimeSpan.FromSeconds(Convert.ToInt32(HttpServerTimeOut)));    
         }
 
     }

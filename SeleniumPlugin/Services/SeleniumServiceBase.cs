@@ -91,6 +91,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         public void StartSession()
         {
+            
+
             Proxy pxoxy = GetProxy();
             this.StartDriver(pxoxy);
             mBrowserActions = new BrowserActions(this.Driver);
@@ -120,8 +122,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
                 {
                     case ProxyKind.Manual:
                         P.HttpProxy = ProxyUrl;
-                        P.FtpProxy = ProxyUrl;
-                        P.SocksProxy = ProxyUrl;
+                        
+                   
                         P.SslProxy = ProxyUrl;
                         break;
                     case ProxyKind.ProxyAutoConfigure:
