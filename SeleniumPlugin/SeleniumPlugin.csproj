@@ -11,8 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Drivers\Chrome\Mac\" />
-    <Folder Include="Drivers\Chrome\Linux\" />
     <Folder Include="Drivers\FireFox\" />
     <Folder Include="Drivers\InternetExplorer\" />
   </ItemGroup>
@@ -41,6 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Drivers\Chrome\Linux\chromedriver">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Drivers\Chrome\Mac\chromedriver">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Drivers\Chrome\Windows\chromedriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
