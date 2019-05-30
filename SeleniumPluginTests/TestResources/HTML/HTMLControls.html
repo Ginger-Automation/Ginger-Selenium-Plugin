@@ -5,11 +5,11 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	
-	<script src="../../../GingerCore/Resources/PayLoad.js"></script>
-	<script src="../../../GingerCore/Resources/GingerHTMLRecorder.js"></script>
+
     <script type="text/javascript">
 	
-	function test(){
+        function test() {
+
         alert("test...");
 	}	
     </script>   
@@ -227,14 +227,16 @@
         <form action="#" id="submitformtest" onsubmit="$('#formsubmitted').text('Submitted'); $('#formsubmitted').addClass('TestPass') ">
 
             First name: <input type="text" name="fname"><br>
-            Last name: <input type="text" name="lname"><br>
+            Last name: <input type="text" name="lname" disabled><br>
 
             <button type="submit" form="submitformtest" value="Submit" id="SubmitButtonForm">Submit</button>
-            <input id="chk11" type="checkbox" onchange="$('#checkboxclicked').text('value changed'); $('#checkboxclicked').addClass('TestPass') " value="chk1 - value">
+            <input id="chk11" type="checkbox" oncontextmenu="$('#clickedright').text('clicked right'); $('#clickedright').addClass('TestPass')" onchange="$('#checkboxclicked').text('value changed'); $('#checkboxclicked').addClass('TestPass') " value="chk1 - value">
 
         </form>
         <label id="checkboxclicked"></label>
         <label id="formsubmitted"></label>
+        <label id="clickedright"></label>
+        <label id="invisible" style="display:none">some text</label>
     </div>
 </body>
 </html>

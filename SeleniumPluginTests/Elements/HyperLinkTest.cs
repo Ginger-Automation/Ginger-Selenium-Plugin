@@ -26,6 +26,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Tests.Elements
             Service.StopSession();
 
         }
+        [Ignore]
         [TestMethod]
         public void GetValue()
         {
@@ -67,6 +68,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Tests.Elements
             string value = validation.GetAttribute("class");
             Assert.AreEqual("TestPass", value);
         }
+        [Ignore]
         [TestMethod]
         public void MultiClick()
         {

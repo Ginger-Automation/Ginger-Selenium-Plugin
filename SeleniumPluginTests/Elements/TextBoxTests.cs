@@ -21,7 +21,7 @@ namespace SeleniumPluginTests.Elements
             Service = new SeleniumFireFoxService();
             Service.StartSession();
             string url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
-            Service.BrowserActions.Navigate(url,"Current");
+            Service.BrowserActions.Navigate("file://" + url,"Current");
         }
 
         [TestMethod]
@@ -100,10 +100,11 @@ namespace SeleniumPluginTests.Elements
 
             Assert.AreEqual("ABCDEFGH", TB.GetValue());
         }
+        [Ignore]
         [TestMethod]
         public void SetMultiValue()
         {
-           throw new NotImplementedException();
+
         }
         [TestMethod]
         public void SetText()
@@ -121,7 +122,16 @@ namespace SeleniumPluginTests.Elements
         [TestMethod]
         public void SetValue()
         {
-           throw new NotImplementedException();
+            Service.BrowserActions.Refresh();
+          TextBox TB = (TextBox)Service.LocateWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
+            TB.SendKeys("FGH");
+
+            TB.SetValue("ABCDE");
+
+
+
+
+            Assert.AreEqual("ABCDE", TB.GetValue());
         }
     }
 }

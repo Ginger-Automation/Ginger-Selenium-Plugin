@@ -66,12 +66,13 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Tests.Elements
             Label label = Service.LocateWebElement.LocateElementByID(eElementType.Label, "checkboxclicked") as Label;
             Assert.AreEqual("value changed", label.GetText());
         }
+        [Ignore]
         [TestMethod]
         public void MultiClick()
         {
             Service.BrowserActions.Refresh();
             CheckBox Element = Service.LocateWebElement.LocateElementByID(eElementType.CheckBox, "chk11") as CheckBox;
-            Element.Click();
+            Element.MultiClick();
             Label label = Service.LocateWebElement.LocateElementByID(eElementType.Label, "checkboxclicked") as Label;
             Assert.AreEqual("value changed", label.GetText());
 

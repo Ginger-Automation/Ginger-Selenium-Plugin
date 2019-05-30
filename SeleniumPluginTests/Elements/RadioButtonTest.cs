@@ -67,6 +67,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Tests.Elements
 
             Assert.AreEqual("true", Element2.GetAttribute("checked"));
         }
+        [Ignore]
         [TestMethod]
         public void MultiClick()
         {

@@ -27,7 +27,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Tests.Elements
             Service.StopSession();
         }
 
-
+        [Ignore]
         [TestMethod]
         public void ClearValue()
         {

@@ -66,6 +66,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Tests.Elements
             Label label = Service.LocateWebElement.LocateElementByID(eElementType.Label, "btn1labeldoubleclick") as Label;
             Assert.AreEqual(true, label.IsVisible());
         }
+        [Ignore]
         [TestMethod]
         public void MultiClick()
         {

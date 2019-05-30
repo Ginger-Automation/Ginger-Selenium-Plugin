@@ -29,12 +29,21 @@ namespace SeleniumPluginTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(OpenQA.Selenium.WebDriverException))]
         public void CloseWindow()
         {
-            Service.BrowserActions.CloseWindow();
+            try
+            {
+                Service.BrowserActions.CloseWindow();
 
-            Assert.AreEqual(0, Service.Driver.WindowHandles.Count);
-            Service.StartSession();
+                int count = Service.Driver.WindowHandles.Count;
+            }
+            finally
+            {
+
+
+                Service.StartSession();
+            }
         }
 
       
@@ -65,7 +74,7 @@ namespace SeleniumPluginTests
 
             Service.BrowserActions.Navigate("https://github.com/Ginger-Automation","Current");
             string Actual = Service.BrowserActions.GetTitle();
-            Assert.AreEqual("Ginger-Automation", Actual);
+            Assert.AreEqual("Ginger-Automation · GitHub", Actual);
 
         }
 
@@ -133,12 +142,14 @@ namespace SeleniumPluginTests
             Assert.AreEqual(CurrentUrl, Service.BrowserActions.GetCurrentUrl());
         }
 
-
+        [Ignore]
         [TestMethod]
-        public void SwitchToFrame(IGingerWebElement WebElement)
+        public void SwitchToFrame()
         {
            throw new NotImplementedException();
+
         }
+        [Ignore]
         [TestMethod]
         public void SwitchToParentFrame()
         {

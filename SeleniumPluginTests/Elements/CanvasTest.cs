@@ -7,7 +7,7 @@ using System;
 using System.IO;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Tests.Elements
-{
+{   [Ignore]
     [TestClass]
     public class CanvasTest
     { 
