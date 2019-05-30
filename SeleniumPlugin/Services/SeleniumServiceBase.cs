@@ -58,6 +58,12 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         [Default(60)]
         [ServiceConfiguration("Http Server TimeOut", "HttpServer Timeout for Web Action Completion. Default/Recommended is minimum 60 secs")]
         public int HttpServerTimeOut { get; set; } = 60;
+
+
+        [Default(false)]
+        [ServiceConfiguration("Auto Switch Frame", "Switch to Iframe automatically with POM")]
+        public bool AutomaticallyShiftIframe { get; set; } = false;
+
         #endregion
 
 
@@ -85,8 +91,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
         public IAlerts Alerts =>throw new NotImplementedException();
 
         public IPlatformActionHandler PlatformActionHandler { get; set; } = new WebPlatformActionHandler();
-        #endregion
-      
+         #endregion
+
         internal abstract void StartDriver(Proxy mProxy);
 
         public void StartSession()

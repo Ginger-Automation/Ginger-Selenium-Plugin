@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumPlugin", "SeleniumP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumPluginTests", "SeleniumPluginTests\SeleniumPluginTests.csproj", "{750631DE-BE6A-43D7-B648-99C74DDE43C6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GingerPluginPlatforms", "..\Ginger\Ginger\GingerPluginPlatforms\GingerPluginPlatforms.csproj", "{912F39D3-9C97-4A87-A3E6-01B224448926}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{750631DE-BE6A-43D7-B648-99C74DDE43C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{750631DE-BE6A-43D7-B648-99C74DDE43C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{750631DE-BE6A-43D7-B648-99C74DDE43C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{912F39D3-9C97-4A87-A3E6-01B224448926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912F39D3-9C97-4A87-A3E6-01B224448926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912F39D3-9C97-4A87-A3E6-01B224448926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912F39D3-9C97-4A87-A3E6-01B224448926}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

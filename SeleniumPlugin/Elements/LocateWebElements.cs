@@ -96,6 +96,24 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             return wrapper(elementType, element);
 
         }
+        public IGingerWebElement LocateElementByName(eElementType elementType, string locateByValue)
+        {
+            IWebElement element = mDriver.FindElement(By.Name(locateByValue));
+
+            // TODO: ??? !!!!
+            string tagName = element.TagName;
+            // Based on tag name check if correct elem
+            return wrapper(elementType, element);
+        }
+        public IGingerWebElement LocateElementByClassName(eElementType elementType, string locateByValue)
+        {
+            IWebElement element = mDriver.FindElement(By.ClassName(locateByValue));
+
+            // TODO: ??? !!!!
+            string tagName = element.TagName;
+            // Based on tag name check if correct elem
+            return wrapper(elementType, element);
+        }
 
         public IGingerWebElement LocateElementByPartiallinkText(eElementType elementType, string LocateValue) 
         {
@@ -303,5 +321,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
             return elementType;
         }
+
+    
     }
 }
