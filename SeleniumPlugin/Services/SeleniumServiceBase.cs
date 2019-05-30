@@ -143,7 +143,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         public virtual void StopSession()
         {
-            Driver.Quit();
+            Driver.Dispose();
         }
 
         public static string GetDriverPath(string Driver)
