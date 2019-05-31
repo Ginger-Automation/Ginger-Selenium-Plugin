@@ -1,3 +1,6 @@
-- task: DotNetCoreCLI@2
+- task: PublishTestResults@2
   inputs:
-    command: 'test'
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
+    failTaskOnFailedTests: true
+    testRunTitle: 'Unit Tests'
