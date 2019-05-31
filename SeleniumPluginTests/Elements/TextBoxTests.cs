@@ -18,7 +18,7 @@ namespace SeleniumPluginTests.Elements
         [ClassInitialize]
         public static void Initialize(TestContext context)
         {
-            Service = new SeleniumFireFoxService();
+            Service = new SeleniumChromeService();
             Service.StartSession();
             string url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
             Service.BrowserActions.Navigate("file://" + url,"Current");
