@@ -16,13 +16,10 @@
 
   <ItemGroup>
     <PackageReference Include="Ginger.Plugin.Core" Version="3.3.3" />
+    <PackageReference Include="GingerPluginPlatforms" Version="1.0.0.1" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Ginger\Ginger\GingerPluginPlatforms\GingerPluginPlatforms.csproj" />
   </ItemGroup>
 
   <ItemGroup>
