@@ -15,7 +15,7 @@ using OpenQA.Selenium;
 namespace SeleniumPluginTests
 {
     [TestClass]
-  public  class LocateWebElementsTests
+    public class LocateWebElementsTests
     {
 
         static SeleniumServiceBase Service = null;
@@ -26,7 +26,7 @@ namespace SeleniumPluginTests
             Service = new SeleniumChromeService();
             Service.StartSession();
             string url = Path.Combine(TestResources.GetTestResourcesFolder("HTML"), "HTMLControls.html");
-            Service.BrowserActions.Navigate(url,"Current");
+            Service.BrowserActions.Navigate(url, "Current");
         }
 
         [ClassCleanup]
@@ -39,84 +39,89 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void LocateElementByCSS()
         {
-            //Button Element = Service.LocatLWebElement.LocateElementByCss("#test8 > div > label") as GingerWebElement;
+            Button Element = Service.LocateWebElement.LocateElementByCss(eElementType.Button,"#test8 > div > label") as Button;
 
-            //Assert.AreEqual("*** Button ***", Element. .WebElement.Text);
+            Assert.AreEqual("*** Button ***", Element.GetValue());
         }
 
-        //[TestMethod]
-        //public void LocateElementByID()
+        [TestMethod]
+        public void LocateElementByID()
 
-        //{
-        //    GingerWebElement Element = ElementLocator.LocateElementByID("button1") as GingerWebElement;
+        {
+            GingerWebElement Element = Service.LocateWebElement.LocateElementByID(eElementType.WebElement,"button1") as GingerWebElement;
 
-        //    Assert.AreEqual("button 1", Element.WebElement.GetAttribute("value"));
-        //}
+            Assert.AreEqual("button 1", Element.GetAttribute("value"));
+        }
 
 
         [TestMethod]
         public void LocateElementByLinkTest()
         {
-            //GingerWebElement Element = Service.LocatLWebElement.LocateElementByPartiallinkText<GingerWebElement>("This is A Link to Google, Click me") as GingerWebElement;
+            GingerWebElement Element = Service.LocateWebElement.LocateElementByPartiallinkText(eElementType.WebElement,"This is A Link to Google, Click me") as GingerWebElement;
 
-            //Assert.AreEqual("http://www.google.com/", Element.WebElement.GetAttribute("href"));
+            Assert.AreEqual("http://www.google.com/", Element.GetAttribute("href"));
         }
         [TestMethod]
         public void LocateElementByPartiallinkText()
         {
 
-            //GingerWebElement Element = Service.LocatLWebElement.LocateElementByPartiallinkText<GingerWebElement>("Ginger") as GingerWebElement;
+            ILabel Element = Service.LocateWebElement.LocateElementByPartiallinkText(eElementType.Label,"Ginger") as ILabel;
 
-            //Assert.AreEqual("Ginger Spice It Up!", Element.WebElement.Text);
+            Assert.AreEqual("Ginger Spice It Up!", Element.GetText());
         }
-    
+
         [TestMethod]
         public void LocateElementByTag()
         {
 
-        //    GingerWebElement Element = Service.LocatLWebElement.LocateElementByTag<GingerWebElement>("H2") as GingerWebElement;
+            ILabel Element = Service.LocateWebElement.LocateElementByTag(eElementType.Label,"H2") as ILabel;
 
-        //    Assert.AreEqual("Make me Green !", Element.WebElement.Text);
+            Assert.AreEqual("Make me Green !", Element.GetText());
         }
 
         [TestMethod]
         public void LocateElementByXPath()
         {
-            GingerWebElement Element = Service.LocatLWebElement.LocateElementByXPath(eElementType.WebElement, "/html/body/table/tbody/tr[2]/td[5]") as GingerWebElement;
+            ILabel Element = Service.LocateWebElement.LocateElementByXPath(eElementType.Label, "/html/body/table/tbody/tr[2]/td[5]") as ILabel;
 
-            // Assert.AreEqual("217-811-2932", Element.GetAttribute(); // .WebElement.Text);
+            Assert.AreEqual("217-811-2932", Element.GetText()); // .WebElement.Text);
         }
+        [Ignore]
         [TestMethod]
         public void LocateElementsByClassName()
         {
-           // int eLEMENTcOUNT = Service.LocatLWebElement.LocateElementsByClassName("TestDescription").Count;
-           // Assert.AreEqual(23, eLEMENTcOUNT);
+            Assert.Fail();
+            //int eLEMENTcOUNT = Service.LocateWebElement.LocateElementsByClassName("TestDescription").Count;
+            //Assert.AreEqual(23, eLEMENTcOUNT);
         }
+        [Ignore]
         [TestMethod]
         public void LocateElementsbyCSS()
         {
             Assert.Fail();
 
         }
+        [Ignore]
         [TestMethod]
         public void LocateElementsByTagName()
         {
-           // int ElementsCount = Service.LocatLWebElement.LocateElementsByTagName("a").Count;
-          //  Assert.AreEqual(4, ElementsCount);
+            Assert.Fail();
+         //int ElementsCount = Service.LocateWebElement.LocateElementsByTagName("a").Count;
+            //Assert.AreEqual(4, ElementsCount);
         }
 
         [TestMethod]
         public void SetTextBoxText()
         {
-            // Arrange            
+            //Arrange
             string txt = "123";
 
             //Act
-            ITextBox GWE = (ITextBox)Service.LocatLWebElement.LocateElementByID( eElementType.TextBox, "GingerPhone");
+            ITextBox GWE = (ITextBox)Service.LocateWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
             GWE.SetText(txt);
             string value = GWE.GetText();
 
-            //Assert
+          //  Assert
             Assert.AreEqual(txt, value, "Set value and get value are equel");
         }
 
@@ -124,38 +129,36 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void GetElem()
         {
-            // Arrange            
-            
+            //Arrange
 
-            //Act
-            IGingerWebElement GWE = Service.LocatLWebElement.LocateElementByID( eElementType.WebElement, "GingerPhone");
-            int value = GWE.GetWidth();
+            IGingerWebElement GWE = Service.LocateWebElement.LocateElementByID(eElementType.WebElement, "GingerPhone");
+    
 
             //Assert
-            // Assert.AreEqual(txt, value, "Set value and get value are equel");
+             Assert.AreNotEqual(null, GWE.Element);
         }
 
 
         [TestMethod]
         public void SetTextBoxTextTwice()
         {
-            // arrange
+            //arrange
             string txt1 = "123";
             string txt2 = "456";
 
             //Act
-            ITextBox GWE = (ITextBox)Service.LocatLWebElement.LocateElementByID( eElementType.TextBox, "GingerPhone");
+            ITextBox GWE = (ITextBox)Service.LocateWebElement.LocateElementByID(eElementType.TextBox, "GingerPhone");
             GWE.SetText(txt1);
             GWE.SetText(txt2);
             string value = GWE.GetText();
 
-            //Assert
+           //Assert
             Assert.AreEqual(txt2, value, "Set value and get value are equel");
         }
 
 
 
-        
+
 
     }
 

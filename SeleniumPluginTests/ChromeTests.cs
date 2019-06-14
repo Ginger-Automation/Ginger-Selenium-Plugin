@@ -16,54 +16,74 @@ namespace SeleniumPluginTests
         public static void Initialize(TestContext context)
         {
             Service = new SeleniumChromeService();
+
+            Service.StartSession();
+        }
+
+        [ClassCleanup]
+
+        public static void CleanUp()
+        {
+            Service.StopSession();
+
         }
 
         [TestMethod]
-        public void StartSessionTest()
-        {
-            Service.StartSession();
-        }
-        
-        [TestMethod]
+        [ExpectedException(typeof(OpenQA.Selenium.WebDriverException))]
         public void CloseWindow()
         {
-            Service.BrowserActions.CloseWindow();
+            try
+            {
+                Service.BrowserActions.CloseWindow();
 
-            Assert.AreEqual(0, Service.Driver.WindowHandles.Count);
-            Service.StartSession();
+                int count = Service.Driver.WindowHandles.Count;
+            }
+            finally
+            {
+
+
+                Service.StartSession();
+            }
         }
 
       
         [TestMethod]
         public void ExecuteScript()
         {
-           throw new NotImplementedException();
+            Service.StartSession();
         }
 
    
         [TestMethod]
         public void FullScreen()
+
         {
-           throw new NotImplementedException();
+            Service.BrowserActions.FullScreen();
         }
 
         [TestMethod]
         public void  GetCurrentUrl()
         {
 
-            
+            Service.StartSession();
         }
 
         [TestMethod]
         public void GetTitle()
         {
-           throw new NotImplementedException();
+
+            Service.BrowserActions.Navigate("https://github.com/Ginger-Automation","Current");
+            string Actual = Service.BrowserActions.GetTitle();
+            Assert.AreEqual("Ginger-Automation · GitHub", Actual);
+
         }
 
         [TestMethod]
         public void GetWindowHandle()
         {
-           throw new NotImplementedException();
+            string handle=Service.BrowserActions.GetWindowHandle();
+
+            Assert.AreNotEqual(null, handle);
         }
 
         [TestMethod]
@@ -75,39 +95,61 @@ namespace SeleniumPluginTests
         [TestMethod]
         public void Maximize()
         {
-           throw new NotImplementedException();
+            Service.BrowserActions.Maximize();
         }
 
         [TestMethod]
         public void Minimize()
         {
-           throw new NotImplementedException();
+            Service.BrowserActions.Maximize();
         }
 
         [TestMethod]
         public void NavigateBack()
         {
-           throw new NotImplementedException();
+            string CurrentUrl =@"https://github.com/Ginger-Automation";
+            Service.BrowserActions.Navigate(CurrentUrl, "Current");
+            Service.BrowserActions.Navigate(@"https://github.com", "Current");
+
+            Service.BrowserActions.NavigateBack();
+
+            Assert.AreEqual(CurrentUrl, Service.BrowserActions.GetCurrentUrl());
         }
 
         [TestMethod]
         public void NavigateForward()
         {
-           throw new NotImplementedException();
+
+            string CurrentUrl = @"https://github.com/Ginger-Automation";
+            Service.BrowserActions.Navigate(CurrentUrl, "Current");
+    
+            Service.BrowserActions.Navigate(@"https://github.com", "Current");
+            Service.BrowserActions.Navigate(@"https://github.com/Ginger-Automation/Ginger", "Current");
+            Service.BrowserActions.NavigateBack();
+            Service.BrowserActions.NavigateBack();
+
+            Service.BrowserActions.NavigateForward();
+            Assert.AreEqual("https://github.com/", Service.BrowserActions.GetCurrentUrl());
         }
 
         [TestMethod]
         public void Refresh()
         {
-           throw new NotImplementedException();
+            string CurrentUrl = @"https://github.com/Ginger-Automation";
+            Service.BrowserActions.Navigate(CurrentUrl, "Current");
+
+            Service.BrowserActions.Refresh();
+            Assert.AreEqual(CurrentUrl, Service.BrowserActions.GetCurrentUrl());
         }
 
-
+        [Ignore]
         [TestMethod]
-        public void SwitchToFrame(IGingerWebElement WebElement)
+        public void SwitchToFrame()
         {
            throw new NotImplementedException();
+
         }
+        [Ignore]
         [TestMethod]
         public void SwitchToParentFrame()
         {

@@ -63,10 +63,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             this.WebElement.SendKeys(keys);
         }
 
-#warning Pending Implementation
-        public void SetMultiValue(string[] values)
-        {
-           throw new NotImplementedException();        }
+
 
         public void SetText(string Text)
         {

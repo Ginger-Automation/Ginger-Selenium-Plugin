@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    class CheckBox:GingerWebElement, ICheckBox
+    public class CheckBox:GingerWebElement, ICheckBox
     {
 
         public void JavascriptClick()

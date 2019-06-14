@@ -96,6 +96,24 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             return wrapper(elementType, element);
 
         }
+        public IGingerWebElement LocateElementByName(eElementType elementType, string locateByValue)
+        {
+            IWebElement element = mDriver.FindElement(By.Name(locateByValue));
+
+            // TODO: ??? !!!!
+            string tagName = element.TagName;
+            // Based on tag name check if correct elem
+            return wrapper(elementType, element);
+        }
+        public IGingerWebElement LocateElementByClassName(eElementType elementType, string locateByValue)
+        {
+            IWebElement element = mDriver.FindElement(By.ClassName(locateByValue));
+
+            // TODO: ??? !!!!
+            string tagName = element.TagName;
+            // Based on tag name check if correct elem
+            return wrapper(elementType, element);
+        }
 
         public IGingerWebElement LocateElementByPartiallinkText(eElementType elementType, string LocateValue) 
         {
@@ -137,7 +155,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
                     Element= new Canvas();
                     break;
                 case eElementType.CheckBox:
-                    Element= new Button();
+                    Element= new CheckBox();
                     break;
                 case eElementType.ComboBox:
                     Element = new ComboBox();
@@ -167,7 +185,16 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
                     Element = new TextBox();
                     break;
                 case eElementType.WebElement:
-                    Element = new GingerWebElement();
+                case eElementType.Unknown:
+
+                    eElementType MyElemetType = GetElementType(element);
+                    if (MyElemetType == eElementType.Unknown)
+                    {
+                        Element = new GingerWebElement();
+                    }
+
+                    else
+                        Element = wrapper(MyElemetType, element);
                     break;
                 case eElementType.HyperLink:
                     Element = new HyperLink();
@@ -184,5 +211,117 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 
             return Element;
         }
+
+        private eElementType GetElementType(IWebElement element)
+        {
+
+            eElementType elementType = eElementType.Unknown;
+            string elementTagName = element.TagName;
+            string elementTypeAtt = element.GetAttribute("type");
+
+            if (element == null)
+            {
+                return eElementType.Unknown;
+
+            }
+          
+           
+
+            if ((elementTagName.ToUpper() == "INPUT" && (elementTypeAtt.ToUpper() == "UNDEFINED"|| elementTypeAtt.ToUpper() == "TEXT" || elementTypeAtt.ToUpper() == "PASSWORD" || elementTypeAtt.ToUpper() == "EMAIL"
+                                                        || elementTypeAtt.ToUpper() == "TEL" || elementTypeAtt.ToUpper() == "SEARCH" || elementTypeAtt.ToUpper() == "NUMBER" || elementTypeAtt.ToUpper() == "URL"
+                                                        || elementTypeAtt.ToUpper() == "DATE")) || elementTagName.ToUpper() == "TEXTAREA" || elementTagName.ToUpper() == "TEXT")
+            {
+                elementType = eElementType.TextBox;
+            }
+            else if ((elementTagName.ToUpper() == "INPUT" && (elementTypeAtt.ToUpper() == "IMAGE" || elementTypeAtt.ToUpper() == "SUBMIT" || elementTypeAtt.ToUpper() == "BUTTON")) ||
+                    elementTagName.ToUpper() == "BUTTON" || elementTagName.ToUpper() == "SUBMIT" || elementTagName.ToUpper() == "RESET")
+            {
+                elementType = eElementType.Button;
+            }
+            else if (elementTagName.ToUpper() == "TD" || elementTagName.ToUpper() == "TH" || elementTagName.ToUpper() == "TR")
+            {
+                elementType = eElementType.Table;
+            }
+            else if (elementTagName.ToUpper() == "LINK" || elementTagName.ToUpper() == "A" || elementTagName.ToUpper() == "LI")
+            {
+                elementType = eElementType.HyperLink;
+            }
+            else if (elementTagName.ToUpper() == "LABEL" || elementTagName.ToUpper() == "TITLE")
+            {
+                elementType = eElementType.Label;
+            }
+            else if (elementTagName.ToUpper() == "SELECT" || elementTagName.ToUpper() == "SELECT-ONE")
+            {
+                elementType = eElementType.ComboBox;
+            }
+            else if (elementTagName.ToUpper() == "TABLE" || elementTagName.ToUpper() == "CAPTION")
+            {
+                elementType = eElementType.Table;
+            }
+            else if (elementTagName.ToUpper() == "JEDITOR.TABLE")
+            {
+                elementType = eElementType.TextBox;
+            }
+            else if (elementTagName.ToUpper() == "DIV")
+            {
+                elementType = eElementType.Div;
+            }
+            else if (elementTagName.ToUpper() == "SPAN")
+            {
+                elementType = eElementType.Span;
+            }
+            else if (elementTagName.ToUpper() == "IMG" || elementTagName.ToUpper() == "MAP")
+            {
+                elementType = eElementType.Image;
+            }
+            else if ((elementTagName.ToUpper() == "INPUT" && elementTypeAtt.ToUpper() == "CHECKBOX") || (elementTagName.ToUpper() == "CHECKBOX"))
+            {
+                elementType = eElementType.CheckBox;
+            }
+            else if (elementTagName.ToUpper() == "OPTGROUP" || elementTagName.ToUpper() == "OPTION")
+            {
+
+                elementType = eElementType.ComboBox;
+            }
+            else if ((elementTagName.ToUpper() == "INPUT" && elementTypeAtt.ToUpper() == "RADIO") || (elementTagName.ToUpper() == "RADIO"))
+            {
+                elementType = eElementType.RadioButton;
+            }
+            //else if (elementTagName.ToUpper() == "IFRAME" || elementTagName.ToUpper() == "FRAME" || elementTagName.ToUpper() == "FRAMESET")
+            //{
+            //    elementType = eElementType.Iframe;
+            //}
+            else if (elementTagName.ToUpper() == "CANVAS")
+            {
+                elementType = eElementType.Canvas;
+            }
+            //else if (elementTagName.ToUpper() == "FORM")
+            //{
+            //    elementType = eElementType.Form;
+            //}
+            else if (elementTagName.ToUpper() == "UL" || elementTagName.ToUpper() == "OL" || elementTagName.ToUpper() == "DL")
+            {
+                elementType = eElementType.List;
+            }
+            else if (elementTagName.ToUpper() == "LI" || elementTagName.ToUpper() == "DT" || elementTagName.ToUpper() == "DD")
+            {
+                elementType = eElementType.List;
+            }
+            //else if (elementTagName.ToUpper() == "MENU")
+            //{
+            //    elementType = eElementType.MenuBar;
+            //}
+            else if (elementTagName.ToUpper() == "H1" || elementTagName.ToUpper() == "H2" || elementTagName.ToUpper() == "H3" || elementTagName.ToUpper() == "H4" || elementTagName.ToUpper() == "H5" || elementTagName.ToUpper() == "H6" || elementTagName.ToUpper() == "P")
+            {
+                elementType = eElementType.TextBox;
+            }
+            else
+                elementType = eElementType.Unknown;
+           
+
+            return elementType;
+        }
+
+    
     }
 }

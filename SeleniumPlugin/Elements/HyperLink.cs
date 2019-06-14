@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
 {
-    class HyperLink : GingerWebElement, IHyperLink
+    public class HyperLink : GingerWebElement, IHyperLink
     {
         
         public string GetValue()

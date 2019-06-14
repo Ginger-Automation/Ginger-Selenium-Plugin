@@ -11,20 +11,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Drivers\Chrome\Mac\" />
-    <Folder Include="Drivers\Chrome\Linux\" />
-    <Folder Include="Drivers\FireFox\" />
     <Folder Include="Drivers\InternetExplorer\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ginger.Plugin.Core" Version="3.3.3" />
+    <PackageReference Include="GingerPluginPlatforms" Version="1.0.0.1" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\GingerPluginPlatforms\GingerPluginPlatforms.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +38,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Drivers\Chrome\Linux\chromedriver">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Drivers\Chrome\Mac\chromedriver">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Drivers\Chrome\Windows\chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Drivers\FireFox\Linux\geckodriver">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Drivers\FireFox\windows\geckodriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Ginger.PluginPackage.json">

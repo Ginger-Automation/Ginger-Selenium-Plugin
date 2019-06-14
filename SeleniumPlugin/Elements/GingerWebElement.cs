@@ -72,11 +72,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
             return WebElement.Size.Height;
         }
-#warning pending Implementation 
-        public int GetItemCount()
-        {
-           throw new NotImplementedException();
-        }
+
 
         public Size GetSize()
         {
@@ -123,11 +119,6 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         public void ScrollToElement()
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", WebElement);
-        }
-#warning pending Implementation 
-        public void SetDiabled()
-        {
-           throw new NotImplementedException();
         }
 
         public void SetFocus()
