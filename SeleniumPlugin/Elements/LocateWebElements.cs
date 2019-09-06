@@ -191,6 +191,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
                     if (MyElemetType == eElementType.Unknown)
                     {
                         Element = new GingerWebElement();
+                        Element.Element = element;
                     }
 
                     else

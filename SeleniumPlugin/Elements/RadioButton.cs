@@ -32,5 +32,17 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         {
             GingerWebElement.MouseClick(this.WebElement, Driver);
         }
+
+        public string GetValue()
+        {
+            string Value = WebElement.Text;
+            if (string.IsNullOrEmpty(Value))
+            {
+                Value = WebElement.GetAttribute("value");
+            }
+
+
+            return Value;
+        }
     }
 }

@@ -13,6 +13,11 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             GingerWebElement.ClearList(WebElement);
         }
 
+        public string GetSelectedValue()
+        {
+        return    GingerWebElement.GetSelectedValue(WebElement);
+        }
+
         public List<string> GetValidValue()
         {
 
@@ -24,16 +29,10 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
         public string GetValue()
         {
 
-            OpenQA.Selenium.Support.UI.SelectElement seIsPrepopulated = new OpenQA.Selenium.Support.UI.SelectElement(WebElement);
-            string Value;
-            if (seIsPrepopulated.SelectedOption.ToString().Trim() != "")
-            {
-                Value = seIsPrepopulated.SelectedOption.GetAttribute("value"); ;
-            }
-            else
-            {
-                Value = WebElement.Text;
-            }
+         
+            
+            string    Value = WebElement.Text;
+            
             if (string.IsNullOrEmpty(Value))
             {
                 Value = WebElement.GetAttribute("value");

@@ -3,6 +3,7 @@ using Ginger.Plugin.Platform.Web.Elements;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
@@ -15,11 +16,14 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
            this.Driver = mDriver;
         }
 
-        public void AcceptMessageBox()
+        public void AcceptAlert()
         {
             Driver.SwitchTo().Alert().Accept();
         }
-
+        public string GetAlertText()
+        {
+            return Driver.SwitchTo().Alert().Text;
+        }
         public void CloseCurrentTab()
         {
             Driver.Close();
@@ -27,7 +31,11 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
 
         public void CloseWindow()
         {
-            Driver.Close();
+            foreach (string handle in Driver.WindowHandles)
+            {
+                Driver.SwitchTo().Window(handle);
+                Driver.Close();
+            }
         }
 
         public void DeleteAllCookies()
@@ -35,7 +43,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
             Driver.Manage().Cookies.DeleteAllCookies();
         }
 
-        public void DismissMessageBox()
+        public void DismissAlert()
         {
             Driver.SwitchTo().Alert().Dismiss();
         }
@@ -91,7 +99,43 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
                 javaScriptExecutor.ExecuteScript("window.open();");
                 Driver.SwitchTo().Window(Driver.WindowHandles[Driver.WindowHandles.Count - 1]);
             }
+            else if(OpenIn== "NewWindow")
+            {
+                IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)Driver;
+                javaScriptExecutor.ExecuteScript("newwindow=window.open('about:blank','newWindow','height=250,width=350');if (window.focus) { newwindow.focus()}return false; ");
+                Driver.SwitchTo().Window(Driver.WindowHandles[Driver.WindowHandles.Count - 1]);
+                Driver.Manage().Window.Maximize();
+            }
+
+           
+
+            if (url.ToLower().StartsWith("www"))
+            {
+                url = "http://" + url;
+            }
+
+            Uri uri = ValidateURL(url);
+            if (uri != null)
+            {
+                Driver.Navigate().GoToUrl(uri.AbsoluteUri);
+            }
+            else
+            {
+                throw new InvalidDataException(url + " is not a valid URL");
+            }
+
+
             Driver.Url = url;
+
+             Uri ValidateURL(String sURL)
+            {
+                Uri myurl;
+                if (Uri.TryCreate(sURL, UriKind.Absolute, out myurl))
+                {
+                    return myurl;
+                }
+                return null;
+            }
         }
 
         public void NavigateBack()
@@ -109,19 +153,24 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
             Driver.Navigate().Refresh();
         }
 
-        public void SetAlertBoxText(string value)
+        public void SendAlertText(string value)
         {
             Driver.SwitchTo().Alert().SendKeys(value);
         }
 
         public void SwitchToFrame(IGingerWebElement WebElement)
         {
-            Driver.SwitchTo().Frame(WebElement as IWebElement);
+            Driver.SwitchTo().Frame(WebElement.Element as IWebElement);
         }
 
         public void SwitchToParentFrame()
         {
             Driver.SwitchTo().ParentFrame();
+        }
+
+        public string GetPageSource()
+        {
+            return Driver.PageSource;
         }
     }
 }

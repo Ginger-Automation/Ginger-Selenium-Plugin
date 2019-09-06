@@ -7,6 +7,7 @@ using Ginger.Plugin.Platform.Web.Execution;
 using Ginger.Plugins.Web.SeleniumPlugin.Browser;
 using Ginger.Plugins.Web.SeleniumPlugin.Elements;
 using OpenQA.Selenium;
+using SeleniumPlugin;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -101,6 +102,9 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
             Proxy pxoxy = GetProxy();
             this.StartDriver(pxoxy);
+
+            Program.DriverSessions.Add(this);
+
             mBrowserActions = new BrowserActions(this.Driver);
             mLocatLWebElement = new LocateWebElements(this.Driver);
 
@@ -149,6 +153,10 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         public virtual void StopSession()
         {
+
+
+            Program.DriverSessions.Remove(this);
+
             Driver.Dispose();
         }
 

@@ -24,6 +24,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
        
             FirefoxOptions FirefoxOption = new FirefoxOptions();
             FirefoxOption.Proxy = mProxy;
+            FirefoxOption.AcceptInsecureCertificates = true;
             if (HeadlessBrowserMode )
             {
                 FirefoxOption.AddArgument("--headless");

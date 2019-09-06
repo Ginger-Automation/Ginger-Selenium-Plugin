@@ -13,6 +13,9 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
     {
         // keep it protected not public
         protected IWebElement WebElement;
+
+  
+
         public IWebDriver Driver { get; set; }
         // TODO: remove the public accessor
         public object Element
@@ -228,7 +231,19 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             se.SelectByValue(Text);
         }
 
+        public static string GetSelectedValue(IWebElement webElement)
+        {
+            SelectElement se = new SelectElement(webElement);
+            string value=se.SelectedOption.Text;
 
+       
+            if (string.IsNullOrEmpty(value))
+            {
+                value = se.SelectedOption.GetAttribute("value");
+            }
+
+            return value;
+        }
 
 
         #endregion

@@ -72,5 +72,10 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Elements
             GingerWebElement.SelectElementByText(WebElement, Text);
 
         }
+
+        public string GetSelectedValue()
+        {
+            return GingerWebElement.GetSelectedValue(WebElement);
+        }
     }
 }
