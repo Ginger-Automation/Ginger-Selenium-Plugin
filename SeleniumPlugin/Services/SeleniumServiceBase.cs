@@ -22,10 +22,10 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
     public abstract class SeleniumServiceBase : IServiceSession, IWebPlatform, IScreenShotService
     {
 
-        //  "ProxyAutoConfigure", new object[] { "Direct", "Manual", "ProxyAutoConfigure", "AutoDetect", "System" })]
 
         #region Plugin Configuration
 
+        [Default("System")]
         [ValidValue(new string[] { "Direct", "Manual", "ProxyAutoConfigure", "AutoDetect", "System" })]
         [ServiceConfiguration("Proxy Type", "Proxy type")]
         public string Proxy { get; set; }
