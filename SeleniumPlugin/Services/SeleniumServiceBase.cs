@@ -90,7 +90,8 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
 
         // TODO: mark not impl
         public IAlerts Alerts =>throw new NotImplementedException();
-
+        
+        //Y.W: if we use the generic then move from here !!!
         public IPlatformActionHandler PlatformActionHandler { get; set; } = new WebPlatformActionHandler();
          #endregion
 
