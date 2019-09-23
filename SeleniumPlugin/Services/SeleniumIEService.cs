@@ -31,7 +31,7 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Services
                 ieoptions.ForceCreateProcessApi = true;
                 ieoptions.BrowserCommandLineArguments = "-private";
             }
-            Driver = new InternetExplorerDriver(ieoptions);
+            Driver = new InternetExplorerDriver(SeleniumServiceBase.GetDriverPath("InternetExplorer"), ieoptions);
         }
     }
 }

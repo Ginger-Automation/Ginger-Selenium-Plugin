@@ -6,6 +6,12 @@
     <IsPackable>false</IsPackable>
 
     <RootNamespace>Ginger.Plugins.Web.SeleniumPlugin.Tests</RootNamespace>
+
+    <ApplicationIcon />
+
+    <OutputType>WinExe</OutputType>
+
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>

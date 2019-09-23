@@ -172,5 +172,10 @@ namespace Ginger.Plugins.Web.SeleniumPlugin.Browser
         {
             return Driver.PageSource;
         }
+
+        public void SwitchToDefaultContent()
+        {
+            Driver.SwitchTo().DefaultContent();
+        }
     }
 }
